@@ -63,15 +63,16 @@
   --shadow-md: 0 4px 12px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);
 }/* ── MODE SOMBRE ────────────────────────── */
 body.dark-mode {
-  --bg:       #0a0a0a;
-  --surface:  #141414;
-  --surface2: #1e1e1e;
-  --surface3: #282828;
-  --border:   #313131;
-  --border2:  #3e3e3e;
-  --text:     #ffffff;
-  --text2:    #b0b4c1;
-  --muted:    #666c7a;
+  --bg:       #0f0f1a;
+  --surface:  #16162a;
+  --surface2: #1e1e35;
+  --surface3: #26263f;
+  --surface4: #2e2e4a;
+  --border:   rgba(255,255,255,.08);
+  --border2:  rgba(255,255,255,.12);
+  --text:     #f0f0ff;
+  --text2:    #a0a0c0;
+  --muted:    #606080;
   --amrap:    #F08030;
   --fortime:  #3A9FE0;
   --emom:     #9B5FE0;
@@ -81,12 +82,44 @@ body.dark-mode {
   --lv1:      #2ECC71;
   --lv2:      #F08030;
   --lv3:      #E74C3C;
-  --shadow-sm: none;
-  --shadow-md: none;
-}*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }html { font-size: 16px; -webkit-text-size-adjust: 100%; }body {
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.4);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.5);
+}
+
+/* Dark mode : cards avec légère teinte violette */
+body.dark-mode .section {
+  background: var(--surface2);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+body.dark-mode .exo-card {
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 14px;
+}
+body.dark-mode .mode-btn {
+  background: var(--surface3);
+  border: 1px solid var(--border);
+}
+body.dark-mode .mode-btn.selected.amrap   { background: #c0550a; border-color: #c0550a; }
+body.dark-mode .mode-btn.selected.fortime { background: #185fa5; border-color: #185fa5; }
+body.dark-mode .mode-btn.selected.tabata  { background: #1a7a45; border-color: #1a7a45; }
+body.dark-mode .mode-btn.selected.emom    { background: #5b2f9e; border-color: #5b2f9e; }
+body.dark-mode .mode-btn.selected.emom-plus { background: #8a1a0a; border-color: #8a1a0a; }
+body.dark-mode input[type="text"], body.dark-mode input[type="number"] {
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  color: var(--text);
+}
+body.dark-mode #chrono-header {
+  background: var(--surface);
+  border-bottom-color: var(--border);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }html { font-size: 16px; -webkit-text-size-adjust: 100%; }body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, 'SF Pro Display', 'Inter', 'Helvetica Neue', Arial, sans-serif;
   min-height: 100vh;
   overscroll-behavior: none;
 }/* ============================================
@@ -227,7 +260,7 @@ body.dark-mode {
   cursor: pointer;
   transition: opacity var(--t-fast), transform var(--t-fast);
   -webkit-tap-highlight-color: transparent;
-}.chrono-btn:active { opacity: 0.7; transform: scale(0.97); }#btn-start { background: var(--tabata); color: #000; }#btn-start.paused { background: #F39C12; color: #000; }#btn-reset { background: var(--surface3); color: var(--text2); flex: 0 0 64px; font-size: 18px; }/* ============================================
+}.chrono-btn:active { opacity: 0.7; transform: scale(0.97); }#btn-start { background: linear-gradient(135deg,#2d1060,#1a2744); color: #fff; font-weight: 900; letter-spacing: 1px; }#btn-start.paused { background: #F39C12; color: #000; }#btn-reset { background: var(--surface3); color: var(--text2); flex: 0 0 64px; font-size: 18px; }/* ============================================
    DIVIDER / SECTIONS
    Hiérarchie : chaque section = bloc distinct
    ============================================ */
@@ -239,7 +272,7 @@ body.dark-mode {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 900;
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -378,8 +411,10 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   box-shadow: 0 0 20px rgba(231,76,60,.4);
 }.mode-btn.selected.emom-plus .mode-label { color: #fff; }.mode-btn.selected.emom-plus .mode-sub { color: #fff; opacity: 0.7; }.mode-btn.tabata { border-color: rgba(29,185,84,.5);  }/* Label coloré idle */
 .mode-btn.amrap   .mode-label { color: var(--amrap); }.mode-btn.fortime .mode-label { color: var(--fortime); }.mode-btn.emom    .mode-label { color: var(--emom); }.mode-btn.tabata  .mode-label { color: var(--tabata); }/* Selected : fond plein + glow */
-.mode-btn.selected.amrap { background: var(--amrap);   color: #fff; border-color: var(--amrap);
-  box-shadow: 0 0 20px rgba(232,114,12,.35); }.mode-btn.selected .mode-label { color: inherit; }.mode-btn.selected .mode-sub { color: inherit; opacity: 0.7; }/* ============================================
+.mode-btn.selected.amrap   { background: var(--amrap);   color: #fff; border-color: var(--amrap);   box-shadow: 0 0 20px rgba(232,114,12,.35); }
+.mode-btn.selected.fortime { background: var(--fortime); color: #fff; border-color: var(--fortime); box-shadow: 0 0 20px rgba(33,118,174,.35); }
+.mode-btn.selected.tabata  { background: var(--tabata);  color: #fff; border-color: var(--tabata);  box-shadow: 0 0 20px rgba(29,185,84,.35); }
+.mode-btn.selected.emom    { background: var(--emom);    color: #fff; border-color: var(--emom);    box-shadow: 0 0 20px rgba(107,36,175,.35); }.mode-btn.selected .mode-label { color: inherit; }.mode-btn.selected .mode-sub { color: inherit; opacity: 0.7; }/* ============================================
    CONFIG PANELS
    ============================================ */
 #config-panel { margin-top: 16px; }.config-row {
@@ -2454,33 +2489,57 @@ body.dark-mode #chrono-header {
   box-shadow: none;
 }.chrono-hidden { display: none !important; }/* ── Popup notation exécution ────────────────────────────── */
 #note-exec-popup {
-  position: fixed; inset: 0; background: rgba(0,0,0,.55);
-  display: flex; align-items: center; justify-content: center;
+  position: fixed; inset: 0; background: rgba(0,0,0,.65);
+  display: flex; align-items: flex-end; justify-content: center;
   z-index: 9999; opacity: 0; pointer-events: none;
   transition: opacity .15s;
-}#note-exec-popup.visible { opacity: 1; pointer-events: all; }#note-exec-popup .nep-box {
-  background: var(--surface2); border-radius: 18px;
-  padding: 24px 20px 18px; width: min(320px, 90vw);
-  box-shadow: 0 8px 32px rgba(0,0,0,.35);
-  text-align: center;
-}#note-exec-popup .nep-exo {
-  font-size: 13px; font-weight: 800; color: var(--text);
-  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;
-}#note-exec-popup .nep-label {
-  font-size: 11px; color: var(--muted); margin-bottom: 18px; letter-spacing: .5px;
-}#note-exec-popup .nep-btns {
-  display: flex; gap: 10px; justify-content: center; margin-bottom: 14px;
-}#note-exec-popup .nep-btn {
-  width: 58px; height: 58px; border-radius: 14px;
+  padding-bottom: 16px;
+}
+#note-exec-popup.visible { opacity: 1; pointer-events: all; }
+#note-exec-popup .nep-box {
+  background: var(--surface2); border-radius: 20px;
+  width: min(340px, 92vw);
+  box-shadow: 0 12px 40px rgba(0,0,0,.5);
+  overflow: hidden; text-align: center;
+}
+#note-exec-popup .nep-header {
+  background: linear-gradient(135deg,#1a0533,#2d1060);
+  padding: 18px 20px 16px;
+}
+#note-exec-popup .nep-label {
+  font-size: 10px; color: rgba(180,140,255,.8);
+  letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  margin-bottom: 8px;
+}
+#note-exec-popup .nep-exo {
+  font-size: 22px; font-weight: 900; color: #fff;
+  text-transform: uppercase; letter-spacing: .5px; line-height: 1.2;
+}
+#note-exec-popup .nep-body { padding: 20px 20px 16px; }
+#note-exec-popup .nep-btns {
+  display: flex; gap: 6px; justify-content: center; margin-bottom: 6px;
+}
+#note-exec-popup .nep-btn {
+  width: 60px; height: 60px; border-radius: 14px;
   border: 2px solid var(--border2); background: var(--surface3);
   font-size: 22px; font-weight: 900; color: var(--text);
   cursor: pointer; touch-action: manipulation; font-family: inherit;
-  transition: background .1s, border-color .1s;
-}#note-exec-popup .nep-btn:hover { background: var(--surface4); }#note-exec-popup .nep-btn[data-n="1"] { --c: #e74c3c; }#note-exec-popup .nep-btn[data-n="2"] { --c: #e67e22; }#note-exec-popup .nep-btn[data-n="3"] { --c: #2ecc71; }#note-exec-popup .nep-btn[data-n="4"] { --c: #3498db; }#note-exec-popup .nep-btn.selected { background: var(--c); border-color: var(--c); color: #fff; }#note-exec-popup .nep-skip {
-  background: transparent; border: none; color: var(--muted);
+  transition: background .12s, border-color .12s, transform .1s;
+}
+#note-exec-popup .nep-btn[data-n="1"].lit { background:#e74c3c; border-color:#e74c3c; color:#fff; transform:scale(1.08); }
+#note-exec-popup .nep-btn[data-n="2"].lit { background:#e67e22; border-color:#e67e22; color:#fff; transform:scale(1.08); }
+#note-exec-popup .nep-btn[data-n="3"].lit { background:#f1c40f; border-color:#f1c40f; color:#000; transform:scale(1.08); }
+#note-exec-popup .nep-btn[data-n="4"].lit { background:#2ecc71; border-color:#2ecc71; color:#fff; transform:scale(1.08); }
+#note-exec-popup .nep-star-label {
+  font-size: 12px; color: var(--muted); min-height: 16px; margin-bottom: 14px;
+}
+#note-exec-popup .nep-skip {
+  background: transparent; border: 1px solid var(--border2);
+  border-radius: 8px; color: var(--muted); padding: 7px 20px;
   font-size: 12px; cursor: pointer; font-family: inherit;
-  text-decoration: underline; touch-action: manipulation;
-}/* ── Styles impression PDF ─────────────────────── */
+  touch-action: manipulation; width: 100%;
+}
+/* ── Styles impression PDF ─────────────────────── */
 @media print {
   body > *:not(#print-area) { display: none !important; }
   #print-area { display: block !important; font-family: Arial, sans-serif; font-size: 11px; }
@@ -2501,6 +2560,26 @@ body.dark-mode #chrono-header {
     --muted:    #6b7494;
   }
 }
+
+/* ── Étoiles ressenti séance ─────────────────────────── */
+.ressenti-star-btn.selected { opacity: 1 !important; color: #f1c40f; transform: scale(1.1); }
+.ressenti-star-btn { color: #f1c40f; }
+#ressenti-seance-confirm-btn:not(:disabled) { opacity: 1 !important; }
+#ressenti-seance-overlay { display: none; }
+#ressenti-seance-overlay.visible { display: flex !important; }
+
+/* ── Adaptations Galaxy Tab (Android tablet) ─────────────── */
+body.platform-android .chrono-btn   { height: 56px; font-size: 14px; }
+body.platform-android .nep-btn      { width: 68px; height: 68px; font-size: 24px; }
+body.platform-android .mode-btn     { padding: 14px 10px; }
+body.platform-android .ressenti-emoji-btn { width: 52px; height: 52px; font-size: 26px; }
+body.platform-tablet  .bilan-btn    { height: 54px; font-size: 15px; }
+/* Safari iOS : comportement scroll natif */
+body.platform-safari  * { -webkit-overflow-scrolling: touch; }
+
+/* TABATA : masquer la zone note /4 inline (popup à la place) */
+body.mode-tabata .exec-score-wrap { display: none !important; }
+[data-mode="TABATA"] .exec-score-wrap { display: none !important; }
 </style>
 
 <script>
@@ -12612,19 +12691,22 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 <body>
 
 <!-- ══ BASCULE ÉLÈVE / PROF ══ -->
-<div id="mode-switcher">
-  <button class="mode-switch-btn active" id="btn-mode-eleve" onclick="switchMode('eleve')">
-    ◉ Mode Élève
-  </button>
-  <button class="mode-switch-btn" id="btn-mode-prof" onclick="switchMode('prof')">
-    ⊞ Mode Prof
-  </button>
-  <button id="btn-install-pwa" class="mode-switch-btn" style="display:none;flex:0 0 auto;font-size:10px;padding:0 10px"
-    onclick="installPWA()">⬇ Installer</button>
+<div id="mode-switcher" style="display:none">
+  <!-- Caché — le switch se fait via le bouton PROF dans le header -->
+  <button class="mode-switch-btn active" id="btn-mode-eleve" onclick="switchMode('eleve')">◉ Mode Élève</button>
+  <button class="mode-switch-btn" id="btn-mode-prof" onclick="switchMode('prof')">⊞ Mode Prof</button>
+  <button id="btn-install-pwa" class="mode-switch-btn" style="display:none;flex:0 0 auto;font-size:10px;padding:0 10px" onclick="installPWA()">⬇ Installer</button>
 </div>
 
 <!-- ══ APP PROF ══ -->
 <div id="app-prof" style="display:none">
+  <!-- Bandeau retour mode élève -->
+  <div style="background:linear-gradient(135deg,#1a0533,#2d1060);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100">
+    <div style="font-size:13px;font-weight:800;color:#fff">⊞ Mode Professeur</div>
+    <button onclick="switchMode('eleve')" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-family:inherit;font-size:10px;font-weight:700;letter-spacing:1px;padding:5px 12px;cursor:pointer">
+      ← ÉLÈVE
+    </button>
+  </div>
 
   <!-- Saisie QR / texte -->
   <div class="prof-input-section">
@@ -12703,25 +12785,29 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
 <div id="app-eleve">
 
-  <!-- ==================== STICKY CHRONO ==================== -->
-  <!-- Bannière invitation — visible tant que chrono masqué -->
+  <!-- ==================== STICKY HEADER ==================== -->
   <div id="prereq-banner" style="
-    padding: 14px 16px;
-    background: var(--surface);
-    border-bottom: 2px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    padding: 0;
+    background: linear-gradient(135deg, #1a0533 0%, #2d1060 50%, #1a2744 100%);
+    border-bottom: 1px solid rgba(255,255,255,.08);
     position: sticky;
     top: 0;
     z-index: 100;
+    overflow: hidden;
   ">
-    <span style="font-size:22px">🏋️</span>
-    <div>
-      <div style="font-size:13px;font-weight:900;color:var(--text)">Cross Training Pompidou</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px" id="prereq-banner-msg">
-        Remplis ton profil, choisis un mode et tes exercices
+    <div style="position:absolute;top:-30px;right:-20px;width:120px;height:120px;background:radial-gradient(circle,rgba(123,47,190,.4) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;bottom:-10px;left:20px;width:80px;height:80px;background:radial-gradient(circle,rgba(33,118,174,.3) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="position:relative;padding:16px 16px 14px;display:flex;align-items:center;gap:14px">
+      <div style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;backdrop-filter:blur(4px)">🏋️</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:.3px;line-height:1">Cross Training</div>
+        <div style="font-size:14px;font-weight:800;color:rgba(180,140,255,.95);letter-spacing:3px;text-transform:uppercase;line-height:1.3;margin-top:2px">Pompidou</div>
       </div>
+      <!-- Bouton prof discret -->
+      <button onclick="switchMode('prof')" id="btn-header-prof"
+        style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;color:rgba(255,255,255,.6);font-family:inherit;font-size:10px;font-weight:700;letter-spacing:1px;padding:5px 10px;cursor:pointer;touch-action:manipulation;white-space:nowrap">
+        ⊞ PROF
+      </button>
     </div>
   </div>
 
@@ -12779,7 +12865,6 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
     <div id="chrono-buttons">
       <button class="chrono-btn" id="btn-start" onclick="toggleChrono()">DÉMARRER</button>
-      <button class="chrono-btn" id="btn-finish" onclick="finishManual()" style="display:none;background:#8E44AD;color:#fff;flex:0 0 100px;font-size:11px;">TERMINER</button>
       <button class="chrono-btn" id="btn-reset" onclick="resetChrono()">↺</button>
     </div>
 
@@ -12964,23 +13049,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
 
   <!-- ==================== SECTION 4 : SAVE ==================== -->
-  <div class="save-wrapper-seance wod-ready-hidden" id="section-save">
-    <!-- Compteur WOD de la séance -->
-    <div id="seance-counter" style="display:none">
-      <span id="seance-counter-label">Séance en cours</span>
-      <div id="seance-wods-chips"></div>
-    </div>
-
-    <!-- Bouton principal : ajouter ce WOD à la séance -->
-    <button id="btn-add-wod" onclick="addWodToSeance()">
-      + Ajouter ce WOD à la séance
-    </button>
-
-    <!-- Bouton terminer séance (visible dès le 1er WOD ajouté) -->
-    <button id="btn-finish-seance" onclick="finishSeance()">
-      ✓ Terminer la séance &amp; voir le bilan
-    </button>
-  </div>
+<!-- section-save supprimée - nouveau flux via bilan -->
 
 
   <!-- ==================== HISTORIQUE ==================== -->
@@ -13009,8 +13078,12 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 <!-- ═══════════ RESSENTI MODAL ═══════════ -->
 <div id="ressenti-overlay">
   <div id="ressenti-modal">
-    <div class="ressenti-modal-title">😓 Comment tu te sens ?</div>
-    <div class="ressenti-modal-sub">Sélectionne ton ressenti <strong>avant</strong> de voir le bilan</div>
+    <!-- Bandeau coloré selon type : wod (coloré) ou séance (étoiles) -->
+    <div id="ressenti-header-band" style="border-radius:14px 14px 0 0;padding:14px 16px 12px;margin:-20px -20px 16px;background:var(--amrap)">
+      <div id="ressenti-type-label" style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:2px">Ressenti WOD</div>
+      <div id="ressenti-modal-title" style="font-size:18px;font-weight:900;color:#fff">😓 Comment tu te sens ?</div>
+      <div id="ressenti-modal-sub" style="font-size:11px;color:rgba(255,255,255,.8);margin-top:2px">Sélectionne ton ressenti avant de voir le bilan</div>
+    </div>
     <div class="ressenti-emojis" id="ressenti-modal-emojis">
       <button class="ressenti-emoji-btn lv1" data-lv="1" onclick="selectRessenti(1)">😩<span>Épuisé</span></button>
       <button class="ressenti-emoji-btn lv2" data-lv="2" onclick="selectRessenti(2)">😓<span>Très fati.</span></button>
@@ -13019,7 +13092,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
       <button class="ressenti-emoji-btn lv5" data-lv="5" onclick="selectRessenti(5)">😄<span>Top !</span></button>
     </div>
     <textarea class="ressenti-textarea" id="ressenti-commentaire"
-      placeholder="Décris ta séance : ce qui était difficile, ce que tu as réussi…"
+      placeholder="Décris ce WOD : ce qui était difficile, ce que tu as réussi…"
       maxlength="400" rows="3" oninput="onRessentiInput()"></textarea>
     <div class="ressenti-required-hint" id="ressenti-hint">⚠ Choisis un ressenti et écris un commentaire</div>
     <button class="ressenti-confirm-btn" id="ressenti-confirm-btn" onclick="confirmRessenti()" disabled>
@@ -13028,9 +13101,82 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
   </div>
 </div>
 
-</div><!-- /app-eleve -->
+<!-- ═══════════ RESSENTI SÉANCE MODAL ═══════════ -->
+<div id="ressenti-seance-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9000;align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--surface2);border-radius:18px;padding:0;width:min(380px,100%);max-height:90vh;overflow-y:auto">
 
-<div id="toast"></div>
+    <!-- Bandeau header -->
+    <div style="background:linear-gradient(135deg,#1a0533,#2d1060);border-radius:18px 18px 0 0;padding:18px 20px 16px;text-align:center">
+      <div style="font-size:10px;font-weight:700;color:rgba(180,140,255,.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Ressenti de séance</div>
+      <div style="font-size:22px;font-weight:900;color:#fff;margin-bottom:4px">🏆 Comment tu t'es senti ?</div>
+      <div id="ressenti-seance-nb" style="font-size:12px;color:rgba(255,255,255,.55)">— WODs réalisés</div>
+    </div>
+
+    <div style="padding:20px">
+
+      <!-- Section 1 : Étoiles (note globale) -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Note globale</div>
+        <div style="display:flex;justify-content:center;gap:6px;margin-bottom:4px">
+          <button class="ressenti-star-btn" data-lv="1" onclick="selectRessentiSeance(1)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
+          <button class="ressenti-star-btn" data-lv="2" onclick="selectRessentiSeance(2)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
+          <button class="ressenti-star-btn" data-lv="3" onclick="selectRessentiSeance(3)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
+          <button class="ressenti-star-btn" data-lv="4" onclick="selectRessentiSeance(4)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
+          <button class="ressenti-star-btn" data-lv="5" onclick="selectRessentiSeance(5)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
+        </div>
+        <div id="ressenti-seance-star-label" style="text-align:center;font-size:12px;color:var(--muted);min-height:16px"></div>
+      </div>
+
+      <!-- Séparateur -->
+      <div style="height:1px;background:var(--border2);margin-bottom:20px"></div>
+
+      <!-- Section 2 : Fatigue (smileys) -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Niveau de fatigue</div>
+        <div style="display:flex;justify-content:space-between;gap:4px">
+          <button class="ressenti-fatigue-btn" data-lv="1" onclick="selectFatigueSeance(1)"
+            style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
+            <span style="font-size:24px">😩</span><span style="font-size:8px;color:var(--muted);font-weight:700">Épuisé</span>
+          </button>
+          <button class="ressenti-fatigue-btn" data-lv="2" onclick="selectFatigueSeance(2)"
+            style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
+            <span style="font-size:24px">😓</span><span style="font-size:8px;color:var(--muted);font-weight:700">Fatigué</span>
+          </button>
+          <button class="ressenti-fatigue-btn" data-lv="3" onclick="selectFatigueSeance(3)"
+            style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
+            <span style="font-size:24px">😐</span><span style="font-size:8px;color:var(--muted);font-weight:700">Moyen</span>
+          </button>
+          <button class="ressenti-fatigue-btn" data-lv="4" onclick="selectFatigueSeance(4)"
+            style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
+            <span style="font-size:24px">🙂</span><span style="font-size:8px;color:var(--muted);font-weight:700">Léger</span>
+          </button>
+          <button class="ressenti-fatigue-btn" data-lv="5" onclick="selectFatigueSeance(5)"
+            style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
+            <span style="font-size:24px">😄</span><span style="font-size:8px;color:var(--muted);font-weight:700">En forme</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Séparateur -->
+      <div style="height:1px;background:var(--border2);margin-bottom:20px"></div>
+
+      <!-- Section 3 : Commentaire -->
+      <div style="margin-bottom:16px">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">Commentaire</div>
+        <textarea id="ressenti-seance-commentaire" placeholder="Bilan global de ta séance : ce qui était dur, ce que tu as réussi, comment tu te sens…"
+          maxlength="400" rows="3" oninput="onRessentiSeanceInput()"
+          style="width:100%;box-sizing:border-box;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:inherit;font-size:13px;padding:10px 12px;resize:none;outline:none"></textarea>
+      </div>
+
+      <button id="ressenti-seance-confirm-btn" onclick="confirmRessentiSeance()" disabled
+        style="width:100%;height:52px;background:linear-gradient(135deg,#2d1060,#1a2744);border:none;border-radius:12px;color:#fff;font-family:inherit;font-size:15px;font-weight:900;cursor:pointer;touch-action:manipulation;opacity:.4;transition:opacity .2s">
+        Voir mon bilan complet →
+      </button>
+    </div>
+  </div>
+</div>
+
+
 
 <script>
 
@@ -13038,17 +13184,8 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
    PWA — Service Worker registration
    Permet l'installation "Ajouter à l'écran d'accueil"
    ============================================= */
-if ('serviceWorker' in navigator) {
-  // SW inline via blob pour single-file
-  const swCode = `
-    self.addEventListener('install', e => self.skipWaiting());
-    self.addEventListener('activate', e => e.waitUntil(clients.claim()));
-    self.addEventListener('fetch', e => e.respondWith(fetch(e.request).catch(() => caches.match(e.request))));
-  `;
-  const swBlob = new Blob([swCode], { type: 'application/javascript' });
-  const swUrl  = URL.createObjectURL(swBlob);
-  navigator.serviceWorker.register(swUrl).catch(() => {});
-}
+// Service Worker désactivé — blob: URL non supporté sur iOS Safari
+
 
 /* Bouton "Installer l'app" si dispo */
 let deferredInstallPrompt = null;
@@ -13138,17 +13275,6 @@ const EXERCISE_CATALOG = [
     filiere: 'Gainage – Tonification',
     zones: [
       {
-        zone: 'Bas du corps',
-        exercices: [
-          { nom: 'Jumping Jacks',              difficulte: 'vert'   },
-          { nom: 'Chaise',                     difficulte: 'vert'   },
-          { nom: 'Demi-Squat',                 difficulte: 'orange' },
-          { nom: 'Relevé de bassin dynamique', difficulte: 'orange' },
-          { nom: 'Fentes avant/arrière',        difficulte: 'orange' },
-          { nom: 'Fentes latérales',            difficulte: 'orange' },
-        ]
-      },
-      {
         zone: 'Haut du corps',
         exercices: [
           { nom: 'Pompes sur banc/mur',        difficulte: 'vert'   },
@@ -13167,23 +13293,23 @@ const EXERCISE_CATALOG = [
           { nom: 'Sprawls relevés',            difficulte: 'orange' },
           { nom: 'Hollow Hold',                difficulte: 'orange' },
         ]
+      },
+      {
+        zone: 'Bas du corps',
+        exercices: [
+          { nom: 'Jumping Jacks',              difficulte: 'vert'   },
+          { nom: 'Chaise',                     difficulte: 'vert'   },
+          { nom: 'Demi-Squat',                 difficulte: 'orange' },
+          { nom: 'Relevé de bassin dynamique', difficulte: 'orange' },
+          { nom: 'Fentes avant/arrière',        difficulte: 'orange' },
+          { nom: 'Fentes latérales',            difficulte: 'orange' },
+        ]
       }
     ]
   },
   {
     filiere: 'Endurance Force',
     zones: [
-      {
-        zone: 'Bas du corps',
-        exercices: [
-          { nom: 'Air Squats',                 difficulte: 'vert'   },
-          { nom: 'Squat bulgare',              difficulte: 'orange' },
-          { nom: 'Squat Jump',                 difficulte: 'orange' },
-          { nom: 'Fentes sur 1 jambe',         difficulte: 'orange' },
-          { nom: 'Genoux vers accroupis',       difficulte: 'noir'   },
-          { nom: 'Montée sur box genou haut',  difficulte: 'orange' },
-        ]
-      },
       {
         zone: 'Haut du corps',
         exercices: [
@@ -13206,12 +13332,40 @@ const EXERCISE_CATALOG = [
           { nom: 'Criss-cross',               difficulte: 'orange' },
           { nom: 'Burpees avec pompes',        difficulte: 'orange' },
         ]
+      },
+      {
+        zone: 'Bas du corps',
+        exercices: [
+          { nom: 'Air Squats',                 difficulte: 'vert'   },
+          { nom: 'Squat bulgare',              difficulte: 'orange' },
+          { nom: 'Squat Jump',                 difficulte: 'orange' },
+          { nom: 'Fentes sur 1 jambe',         difficulte: 'orange' },
+          { nom: 'Genoux vers accroupis',       difficulte: 'noir'   },
+          { nom: 'Montée sur box genou haut',  difficulte: 'orange' },
+        ]
       }
     ]
   },
   {
     filiere: 'Intensif Cardio',
     zones: [
+      {
+        zone: 'Haut du corps',
+        exercices: [
+          { nom: 'Pompes explo',               difficulte: 'noir'   },
+          { nom: 'Pompes diamant',             difficulte: 'noir'   },
+          { nom: 'Tractions négatives',        difficulte: 'noir'   },
+        ]
+      },
+      {
+        zone: 'Tronc & Abdos',
+        exercices: [
+          { nom: 'Burpees',                    difficulte: 'orange' },
+          { nom: 'Burpees militaires',         difficulte: 'noir'   },
+          { nom: 'Mountain climbers',          difficulte: 'orange' },
+          { nom: 'V-ups',                      difficulte: 'noir'   },
+        ]
+      },
       {
         zone: 'Bas du corps',
         exercices: [
@@ -13221,29 +13375,6 @@ const EXERCISE_CATALOG = [
           { nom: 'Fentes sautées',             difficulte: 'noir'   },
           { nom: 'Sauts groupés banc',         difficulte: 'orange' },
           { nom: 'Accroupi-genoux 2 rebonds',  difficulte: 'noir'   },
-        ]
-      },
-      {
-        zone: 'Haut du corps',
-        exercices: [
-          { nom: 'Pompes commando',            difficulte: 'noir'   },
-          { nom: 'Pompes sautées',             difficulte: 'noir'   },
-          { nom: 'Dips Jump',                  difficulte: 'orange' },
-        ]
-      },
-      {
-        zone: 'Tronc & Polyarticulaires',
-        exercices: [
-          { nom: 'Mountain Climbers',          difficulte: 'vert'   },
-          { nom: 'Mountain Climber croisé',    difficulte: 'orange' },
-          { nom: 'V-Ups',                      difficulte: 'noir'   },
-          { nom: 'Chandelles',                 difficulte: 'orange' },
-          { nom: 'Burpees',                    difficulte: 'orange' },
-          { nom: 'Kettlebell Swings',          difficulte: 'orange' },
-          { nom: 'Thrusters',                  difficulte: 'noir'   },
-          { nom: 'Power Clean',                difficulte: 'noir'   },
-          { nom: 'Russian Twists',             difficulte: 'orange' },
-          { nom: 'Sit-ups',                    difficulte: 'vert'   },
         ]
       }
     ]
@@ -13315,7 +13446,18 @@ function beepLong() {
    MODE SELECTION
    ============================================= */
 function selectMode(mode) {
+  // Effacer les exercices si changement de mode hors WOD
+  if (STATE.mode !== mode && !STATE.chrono.running) {
+    STATE.selectedExos = {};
+    STATE._amrapPanelReady   = false;
+    STATE._fortimePanelReady = false;
+    document.querySelectorAll('.exo-toggle-v2.selected, .exo-toggle.selected').forEach(function(b){ b.classList.remove('selected'); });
+    var ecEl = document.getElementById('exo-cards');     if (ecEl) ecEl.innerHTML = '';
+    var acEl = document.getElementById('exo-accordion'); if (acEl) acEl.innerHTML = '';
+    initExoGrid();
+  }
   STATE.mode = mode;
+  document.body.dataset.mode = mode || '';
   resetChrono();
 
   // Update buttons UI
@@ -13347,9 +13489,8 @@ function selectMode(mode) {
   if (mode === 'AMRAP' && STATE.config.duration === 10) STATE.config.duration = 6;
   if (mode === 'EMOM' && STATE.config.duration === 6)  STATE.config.duration = 10;
 
-  // Bouton TERMINER visible seulement en FOR TIME
-  const btnFinish = document.getElementById('btn-finish');
-  btnFinish.style.display = (mode === 'FOR TIME') ? '' : 'none';
+  // Bouton TERMINER supprimé du HTML
+  // const btnFinish = document.getElementById('btn-finish');
 
   // Panel AMRAP live — masqué jusqu'au clic sur "Commencer le WOD"
   const amrapPanel = document.getElementById('amrap-live-panel');
@@ -13872,15 +14013,12 @@ function pauseChrono() {
   c.phaseStartOffset = c.phaseElapsed;
   releaseWakeLock();
   const btn = document.getElementById('btn-start');
-  btn.textContent = 'REPRENDRE';
-  btn.classList.add('paused');
+  if (btn) { btn.textContent = 'REPRENDRE'; btn.classList.add('paused'); }
 }
 
 function resetChrono() {
-  if (STATE.chrono.running) {
-    if (!confirm('Le chrono tourne. Réinitialiser quand même ?')) return;
-    pauseChrono();
-  }
+  // Arrêt forcé sans confirmation — confirmGoHome gère la confirmation avant
+  if (STATE.chrono.running) pauseChrono();
   const c = STATE.chrono;
   clearInterval(c.intervalId);
   releaseWakeLock();
@@ -13894,9 +14032,9 @@ function resetChrono() {
   c.phaseStartTime = null;
   c.lastEmomMinute = -1;
   const btn = document.getElementById('btn-start');
-  btn.textContent = 'DÉMARRER';
-  btn.classList.remove('paused');
-  document.getElementById('chrono-header').classList.remove('effort-phase', 'rest-phase');
+  if (btn) { btn.textContent = 'DÉMARRER'; btn.classList.remove('paused'); }
+  const ch = document.getElementById('chrono-header');
+  if (ch) ch.classList.remove('effort-phase', 'rest-phase');
   document.body.classList.remove('chrono-live', 'mode-amrap-active', 'mode-fortime', 'mode-emom', 'mode-tabata', 'mode-fortime', 'mode-emom', 'mode-fortime',
     'emom-zone-green', 'emom-zone-orange', 'emom-zone-red');
   const nextBar = document.getElementById('next-exo-bar');
@@ -13931,7 +14069,7 @@ function resetChrono() {
   var apR=document.getElementById('amrap-live-panel'); if(apR) apR.style.display='none';
   var fpR=document.getElementById('fortime-live-panel'); if(fpR) fpR.style.display='none';
   const saveSec = document.getElementById('section-save');
-  if (saveSec) saveSec.classList.add('wod-ready-hidden');
+  // section-save supprimée
   showSectionsAfterWod();
 }
 
@@ -14043,7 +14181,7 @@ function handleSimpleTick(remaining) {
   btn.textContent = 'TERMINÉ';
   btn.classList.remove('paused');
   updateChronoDisplay();
-  revealSaveSection(); setTimeout(() => showRessentiThenBilan(), 400);
+  revealSaveSection(); setTimeout(function(){ try{ showRessentiThenBilan(); }catch(e){ console.error('bilan error:',e); showToast('Erreur: '+e.message); } }, 400);
 }
 
 function handleTabataTick(remaining) {
@@ -14098,6 +14236,13 @@ function handleTabataTick(remaining) {
     }
     c.phase = 'rest';
     updateTabataCards(); // repos → exo terminé (cycle-1) + prochain (cycle)
+    // Afficher popup note exec pour l'exercice qui vient de se terminer
+    var _tabataCurrentExo = getTabataExoForCycle(STATE.chrono.currentCycle - 1 || 1);
+    if (_tabataCurrentExo) {
+      showNoteExecPopup(_tabataCurrentExo, function(note) {
+        // note enregistrée via nepConfirm — rien de plus à faire
+      });
+    }
   } else {
     // Fin repos → effort : triple bip aigu
     beep(1047, 0.1, 0.45, 0);
@@ -14313,8 +14458,13 @@ function initExoAccordion() {
     // En-tête filière
     const fHeader = document.createElement('div');
     fHeader.className = 'accordion-filiere-header';
+    fHeader.dataset.fi = fi;
+    var _fc = [{bg:'rgba(123,47,190,.15)',border:'rgba(123,47,190,.4)',text:'#9B5FE0',icon:'🤸'},{bg:'rgba(33,118,174,.15)',border:'rgba(33,118,174,.4)',text:'#3A9FE0',icon:'🏋️'},{bg:'rgba(192,85,10,.15)',border:'rgba(192,85,10,.4)',text:'#F08030',icon:'🔥'}];
+    var _fc_i = _fc[fi] || _fc[0];
+    fHeader.style.cssText = 'background:'+_fc_i.bg+';border-left:3px solid '+_fc_i.border+';';
     fHeader.innerHTML =
-      '<span class="accordion-filiere-title">' + filiere.filiere + '</span>' +
+      '<span style="font-size:14px;margin-right:6px">'+_fc_i.icon+'</span>' +
+      '<span class="accordion-filiere-title" style="color:'+_fc_i.text+'">' + filiere.filiere + '</span>' +
       '<span class="accordion-chevron" id="fchev-' + fi + '">▼</span>';
     fHeader.onclick = () => toggleAccordionFiliere(fi);
 
@@ -14328,8 +14478,12 @@ function initExoAccordion() {
       // En-tête zone
       const zHeader = document.createElement('div');
       zHeader.className = 'accordion-zone-header';
+      var _zc = {'Bas du corps':{bg:'rgba(220,80,50,.08)',border:'rgba(220,80,50,.3)',text:'#e07050',dot:'🦵'},'Haut du corps':{bg:'rgba(33,118,174,.08)',border:'rgba(33,118,174,.3)',text:'#3A9FE0',dot:'💪'},'Tronc & Abdos':{bg:'rgba(29,185,84,.08)',border:'rgba(29,185,84,.3)',text:'#1DB954',dot:'🎯'}};
+      var _zc_i = _zc[zone.zone] || {bg:'',border:'',text:'var(--text2)',dot:'•'};
+      zHeader.style.cssText = 'background:'+_zc_i.bg+';border-left:3px solid '+_zc_i.border+';margin-left:8px;';
       zHeader.innerHTML =
-        '<span class="accordion-zone-title">' + zone.zone + '</span>' +
+        '<span style="font-size:13px;margin-right:5px">'+_zc_i.dot+'</span>' +
+        '<span class="accordion-zone-title" style="color:'+_zc_i.text+'">' + zone.zone + '</span>' +
         '<span class="accordion-chevron" id="zchev-' + zId + '">▼</span>';
       zHeader.onclick = (e) => { e.stopPropagation(); toggleAccordionZone(zId); };
 
@@ -14489,9 +14643,10 @@ function renderExoCards() {
 
 function removeExo(name) {
   delete STATE.selectedExos[name];
-  const btn = document.querySelector(`[data-exo="${name}"]`);
+  const btn = document.querySelector('[data-exo="' + name + '"]');
   if (btn) btn.classList.remove('selected');
   renderExoCards();
+  checkAndRevealChrono();
 }
 
 function setLevel(name, level, el) {
@@ -14779,6 +14934,7 @@ function renderHistory() {
 let toastTimer = null;
 function showToast(msg) {
   const el = document.getElementById('toast');
+  if (!el) { console.log('Toast:', msg); return; }
   el.textContent = msg;
   el.classList.add('show');
   clearTimeout(toastTimer);
@@ -14788,6 +14944,31 @@ function showToast(msg) {
 /* =============================================
    INIT
    ============================================= */
+// Normalisation accents → ASCII (pour chaînes QR)
+function _stripAccents(s) {
+  return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\x00-\x7F]/g,'?');
+}
+
+
+// ── Détecteur de plateforme ─────────────────────────────────
+var PLATFORM = (function() {
+  var ua = navigator.userAgent || '';
+  var isIOS     = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(ua);
+  var isSafari  = isIOS && !/CriOS|FxiOS/.test(ua);
+  var isChrome  = /Chrome/.test(ua) && !/Edg/.test(ua);
+  var isTablet  = (isIOS && !/iPhone/.test(ua)) || (isAndroid && !/Mobile/.test(ua));
+  return { isIOS: isIOS, isAndroid: isAndroid, isSafari: isSafari, isChrome: isChrome, isTablet: isTablet };
+})();
+
+// Appliquer les classes CSS selon la plateforme
+document.addEventListener('DOMContentLoaded', function() {
+  if (PLATFORM.isIOS)     document.body.classList.add('platform-ios');
+  if (PLATFORM.isAndroid) document.body.classList.add('platform-android');
+  if (PLATFORM.isTablet)  document.body.classList.add('platform-tablet');
+  if (PLATFORM.isSafari)  document.body.classList.add('platform-safari');
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   applyThemeOnLoad();
   initExoGrid();
@@ -14842,7 +15023,7 @@ function buildQRString() {
 
   } else if (STATE.mode === 'FOR TIME') {
     const t = fmtTime(b.forTimeFinal);
-    const splits = STATE.fortime ? STATE.fortime.splits.map(s => fmtTime(s.elapsed)).join(',') : '';
+    const splits = STATE.fortime ? STATE.fortime.splits.slice(0,3).map(s => fmtTime(s.elapsed)).join(',') : '';
     scoreStr = 'F:' + (b.forTimeFinished ? 'OK' : 'CAP')
       + '-' + t + (splits ? '|' + splits : '');
 
@@ -14861,31 +15042,78 @@ function buildQRString() {
 
   // Coach si renseigné
   const coachStr = coach ? ';C:' + coach.trim() : '';
-  // Ressenti si renseigné
+  // Ressenti WOD (pas de séance dans le QR WOD simple)
   const r = STATE.ressenti || {};
-  const ressentiStr = r.niveau ? ';R:' + r.niveau + (r.commentaire ? ':' + r.commentaire.slice(0,30) : '') : '';
-  return [nom, prenom, classe, scoreStr].join(';') + coachStr + ressentiStr;
+  const ressentiStr = r.niveau ? ';R:' + r.niveau + (r.commentaire ? ':' + r.commentaire.slice(0,12) : '') : '';
+  const qrData = [nom, prenom, classe, scoreStr].join(';') + coachStr + ressentiStr;
+  return qrData.length > 90 ? qrData.slice(0,90) : qrData;
 }
 
-function renderQR(str) {
-  const container = document.getElementById('qr-canvas');
+function renderQR(str, containerId) {
+  var cid = containerId || 'qr-canvas';
+  var container = document.getElementById(cid);
   if (!container) return;
   container.innerHTML = '';
-  // Tronquer si trop long pour le QR
-  const MAX = 200;
-  if (str.length > MAX) str = str.slice(0, MAX);
-  try {
-    new QRCode(container, {
-      text: str,
-      width: 180, height: 180,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.L
-    });
-  } catch(e) {
-    container.textContent = 'Erreur QR';
-    console.error('QR error:', e.message, 'str length:', str.length);
+  if (!str || str.length === 0) { container.textContent = '—'; return; }
+
+  // Générer hors-écran (évite bug canvas iOS dans position:fixed)
+  var tmpDiv = document.createElement('div');
+  tmpDiv.style.cssText = 'position:fixed;left:-9999px;top:-9999px;width:220px;height:220px;visibility:hidden';
+  document.body.appendChild(tmpDiv);
+
+  function copyQR() {
+    var img    = tmpDiv.querySelector('img');
+    var canvas = tmpDiv.querySelector('canvas');
+    var table  = tmpDiv.querySelector('table');
+    var el = (img && img.src && img.src.length > 50) ? img
+           : (canvas && canvas.width > 10) ? canvas
+           : table;
+    if (!el) return false;
+    var clone = el.cloneNode(true);
+    clone.style.cssText = el.tagName==='TABLE'
+      ? 'margin:0 auto;border-collapse:collapse;border:0'
+      : 'display:block;margin:0 auto;border-radius:8px;max-width:220px';
+    container.innerHTML = '';
+    container.appendChild(clone);
+    if (document.body.contains(tmpDiv)) document.body.removeChild(tmpDiv);
+    return true;
   }
+
+  var levels = [QRCode.CorrectLevel.M, QRCode.CorrectLevel.L];
+  var sizes  = [220, 180];
+  var ok = false;
+  for (var li = 0; li < levels.length && !ok; li++) {
+    for (var si = 0; si < sizes.length && !ok; si++) {
+      try {
+        tmpDiv.innerHTML = '';
+        new QRCode(tmpDiv, {
+          text: str, width: sizes[si], height: sizes[si],
+          colorDark: '#000000', colorLight: '#ffffff',
+          correctLevel: levels[li]
+        });
+        ok = true;
+      } catch(e) { tmpDiv.innerHTML = ''; }
+    }
+  }
+
+  if (!ok) {
+    if (document.body.contains(tmpDiv)) document.body.removeChild(tmpDiv);
+    container.innerHTML = '<div style="font-size:9px;word-break:break-all;padding:8px;background:var(--surface3);border-radius:8px">' + str + '</div>';
+    return;
+  }
+
+  // Polling : QRCode.js peut être asynchrone (dataURI via img.onload)
+  var attempts = 0;
+  var poll = setInterval(function() {
+    attempts++;
+    if (copyQR() || attempts >= 20) {
+      clearInterval(poll);
+      if (!copyQR() && attempts >= 20) {
+        if (document.body.contains(tmpDiv)) document.body.removeChild(tmpDiv);
+        container.innerHTML = '<div style="font-size:9px;word-break:break-all;padding:8px;background:var(--surface3);border-radius:8px">' + str + '</div>';
+      }
+    }
+  }, 100);
 }
 
 
@@ -15102,15 +15330,18 @@ function showNoteExecPopup(exoName, callback) {
   var nameEl = document.getElementById('nep-exo-name');
   if (nameEl) nameEl.textContent = exoName || '—';
   // Reset sélection
-  document.querySelectorAll('.nep-btn').forEach(function(b){ b.classList.remove('selected'); });
+  document.querySelectorAll('.nep-btn').forEach(function(b){ b.classList.remove('selected'); b.classList.remove('lit'); });
   if (popup) popup.classList.add('visible');
 }
 
 function nepPick(n) {
+  var labels = {1:'Insuffisant',2:'Peut mieux faire',3:'Bien',4:'Excellent !'};
   document.querySelectorAll('.nep-btn').forEach(function(b){
-    b.classList.toggle('selected', parseInt(b.dataset.n) === n);
+    b.classList.toggle('lit', parseInt(b.dataset.n) === n);
   });
-  setTimeout(function(){ nepConfirm(n); }, 200);
+  var lbl = document.getElementById('nep-star-label');
+  if (lbl) lbl.textContent = labels[n] || '';
+  setTimeout(function(){ nepConfirm(n); }, 300);
 }
 
 function nepConfirm(n) {
@@ -15758,9 +15989,7 @@ function ftShowFinish(auto) {
   STATE.bilan.forTimeFinished = done;
   STATE.bilan.forTimeFinal    = elapsed;
 
-  // Masquer bouton TERMINER
-  var btnFinish = document.getElementById('btn-finish');
-  if (btnFinish) btnFinish.style.display = 'none';
+  // Bouton TERMINER supprimé
   var btnStart = document.getElementById('btn-start');
   if (btnStart) { btnStart.textContent = 'TERMIN\u00c9'; btnStart.classList.remove('paused'); }
 
@@ -15873,31 +16102,84 @@ function closeConfirm() {
 
 function doGoHome() {
   closeConfirm();
-  resetChrono();
-  resetForm();
-  resetSeance();
-  checkAndRevealChrono();
-  // Réinitialiser le mode
+
+  // Arrêt chrono direct sans appeler resetChrono (qui rappelle showSectionsAfterWod)
+  clearInterval(STATE.chrono.intervalId);
+  releaseWakeLock();
+  STATE.chrono.running = false;
+  STATE.chrono.phaseElapsed = 0;
+  STATE.chrono.totalElapsed = 0;
+  var btnStart = document.getElementById('btn-start');
+  if (btnStart) { btnStart.textContent = 'DÉMARRER'; btnStart.classList.remove('paused'); }
+
+  // Sauvegarder profil
+  var nom    = (document.getElementById('inp-nom')    || {}).value || '';
+  var prenom = (document.getElementById('inp-prenom') || {}).value || '';
+  var classe = (document.getElementById('inp-classe') || {}).value || '';
+  var coach  = (document.getElementById('inp-coach')  || {}).value || '';
+
+  // Reset STATE
   STATE.mode = null;
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('selected'));
-  document.getElementById('mode-badge').className = '';
-  document.getElementById('mode-badge').id = 'mode-badge';
-  document.getElementById('mode-badge').textContent = '- Aucun mode -';
-  document.getElementById('config-panel').style.display = 'none';
-  document.getElementById('config-panel').innerHTML = '';
-  // Masquer tous les panels live
-  ['emom-live-panel','amrap-live-panel','fortime-live-panel'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
+  document.body.dataset.mode = '';
+  STATE.selectedExos = {};
+  STATE.noteExecLog  = [];
+  STATE.ressenti = null;
+  STATE._amrapPanelReady = false;
+  STATE._fortimePanelReady = false;
+  STATE._emomSeqExoIdx = 0;
+  STATE._emomSeqStartTime = null;
+  STATE.bilan = { tabataLog:[], emomLog:[], amrapTours:0, amrapRepsExtra:0,
+    amrapCurrentExoIdx:0, noteExecLog:[], forTimeFinal:0, forTimeFinished:false };
+
+  // Retirer toutes les classes CSS bloquantes
+  document.body.classList.remove('chrono-live','mode-amrap-active','mode-fortime',
+    'mode-emom','mode-tabata','emom-zone-green','emom-zone-orange','emom-zone-red');
+
+  // Retirer wod-focus-mode de TOUT le DOM
+  document.querySelectorAll('.wod-focus-mode').forEach(function(el){
+    el.classList.remove('wod-focus-mode');
   });
-  // Retirer les classes de mode
-  document.body.classList.remove(
-    'mode-amrap-active','mode-amrap','mode-fortime','mode-emom','mode-tabata',
-    'emom-zone-green','emom-zone-orange','emom-zone-red'
-  );
-  // Remonter en haut
+
+  // Remettre section-save visible
+  // section-save supprimée
+
+  // Masquer chrono-header
+  var ch = document.getElementById('chrono-header');
+  if (ch) ch.classList.add('chrono-hidden');
+
+  // Reset UI modes
+  document.querySelectorAll('.mode-btn').forEach(function(b){ b.classList.remove('selected'); });
+  document.querySelectorAll('.exo-toggle-v2.selected,.exo-toggle.selected').forEach(function(b){ b.classList.remove('selected'); });
+  var badge = document.getElementById('mode-badge');
+  if (badge) { badge.className = ''; badge.textContent = '- Aucun mode -'; }
+  var configPanel = document.getElementById('config-panel');
+  if (configPanel) { configPanel.style.display = 'none'; configPanel.innerHTML = ''; }
+  ['emom-live-panel','amrap-live-panel','fortime-live-panel'].forEach(function(id){
+    var el = document.getElementById(id); if (el) el.style.display = 'none';
+  });
+
+  // Reconstruire grille exos
+  var exoCardsEl = document.getElementById('exo-cards'); if (exoCardsEl) exoCardsEl.innerHTML = '';
+  var accEl = document.getElementById('exo-accordion'); if (accEl) accEl.innerHTML = '';
+  setTimeout(function(){
+    try{ initExoGrid(); }catch(e){}
+    // checkAndRevealChrono après reconstruction du DOM
+    checkAndRevealChrono();
+  }, 80);
+
+  // Restaurer profil
+  if (document.getElementById('inp-nom'))    document.getElementById('inp-nom').value    = nom;
+  if (document.getElementById('inp-prenom')) document.getElementById('inp-prenom').value = prenom;
+  if (document.getElementById('inp-classe')) document.getElementById('inp-classe').value = classe;
+  if (document.getElementById('inp-coach'))  document.getElementById('inp-coach').value  = coach;
+  var pc = document.getElementById('profil-compact'); if (pc) pc.classList.remove('visible');
+  var pf = document.getElementById('profil-form');    if (pf) pf.style.display = '';
+
+  updateChronoDisplay();
+  checkAndRevealChrono();
+
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  showToast("Retour à l'accueil");
+  showToast('Retour à l\'accueil');
 }
 
 function goBackToConfig() {
@@ -15985,22 +16267,28 @@ function checkAndRevealChrono() {
 
   const ready = hasProfile && hasMode && hasExos;
 
+
   const chronoHeader = document.getElementById('chrono-header');
   const banner       = document.getElementById('prereq-banner');
   const bannerMsg    = document.getElementById('prereq-banner-msg');
   const btnStartWod  = document.getElementById('btn-start-wod');
 
   if (ready && !STATE.chrono.running) {
-    if (chronoHeader) chronoHeader.classList.remove('chrono-hidden');
-    if (banner) banner.style.display = 'none';
-    if (btnStartWod) btnStartWod.style.display = '';
+    // Ne pas afficher chrono-header avant le démarrage — évite le saut de scroll
+    if (banner) { banner.style.opacity = '0'; banner.style.pointerEvents = 'none'; }
+    if (btnStartWod) {
+      btnStartWod.style.display = 'block';
+      btnStartWod.style.visibility = 'visible';
+      btnStartWod.style.opacity = '1';
+    }
   } else if (ready && STATE.chrono.running) {
     if (chronoHeader) chronoHeader.classList.remove('chrono-hidden');
-    if (banner) banner.style.display = 'none';
+    if (banner) { banner.style.opacity = '0'; banner.style.pointerEvents = 'none'; }
     if (btnStartWod) btnStartWod.style.display = 'none';
+    // scrollToChrono a déjà géré le positionnement
   } else {
     if (chronoHeader) chronoHeader.classList.add('chrono-hidden');
-    if (banner) banner.style.display = '';
+    if (banner) { banner.style.opacity = ''; banner.style.pointerEvents = ''; }
     if (btnStartWod) btnStartWod.style.display = 'none';
 
     if (bannerMsg) {
@@ -16166,7 +16454,14 @@ function _saveWodToSeance() {
     STATE.selectedExos[k].noteExec = 0;
   });
   STATE.mode = null;
+  document.body.dataset.mode = '';
+  STATE.selectedExos = {};
   document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.exo-toggle-v2.selected, .exo-toggle.selected').forEach(b => b.classList.remove('selected'));
+  const exoCardsEl = document.getElementById('exo-cards');
+  if (exoCardsEl) exoCardsEl.innerHTML = '';
+  const accEl = document.getElementById('exo-accordion');
+  if (accEl) accEl.innerHTML = '';
   document.getElementById('mode-badge').className = '';
   document.getElementById('mode-badge').id = 'mode-badge';
   document.getElementById('mode-badge').textContent = '— Aucun mode —';
@@ -16192,7 +16487,7 @@ function _saveWodToSeance() {
 
 function finishSeance() {
   if (STATE.seance.wods.length === 0) {
-    showToast('⚠ Ajoute au moins un WOD d’abord');
+    showToast('⚠ Ajoute au moins un WOD d\'abord');
     return;
   }
   showSeanceBilan();
@@ -16203,14 +16498,20 @@ function finishSeance() {
    ══════════════════════════════════════════════ */
 function buildSeanceQRString() {
   const p    = STATE.seance.profil || {};
-  const nom  = p.nom    || document.getElementById('inp-nom').value.trim()    || '?';
-  const pre  = p.prenom || document.getElementById('inp-prenom').value.trim() || '?';
-  const cls  = p.classe || document.getElementById('inp-classe').value.trim() || '?';
-  const scores = STATE.seance.wods.map(w => w.scoreRaw).join('|');
-  const r = STATE.ressenti || {};
-  const ressentiStr = r.niveau ? ';R:' + r.niveau + (r.commentaire ? ':' + r.commentaire.slice(0,30) : '') : '';
-  // Notes exec : exclues du QR (trop long) — disponibles dans export CSV
-  return [nom, pre, cls, scores].join(';') + ressentiStr;
+  const nom  = _stripAccents(p.nom    || document.getElementById('inp-nom').value.trim()    || '?');
+  const pre  = _stripAccents(p.prenom || document.getElementById('inp-prenom').value.trim() || '?');
+  const cls  = _stripAccents(p.classe || document.getElementById('inp-classe').value.trim() || '?');
+  // Score compact par WOD : retirer les splits FOR TIME pour raccourcir
+  const scores = STATE.seance.wods.map(function(w) {
+    var s = w.scoreRaw || '';
+    // Retirer les splits (après le premier |) pour réduire la longueur
+    var pipeIdx = s.indexOf('|');
+    return pipeIdx > -1 ? s.slice(0, pipeIdx) : s;
+  }).join('|');
+  const rs = STATE.seance.ressentiSeance || {};
+  const ressentiStr = rs.niveau ? ';R:' + rs.niveau + (rs.commentaire ? ':' + _stripAccents(rs.commentaire).slice(0,10) : '') : '';
+  const qrData = [nom, pre, cls, scores].join(';') + ressentiStr;
+  return qrData.length > 90 ? qrData.slice(0,90) : qrData;
 }
 
 function showSeanceBilan() {
@@ -16240,7 +16541,7 @@ function showSeanceBilan() {
 
   wods.forEach((w, i) => {
     const color = modeColors[w.type] || 'var(--muted)';
-    const exosStr = w.exercices.map(e => e.nom).join(', ');
+    const exosStr = (w.exos||[]).join(', ');
     html += '<div class="bilan-seance-wod-card">' +
       '<span class="bilan-seance-wod-num">WOD ' + (i+1) + '</span>' +
       '<div class="bilan-seance-wod-info">' +
@@ -16266,7 +16567,7 @@ function showSeanceBilan() {
   const emojiMap = { 1:'😩', 2:'😓', 3:'😐', 4:'🙂', 5:'😄' };
   if (r.niveau) {
     html += '<div class="ressenti-block" style="margin-bottom:8px">' +
-      '<div class="ressenti-title">Ressenti séance</div>' +
+      '<div class="ressenti-title">Ressenti WOD</div>' +
       '<div style="display:flex;align-items:center;gap:10px;margin-top:4px">' +
         '<span style="font-size:28px">' + (emojiMap[r.niveau]||'') + '</span>' +
         '<span style="font-size:13px;font-weight:700;color:var(--text2)">' + (r.label||'') + '</span>' +
@@ -16288,7 +16589,7 @@ function showSeanceBilan() {
   modal.innerHTML = html;
   overlay.classList.add('visible');
   overlay.scrollTop = 0;
-  setTimeout(() => renderQR(qrStr), 100);
+  setTimeout(function(){ requestAnimationFrame(function(){ renderQR(qrStr); }); }, 500);
 }
 
 function exportSeanceCSV() {
@@ -16304,9 +16605,7 @@ function exportSeanceCSV() {
   ];
 
   wods.forEach((w, i) => {
-    const exosStr = w.exercices.map(e =>
-      e.nom + '(' + (e.repsCible ? e.repsLive + '/' + e.repsCible : e.repsLive) + 'r N' + e.niveau + ')'
-    ).join(' | ');
+    const exosStr = (w.exos||[]).join(' | ');
     rows.push([
       '"' + nom + '"',
       '"' + pre + '"',
@@ -16330,13 +16629,17 @@ function exportSeanceCSV() {
 }
 
 function saveSeanceAndClose() {
-  // Validation ressenti obligatoire
   if (!_validateRessenti()) return;
 
   const wods = STATE.seance.wods;
   const p    = STATE.seance.profil || {};
 
-  // Sauvegarder en localStorage
+  // Sauvegarder le profil AVANT que resetSeance vide les inputs
+  var savedNom    = p.nom    || (document.getElementById('inp-nom')    ||{}).value || '';
+  var savedPrenom = p.prenom || (document.getElementById('inp-prenom') ||{}).value || '';
+  var savedClasse = p.classe || (document.getElementById('inp-classe') ||{}).value || '';
+  var savedCoach  = p.coach  || (document.getElementById('inp-coach')  ||{}).value || '';
+
   const sessions = getSessions();
   const now = new Date();
   const timestamp = now.toISOString().slice(0,16).replace('T',' ');
@@ -16350,7 +16653,7 @@ function saveSeanceAndClose() {
       type: w.type,
       score: w.scoreLabel,
       scoreRaw: w.scoreRaw,
-      exercices: w.exercices,
+      exercices: w.exos || [],
       heure: w.timestamp,
     })),
     qr_seance: buildSeanceQRString(),
@@ -16359,11 +16662,23 @@ function saveSeanceAndClose() {
   sessions.push(seanceData);
   localStorage.setItem('eps_crosstraining', JSON.stringify(sessions));
 
-  STATE.ressenti = null; // effacé après sauvegarde réussie
+  STATE.ressenti = null;
   closeBilan();
   resetSeance();
   renderHistory();
   showToast('✓ Séance sauvegardée !');
+
+  setTimeout(function(){
+    doGoHome();
+    setTimeout(function(){
+      if (savedNom)    { var e=document.getElementById('inp-nom');    if(e) e.value=savedNom; }
+      if (savedPrenom) { var e=document.getElementById('inp-prenom'); if(e) e.value=savedPrenom; }
+      if (savedClasse) { var e=document.getElementById('inp-classe'); if(e) e.value=savedClasse; }
+      if (savedCoach)  { var e=document.getElementById('inp-coach');  if(e) e.value=savedCoach; }
+      onProfilBlur();
+      checkAndRevealChrono();
+    }, 150);
+  }, 300);
 }
 
 function resetSeance() {
@@ -16653,21 +16968,12 @@ function showBilan() {
     contentHTML += '</div>';
   }
 
-  // -- QR Code -------------------------------
-  const qrStr = buildQRString();
-  contentHTML += `
-    <div class="bilan-qr-section">
-      <span class="bilan-qr-label">QR Code élève</span>
-      <div id="qr-canvas"></div>
-      <div class="bilan-qr-data">${qrStr}</div>
-    </div>`;
-
   // -- Ressenti — récap (saisi avant via showRessentiThenBilan) --------
   const _r = STATE.ressenti || {};
   const _emojiMap = { 1:'😩', 2:'😓', 3:'😐', 4:'🙂', 5:'😄' };
   if (_r.niveau) {
     contentHTML += '<div class="ressenti-block" style="margin-bottom:8px">' +
-      '<div class="ressenti-title">Ressenti séance</div>' +
+      '<div class="ressenti-title">Ressenti WOD</div>' +
       '<div style="display:flex;align-items:center;gap:10px;margin-top:4px">' +
         '<span style="font-size:28px">' + (_emojiMap[_r.niveau]||'') + '</span>' +
         '<span style="font-size:13px;font-weight:700;color:var(--text2)">' + (_r.label||'') + '</span>' +
@@ -16677,13 +16983,18 @@ function showBilan() {
   }
 
   // -- Actions -------------------------------
-  contentHTML += `
-    <div class="bilan-actions">
-      <button class="bilan-btn bilan-btn-save" onclick="saveBilanAndClose()">✓ Valider &amp; Sauvegarder</button>
-      <button class="bilan-btn" style="background:var(--effort);color:#fff" onclick="saveAndNextStudent()">⏭ Élève suivant</button>
-      <button class="bilan-btn" style="background:var(--fortime);color:#fff" onclick="exportWodCSV()">⬇ CSV ce WOD</button>
-      <button class="bilan-btn bilan-btn-close" onclick="closeBilan()">← Retour (sans sauvegarder)</button>
-    </div>`;
+  // Compteur de WODs dans la séance
+  var wodCount = STATE.seance.wods.length;
+  contentHTML += '<div class="bilan-actions">';
+  if (wodCount === 0) {
+    contentHTML += '<button class="bilan-btn" style="background:var(--effort);color:#fff;font-size:15px" onclick="bilanNextWod()">▶ WOD suivant</button>';
+    contentHTML += '<button class="bilan-btn bilan-btn-save" style="font-size:15px" onclick="bilanFinishSeance()">🏁 Terminer ma séance</button>';
+  } else {
+    contentHTML += '<button class="bilan-btn" style="background:var(--effort);color:#fff;font-size:15px" onclick="bilanNextWod()">▶ WOD suivant (' + (wodCount+1) + ')</button>';
+    contentHTML += '<button class="bilan-btn bilan-btn-save" style="font-size:15px" onclick="bilanFinishSeance()">🏁 Terminer ma séance (' + wodCount + ' WOD' + (wodCount>1?'s':'') + ')</button>';
+  }
+  contentHTML += '<button class="bilan-btn bilan-btn-close" onclick="closeBilan()">← Retour (sans sauvegarder)</button>';
+  contentHTML += '</div>';
 
   modal.innerHTML = contentHTML;
   overlay.classList.add('visible');
@@ -16697,9 +17008,7 @@ function showBilan() {
     else if (STATE.mode === 'FOR TIME') titleEl.textContent = 'FOR TIME' + (STATE.config.timeCap > 0 ? ' (Cap ' + fmtTime(STATE.config.timeCap*60) + ')' : '');
     else if (isEmomMode())    titleEl.textContent = (STATE.mode === 'EMOM+1' ? 'EMOM+1 ' : 'EMOM ') + STATE.config.duration + ' min';
   }
-
-  // Générer le QR
-  setTimeout(() => renderQR(qrStr), 100);
+  // Pas de QR ici — le QR se génère uniquement dans le bilan séance final
 }
 
 
@@ -16788,23 +17097,294 @@ function condenseProfil() {
 }
 
 function expandProfil() {
-  document.getElementById('profil-compact').classList.remove('visible');
-  document.getElementById('profil-form').style.display = '';
-  setTimeout(() => document.getElementById('inp-nom').focus(), 50);
+  var pc = document.getElementById('profil-compact');
+  if (pc) pc.classList.remove('visible');
+  var pf = document.getElementById('profil-form');
+  if (pf) pf.style.display = '';
+  setTimeout(function(){
+    var n = document.getElementById('inp-nom'); if(n) n.focus();
+  }, 50);
+}
+
+
+/* ── Nouveau flux WOD séance ─────────────────────────────────── */
+
+function bilanNextWod() {
+  _saveCurrentWod();
+  closeBilan();
+  setTimeout(function() {
+    try {
+      _resetForNextWod();
+      showToast('WOD ' + STATE.seance.wods.length + ' sauvegardé ✓ Configure le suivant !');
+    } catch(e) {
+      console.error('bilanNextWod error:', e.message);
+    }
+  }, 150);
+}
+
+function bilanFinishSeance() {
+  _saveCurrentWod();
+  closeBilan();
+  setTimeout(function() {
+    try {
+      showRessentiSeance();
+    } catch(e) {
+      console.error('bilanFinishSeance error:', e.message);
+    }
+  }, 150);
+}
+
+function _saveCurrentWod() {
+  // Construire le WOD courant et l'ajouter à la séance
+  var b = STATE.bilan;
+  var exos = Object.keys(STATE.selectedExos);
+  var scoreRaw = buildQRString().split(';')[3] || '';
+  var scoreLabel = '';
+  if (STATE.mode === 'AMRAP') scoreLabel = b.amrapTours + ' tours · N' + STATE.config.amrapNiveau;
+  else if (STATE.mode === 'FOR TIME') scoreLabel = (b.forTimeFinished?'OK ':'CAP ') + fmtTime(b.forTimeFinal||0);
+  else if (isEmomMode()) {
+    var val = b.emomLog.filter(function(l){return l.success===true;}).length;
+    scoreLabel = val + '/' + STATE.config.duration + ' min validées';
+  } else if (STATE.mode === 'TABATA') {
+    var tlog = b.tabataLog||[];
+    var minR = tlog.length ? Math.min.apply(null,tlog.map(function(l){return l.reps;})) : 0;
+    scoreLabel = 'Plancher ' + minR + 'r';
+  }
+  var wod = {
+    type: STATE.mode,
+    scoreRaw: scoreRaw,
+    scoreLabel: scoreLabel,
+    duration: STATE.config.duration,
+    bilan: JSON.parse(JSON.stringify(b)),
+    noteExecLog: JSON.parse(JSON.stringify(STATE.noteExecLog)),
+    ressentiWod: STATE.ressenti ? {
+      niveau: STATE.ressenti.niveau,
+      label: STATE.ressenti.label,
+      commentaire: _stripAccents(STATE.ressenti.commentaire||'')
+    } : null,
+    exos: exos,
+    timestamp: new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})
+  };
+  if (!STATE.seance.profil) {
+    STATE.seance.profil = {
+      nom:    (document.getElementById('inp-nom')   ||{}).value||'',
+      prenom: (document.getElementById('inp-prenom')||{}).value||'',
+      classe: (document.getElementById('inp-classe')||{}).value||'',
+      coach:  (document.getElementById('inp-coach') ||{}).value||''
+    };
+  }
+  STATE.seance.wods.push(wod);
+}
+
+function _resetForNextWod() {
+  // Garder profil, vider mode + exos + bilan
+  STATE.mode = null;
+  document.body.dataset.mode = '';
+  STATE.selectedExos = {};
+  STATE.noteExecLog = [];
+  STATE.ressenti = null;
+  STATE.bilan = { tabataLog:[], emomLog:[], amrapTours:0, amrapRepsExtra:0,
+    amrapCurrentExoIdx:0, noteExecLog:[], forTimeFinal:0, forTimeFinished:false };
+  STATE._amrapPanelReady = false; STATE._fortimePanelReady = false;
+  STATE._emomSeqExoIdx = 0; STATE._emomSeqStartTime = null;
+  document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.remove('selected');});
+  document.querySelectorAll('.exo-toggle-v2.selected,.exo-toggle.selected').forEach(function(b){b.classList.remove('selected');});
+  var ecEl = document.getElementById('exo-cards');     if(ecEl) ecEl.innerHTML='';
+  var acEl = document.getElementById('exo-accordion'); if(acEl) acEl.innerHTML='';
+  setTimeout(function(){
+    try{ initExoGrid(); }catch(e){}
+    checkAndRevealChrono();
+  }, 100);
+  var badge = document.getElementById('mode-badge');
+  if(badge){badge.className='';badge.textContent='- Aucun mode -';}
+  var cp = document.getElementById('config-panel');
+  if(cp){cp.style.display='none';cp.innerHTML='';}
+  ['emom-live-panel','amrap-live-panel','fortime-live-panel'].forEach(function(id){
+    var el=document.getElementById(id); if(el)el.style.display='none';
+  });
+  document.body.classList.remove('mode-amrap-active','mode-fortime','mode-emom','mode-tabata',
+    'emom-zone-green','emom-zone-orange','emom-zone-red','chrono-live');
+  showSectionsAfterWod();
+  checkAndRevealChrono();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ── Ressenti de SÉANCE (visuel étoiles) ─────────────────────── */
+var _ressentiSeanceNiveau = 0;
+var _fatigueSeanceNiveau = 0;
+
+function showRessentiSeance() {
+  _ressentiSeanceNiveau = 0;
+  _fatigueSeanceNiveau = 0;
+  var overlay = document.getElementById('ressenti-seance-overlay');
+  if (!overlay) return;
+  overlay.querySelectorAll('.ressenti-star-btn').forEach(function(b){ b.style.opacity='0.25'; });
+  overlay.querySelectorAll('.ressenti-fatigue-btn').forEach(function(b){
+    b.style.borderColor='transparent'; b.style.background='var(--surface3)';
+  });
+  var ta = document.getElementById('ressenti-seance-commentaire');
+  if (ta) ta.value = '';
+  var btn = document.getElementById('ressenti-seance-confirm-btn');
+  if (btn) { btn.disabled = true; btn.style.opacity='0.4'; }
+  var lbl = document.getElementById('ressenti-seance-star-label');
+  if (lbl) lbl.textContent = '';
+  var nb = STATE.seance.wods.length;
+  var nbEl = document.getElementById('ressenti-seance-nb');
+  if (nbEl) nbEl.textContent = nb + ' WOD' + (nb>1?'s':'') + ' réalisé' + (nb>1?'s':'');
+  overlay.classList.add('visible');
+}
+
+function selectRessentiSeance(lv) {
+  _ressentiSeanceNiveau = lv;
+  var starLabels = {1:'⭐ Séance difficile',2:'⭐⭐ Pas terrible',3:'⭐⭐⭐ Correct',4:'⭐⭐⭐⭐ Bonne séance',5:'⭐⭐⭐⭐⭐ Excellente séance !'};
+  document.querySelectorAll('.ressenti-star-btn').forEach(function(b){
+    b.style.opacity = parseInt(b.dataset.lv) <= lv ? '1' : '0.25';
+    b.style.transform = parseInt(b.dataset.lv) <= lv ? 'scale(1.1)' : 'scale(1)';
+  });
+  var lbl = document.getElementById('ressenti-seance-star-label');
+  if (lbl) lbl.textContent = starLabels[lv] || '';
+  _checkRessentiSeanceReady();
+}
+
+function selectFatigueSeance(lv) {
+  _fatigueSeanceNiveau = lv;
+  var colors = {1:'#e74c3c',2:'#e67e22',3:'#95a5a6',4:'#2ecc71',5:'#27ae60'};
+  document.querySelectorAll('.ressenti-fatigue-btn').forEach(function(b){
+    var isSelected = parseInt(b.dataset.lv) === lv;
+    b.style.borderColor = isSelected ? (colors[lv]||'var(--text)') : 'transparent';
+    b.style.background  = isSelected ? (colors[lv]||'var(--text)') + '22' : 'var(--surface3)';
+  });
+  _checkRessentiSeanceReady();
+}
+
+function onRessentiSeanceInput() {
+  _checkRessentiSeanceReady();
+}
+
+function _checkRessentiSeanceReady() {
+  var ta  = document.getElementById('ressenti-seance-commentaire');
+  var txt = ta ? ta.value.trim() : '';
+  var ok  = _ressentiSeanceNiveau > 0 && _fatigueSeanceNiveau > 0 && txt.length >= 3;
+  var btn = document.getElementById('ressenti-seance-confirm-btn');
+  if (btn) { btn.disabled = !ok; btn.style.opacity = ok ? '1' : '0.4'; }
+}
+
+function confirmRessentiSeance() {
+  var starLabels   = {1:'Difficile',2:'Pas terrible',3:'Correct',4:'Bonne séance',5:'Excellente'};
+  var fatigueLabels = {1:'Épuisé',2:'Fatigué',3:'Moyen',4:'Légèrement fatigué',5:'En forme'};
+  var fatigueEmojis = {1:'😩',2:'😓',3:'😐',4:'🙂',5:'😄'};
+  var ta  = document.getElementById('ressenti-seance-commentaire');
+  var txt = ta ? ta.value.trim() : '';
+  if (!_ressentiSeanceNiveau || !_fatigueSeanceNiveau || txt.length < 3) return;
+  STATE.seance.ressentiSeance = {
+    niveau:        _ressentiSeanceNiveau,
+    label:         starLabels[_ressentiSeanceNiveau],
+    fatigue:       _fatigueSeanceNiveau,
+    fatigueLabel:  fatigueLabels[_fatigueSeanceNiveau],
+    fatigueEmoji:  fatigueEmojis[_fatigueSeanceNiveau],
+    commentaire:   txt
+  };
+  document.getElementById('ressenti-seance-overlay').classList.remove('visible');
+  showBilanSeanceFinal();
+}
+
+/* ── Bilan de séance final ───────────────────────────────────── */
+function showBilanSeanceFinal() {
+  var wods = STATE.seance.wods;
+  var p = STATE.seance.profil || {};
+  var rs = STATE.seance.ressentiSeance || {};
+  var overlay = document.getElementById('bilan-overlay');
+  var modal   = document.getElementById('bilan-modal');
+  if (!overlay||!modal) return;
+
+  var modeColors = {AMRAP:'var(--amrap)','FOR TIME':'var(--fortime)',EMOM:'var(--emom)','EMOM+1':'var(--emom)',TABATA:'var(--tabata)'};
+  var emojiMap   = {1:'😩',2:'😓',3:'😐',4:'🙂',5:'😄'};
+  var starMap    = {1:'★☆☆☆☆',2:'★★☆☆☆',3:'★★★☆☆',4:'★★★★☆',5:'★★★★★'};
+
+  var html = '<div class="bilan-header">';
+  html += '<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Bilan de séance</div>';
+  html += '<div style="font-size:22px;font-weight:900;color:var(--text)">' + (p.prenom||'') + ' ' + (p.nom||'').toUpperCase() + '</div>';
+  html += '<div style="font-size:13px;color:var(--muted)">' + (p.classe||'') + (p.coach?' · '+p.coach:'') + '</div>';
+  html += '</div>';
+
+  // Résumé WODs
+  html += '<div style="display:flex;flex-direction:column;gap:10px;margin:16px 0">';
+  wods.forEach(function(w, i) {
+    var col = modeColors[w.type] || 'var(--text)';
+    html += '<div style="background:var(--surface3);border-radius:12px;padding:14px;border-left:4px solid '+col+'">';
+    html += '<div style="display:flex;justify-content:space-between;align-items:flex-start">';
+    html += '<div>';
+    html += '<div style="font-size:10px;font-weight:700;color:'+col+';letter-spacing:1.5px;text-transform:uppercase">WOD '+(i+1)+' · '+w.type+'</div>';
+    html += '<div style="font-size:18px;font-weight:900;color:var(--text);margin-top:2px">'+w.scoreLabel+'</div>';
+    html += '</div>';
+    if (w.timestamp) html += '<div style="font-size:10px;color:var(--muted)">'+w.timestamp+'</div>';
+    html += '</div>';
+    // Exercices
+    if (w.exos && w.exos.length) {
+      html += '<div style="font-size:11px;color:var(--muted);margin-top:6px">'+w.exos.join(' · ')+'</div>';
+    }
+    // Ressenti WOD
+    if (w.ressentiWod && w.ressentiWod.niveau) {
+      html += '<div style="margin-top:8px;display:flex;align-items:center;gap:6px">';
+      html += '<span style="font-size:16px">'+emojiMap[w.ressentiWod.niveau]+'</span>';
+      html += '<span style="font-size:11px;color:var(--muted)">'+w.ressentiWod.label+'</span>';
+      if (w.ressentiWod.commentaire) html += '<span style="font-size:10px;color:var(--muted);margin-left:4px">— '+w.ressentiWod.commentaire+'</span>';
+      html += '</div>';
+    }
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // Ressenti de séance
+  if (rs.niveau) {
+    var starMap = {1:'★☆☆☆☆',2:'★★☆☆☆',3:'★★★☆☆',4:'★★★★☆',5:'★★★★★'};
+    html += '<div style="background:linear-gradient(135deg,#1a0533,#2d1060);border-radius:12px;padding:16px;margin-bottom:16px">';
+    html += '<div style="font-size:10px;font-weight:700;color:rgba(180,140,255,.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Ressenti de séance</div>';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between">';
+    html += '<div><div style="font-size:22px;color:#f1c40f">'+starMap[rs.niveau]+'</div><div style="font-size:11px;color:rgba(255,255,255,.7);margin-top:2px">'+rs.label+'</div></div>';
+    if (rs.fatigueEmoji) html += '<div style="text-align:center"><div style="font-size:28px">'+rs.fatigueEmoji+'</div><div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px">'+rs.fatigueLabel+'</div></div>';
+    html += '</div>';
+    if (rs.commentaire) html += '<div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:10px;border-top:1px solid rgba(255,255,255,.1);padding-top:8px">'+rs.commentaire+'</div>';
+    html += '</div>';
+  }
+
+  // QR Code
+  var qrStr = buildSeanceQRString();
+  html += '<div class="bilan-qr-section">';
+  html += '<span class="bilan-qr-label">QR CODE ÉLÈVE — à scanner par le prof</span>';
+  html += '<div id="qr-canvas"></div>';
+  html += '<div class="bilan-qr-data">'+qrStr+'</div>';
+  html += '</div>';
+
+  // Actions
+  html += '<div class="bilan-actions">';
+  html += '<button class="bilan-btn bilan-btn-save" onclick="saveSeanceAndClose()">✓ Sauvegarder &amp; Terminer</button>';
+  html += '<button class="bilan-btn" style="background:var(--fortime);color:#fff" onclick="window.print()">🖨 Imprimer / PDF</button>';
+  html += '</div>';
+
+  modal.innerHTML = html;
+  overlay.classList.add('visible');
+  overlay.scrollTop = 0;
+  setTimeout(function(){ requestAnimationFrame(function(){ renderQR(qrStr); }); }, 500);
 }
 
 function showRessentiThenBilan(callback) {
   _ressentiNiveau = 0;
   _ressentiCallback = callback || showBilan;
   STATE.ressenti = null;
-  // Reset UI
   document.querySelectorAll('.ressenti-emoji-btn').forEach(b => b.classList.remove('selected'));
   const ta = document.getElementById('ressenti-commentaire');
-  if (ta) ta.value = '';
+  if (ta) { ta.value = ''; ta.placeholder = 'Décris ce WOD : ce qui était difficile, ce que tu as réussi…'; }
   const btn = document.getElementById('ressenti-confirm-btn');
-  if (btn) btn.disabled = true;
+  if (btn) { btn.disabled = true; btn.textContent = 'Voir mon bilan →'; }
   const hint = document.getElementById('ressenti-hint');
   if (hint) { hint.textContent = '⚠ Choisis un ressenti et écris un commentaire'; hint.style.color = '#e74c3c'; }
+  // Colorer le bandeau selon le mode
+  var modeColors = {AMRAP:'#c0550a','FOR TIME':'#1560a8',EMOM:'#6b24af','EMOM+1':'#a8290a',TABATA:'#0a7a35'};
+  var band = document.getElementById('ressenti-header-band');
+  if (band) band.style.background = modeColors[STATE.mode] || '#444';
+  var typeLabel = document.getElementById('ressenti-type-label');
+  if (typeLabel) typeLabel.textContent = 'Ressenti WOD · ' + (STATE.mode||'');
   document.getElementById('ressenti-overlay').classList.add('visible');
 }
 
@@ -16850,7 +17430,7 @@ function _validateRessenti() { return true; } // validation déjà faite avant l
 /* =============================================
    FOCUS MODE — masquer les sections pendant le WOD
    ============================================= */
-const WOD_SECTIONS = ['section-profil','section-mode','section-save','history-section'];
+const WOD_SECTIONS = ['section-profil','section-mode','history-section'];
 
 function hideSectionsForWod() {
   WOD_SECTIONS.forEach(id => {
@@ -16914,7 +17494,7 @@ function showSectionsAfterWod() {
 function toggleSectionsVisibility(forceShow) {
   // Si le chrono tourne, demander confirmation
   if (STATE.chrono.running && !forceShow) {
-    if (!confirm('Le chrono tourne. Afficher le formulaire quand même ?')) return;
+    if (STATE.chrono.running) pauseChrono();
   }
   const isHidden = document.getElementById('section-profil') &&
     document.getElementById('section-profil').classList.contains('wod-focus-mode');
@@ -16938,7 +17518,7 @@ function finishManual() {
   const btn = document.getElementById('btn-start');
   if (btn) { btn.textContent = 'TERMINÉ'; btn.classList.remove('paused'); }
   updateChronoDisplay();
-  revealSaveSection(); setTimeout(() => showRessentiThenBilan(), 400);
+  revealSaveSection(); setTimeout(function(){ try{ showRessentiThenBilan(); }catch(e){ console.error('bilan error:',e); showToast('Erreur: '+e.message); } }, 400);
 }
 
 /* =============================================
@@ -17102,9 +17682,7 @@ function scrollToChrono() {
 }
 
 function revealSaveSection() {
-  const el = document.getElementById('section-save');
-  if (el) el.classList.remove('wod-ready-hidden');
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  // section-save supprimée — ne rien faire
 }
 
 function exportWodCSV() {
@@ -17969,16 +18547,22 @@ function profExportJSON() {
 <!-- Popup notation exécution -->
 <div id="note-exec-popup">
   <div class="nep-box">
-    <div class="nep-exo" id="nep-exo-name">—</div>
-    <div class="nep-label">Note d'exécution</div>
-    <div class="nep-btns">
-      <button class="nep-btn" data-n="1" onclick="nepPick(1)">1</button>
-      <button class="nep-btn" data-n="2" onclick="nepPick(2)">2</button>
-      <button class="nep-btn" data-n="3" onclick="nepPick(3)">3</button>
-      <button class="nep-btn" data-n="4" onclick="nepPick(4)">4</button>
+    <div class="nep-header">
+      <div class="nep-label">Note d’exécution</div>
+      <div class="nep-exo" id="nep-exo-name">—</div>
     </div>
-    <button class="nep-skip" onclick="nepSkip()">Passer</button>
+    <div class="nep-body">
+      <div class="nep-btns">
+        <button class="nep-btn" data-n="1" onclick="nepPick(1)">1</button>
+        <button class="nep-btn" data-n="2" onclick="nepPick(2)">2</button>
+        <button class="nep-btn" data-n="3" onclick="nepPick(3)">3</button>
+        <button class="nep-btn" data-n="4" onclick="nepPick(4)">4</button>
+      </div>
+      <div class="nep-star-label" id="nep-star-label"></div>
+      <button class="nep-skip" onclick="nepSkip()">Passer</button>
+    </div>
   </div>
 </div>
+<div id="toast"></div>
 </body>
 </html>
