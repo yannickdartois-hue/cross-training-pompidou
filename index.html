@@ -67,7 +67,6 @@ body.dark-mode {
   --surface:  #16162a;
   --surface2: #1e1e35;
   --surface3: #26263f;
-  --surface4: #2e2e4a;
   --border:   rgba(255,255,255,.08);
   --border2:  rgba(255,255,255,.12);
   --text:     #f0f0ff;
@@ -411,10 +410,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   box-shadow: 0 0 20px rgba(231,76,60,.4);
 }.mode-btn.selected.emom-plus .mode-label { color: #fff; }.mode-btn.selected.emom-plus .mode-sub { color: #fff; opacity: 0.7; }.mode-btn.tabata { border-color: rgba(29,185,84,.5);  }/* Label coloré idle */
 .mode-btn.amrap   .mode-label { color: var(--amrap); }.mode-btn.fortime .mode-label { color: var(--fortime); }.mode-btn.emom    .mode-label { color: var(--emom); }.mode-btn.tabata  .mode-label { color: var(--tabata); }/* Selected : fond plein + glow */
-.mode-btn.selected.amrap   { background: var(--amrap);   color: #fff; border-color: var(--amrap);   box-shadow: 0 0 20px rgba(232,114,12,.35); }
-.mode-btn.selected.fortime { background: var(--fortime); color: #fff; border-color: var(--fortime); box-shadow: 0 0 20px rgba(33,118,174,.35); }
-.mode-btn.selected.tabata  { background: var(--tabata);  color: #fff; border-color: var(--tabata);  box-shadow: 0 0 20px rgba(29,185,84,.35); }
-.mode-btn.selected.emom    { background: var(--emom);    color: #fff; border-color: var(--emom);    box-shadow: 0 0 20px rgba(107,36,175,.35); }.mode-btn.selected .mode-label { color: inherit; }.mode-btn.selected .mode-sub { color: inherit; opacity: 0.7; }/* ============================================
+.mode-btn.selected.amrap   { background: var(--amrap);   color: #fff; border-color: var(--amrap);   box-shadow: 0 0 20px rgba(232,114,12,.35); }.mode-btn.selected .mode-label { color: inherit; }.mode-btn.selected .mode-sub { color: inherit; opacity: 0.7; }/* ============================================
    CONFIG PANELS
    ============================================ */
 #config-panel { margin-top: 16px; }.config-row {
@@ -1541,7 +1537,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: all var(--t-mid);
-}.amrap-niveau-btn.active.lv1 { background: var(--lv1); color: #fff; border-color: var(--lv1); }.amrap-niveau-btn.active.lv2 { background: var(--lv2); color: #fff; border-color: var(--lv2); }.amrap-niveau-btn.active.lv3 { background: var(--lv3); color: #fff; border-color: var(--lv3); }.amrap-niveau-btn:active { transform: scale(0.95); }/* ── Interface AMRAP live (pendant chrono) ─── */
+}.amrap-niveau-btn.active.lv0 { background: #1a6b2a; color: #fff; border-color: #1a6b2a; }.amrap-niveau-btn.active.lv1 { background: #2ecc71; color: #fff; border-color: #2ecc71; }.amrap-niveau-btn.active.lv2 { background: #f1c40f; color: #000; border-color: #f1c40f; }.amrap-niveau-btn.active.lv3 { background: #e67e22; color: #fff; border-color: #e67e22; }.amrap-niveau-btn.active.lv4 { background: #e74c3c; color: #fff; border-color: #e74c3c; }.amrap-niveau-btn:active { transform: scale(0.95); }/* ── Interface AMRAP live (pendant chrono) ─── */
 #amrap-live-panel {
   margin-top: 14px;
   background: var(--surface2);
@@ -2191,8 +2187,6 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   .exo-card-name      { font-size: 15px; }
 
   /* Panel EMOM : lignes plus hautes */
-
-
 
   /* Inputs plus grands */
   .input-group input  { font-size: 17px; padding: 14px 16px; }
@@ -12868,6 +12862,12 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
       <button class="chrono-btn" id="btn-reset" onclick="resetChrono()">↺</button>
     </div>
 
+    <!-- Signature discrète -->
+    <div style="text-align:center;margin-top:6px;opacity:0.55;pointer-events:none;user-select:none">
+      <span style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text2)">Cross Training</span>
+      <span style="font-size:9px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2)"> · Pompidou</span>
+    </div>
+
     <!-- Bouton modifier visible pendant le WOD -->
     <button id="btn-modifier" onclick="toggleSectionsVisibility(true)" style="display:none">
       ✎ Modifier profil / exercices
@@ -13212,7 +13212,7 @@ const STATE = {
     tabataCycles: 8,       // tours
     timeCap: 0,            // FOR TIME : 0 = pas de time cap
     tabataRotation: 'vertical', // 'vertical' | 'horizontal'
-    amrapNiveau: 1,        // 1=6reps 2=8reps 3=10reps 4=12reps
+    amrapNiveau: 1,        // 0=4reps 1=6reps 2=8reps 3=10reps 4=12reps
     emomNiveau: 1,         // niveau global EMOM
     emomExoReps: {},       // { nomExo: reps } - surcharge par exercice
   },
@@ -13655,13 +13655,14 @@ function renderConfigPanel() {
     const niveauDiv = document.createElement('div');
     niveauDiv.className = 'config-row';
     const niveauReps = [0, 6, 8, 10, 12];
+    const niveauRepsAll = { 0:4, 1:6, 2:8, 3:10, 4:12 };
     niveauDiv.innerHTML = `
       <span class="config-label">Niveau</span>
       <div style="display:flex;gap:6px">
-        ${[1,2,3,4].map(n => `
-          <button class="amrap-niveau-btn ${STATE.config.amrapNiveau===n?'active':''} lv${n<=2?n:n<=3?2:3}"
+        ${[0,1,2,3,4].map(n => `
+          <button class="amrap-niveau-btn ${STATE.config.amrapNiveau===n?'active':''} lv${n}"
             onclick="setAmrapNiveau(${n})">
-            N${n}<br><span style="font-size:9px;opacity:.7">${niveauReps[n]}r</span>
+            N${n}<br><span style="font-size:9px;opacity:.7">${niveauRepsAll[n]}r</span>
           </button>`).join('')}
       </div>`;
     panel.appendChild(niveauDiv);
@@ -13670,7 +13671,7 @@ function renderConfigPanel() {
     const infoDiv = document.createElement('div');
     infoDiv.style.cssText = 'font-size:10px;color:var(--muted);padding:6px 12px;line-height:1.6';
     infoDiv.innerHTML = '1 tour = faire chaque exercice <strong style="color:var(--text2)" id="amrap-reps-info">' +
-      niveauReps[STATE.config.amrapNiveau] + ' fois</strong>.<br>Objectif : max de tours en ' + STATE.config.duration + ' min.';
+      niveauRepsAll[STATE.config.amrapNiveau] + ' fois</strong>.<br>Objectif : max de tours en ' + STATE.config.duration + ' min.';
     infoDiv.id = 'amrap-info-div';
     panel.appendChild(infoDiv);
 
@@ -13679,12 +13680,15 @@ function renderConfigPanel() {
     const nivDiv = document.createElement('div');
     nivDiv.style.cssText = 'display:flex;gap:8px;margin-bottom:10px';
     ['N1','N2','N3'].forEach(function(n) {
-      const totals = { N1:'21 reps', N2:'36 reps', N3:'55 reps' };
+      const totals = { N0:'10 reps', N1:'21 reps', N2:'36 reps', N3:'55 reps' };
       const btn = document.createElement('button');
-      btn.className = 'mode-btn fortime ft-niveau-btn' +
-        (getFortimeNiveau() === n ? ' selected' : '');
+      const ftColors = { N1:'#1a6b2a', N2:'#b8860b', N3:'#c0550a' };
+      const ftColorsLight = { N1:'#2ecc71', N2:'#f1c40f', N3:'#e67e22' };
+      const isSelected = getFortimeNiveau() === n;
+      btn.className = 'mode-btn fortime ft-niveau-btn' + (isSelected ? ' selected' : '');
       btn.dataset.niveau = n;
-      btn.style.cssText = 'flex:1;height:60px;font-size:13px';
+      btn.style.cssText = 'flex:1;height:60px;font-size:13px;' +
+        (isSelected ? 'background:'+ftColors[n]+';border-color:'+ftColors[n]+';color:#fff' : 'border-color:'+ftColorsLight[n]+';color:'+ftColorsLight[n]);
       btn.innerHTML = '<span class="mode-label">' + n + '</span>' +
         '<span class="mode-sub">' + totals[n] + '</span>';
       btn.onclick = function() { setFortimeNiveau(n); };
@@ -13706,11 +13710,11 @@ function renderConfigPanel() {
     // Niveau global
     const nDiv = document.createElement('div');
     nDiv.className = 'config-row';
-    const nReps = [0,6,8,10,12];
+    const nReps = {0:4,1:6,2:8,3:10,4:12};
     nDiv.innerHTML = '<span class="config-label">Reps départ</span>' +
       '<div style="display:flex;gap:6px">' +
-      [1,2,3,4].map(function(n) {
-        return '<button class="amrap-niveau-btn ' + (STATE.config.emomNiveau===n?'active ':' ') + 'lv'+(n<=2?n:n<=3?2:3)+'" ' +
+      [0,1,2,3,4].map(function(n) {
+        return '<button class="amrap-niveau-btn ' + (STATE.config.emomNiveau===n?'active ':' ') + 'lv'+n+'" ' +
           'onclick="setEmomNiveau('+n+')">' +
           'N'+n+'<br><span style="font-size:9px;opacity:.7">'+nReps[n]+'r</span></button>';
       }).join('') + '</div>';
@@ -13728,11 +13732,11 @@ function renderConfigPanel() {
     // Niveau global
     const niveauDiv = document.createElement('div');
     niveauDiv.className = 'config-row';
-    const niveauReps = [0,6,8,10,12];
+    const niveauReps = {0:4,1:6,2:8,3:10,4:12};
     niveauDiv.innerHTML = '<span class="config-label">Niveau global</span>' +
       '<div style="display:flex;gap:6px">' +
-      [1,2,3,4].map(n =>
-        '<button class="amrap-niveau-btn ' + (STATE.config.emomNiveau===n?'active ':' ') + 'lv'+(n<=2?n:n<=3?2:3)+'" ' +
+      [0,1,2,3,4].map(n =>
+        '<button class="amrap-niveau-btn ' + (STATE.config.emomNiveau===n?'active ':' ') + 'lv'+n+'" ' +
         'onclick="setEmomNiveau('+n+')">' +
         'N'+n+'<br><span style="font-size:9px;opacity:.7">'+niveauReps[n]+'r</span></button>'
       ).join('') + '</div>';
@@ -14355,7 +14359,7 @@ function updateChronoDisplay() {
     } else {
       cycleEl.textContent = '1/' + STATE.config.tabataCycles;
     }
-    document.getElementById('info-row-3').style.display = '';
+    var _ir3=document.getElementById('info-row-3'); if(_ir3) _ir3.style.display = '';
   } else {
     const modeColors = { 'AMRAP':'var(--amrap)', 'FOR TIME':'var(--fortime)', 'EMOM':'var(--emom)', 'EMOM+1':'var(--emom)' };
     const color = modeColors[STATE.mode] || 'var(--muted)';
@@ -14370,7 +14374,7 @@ function updateChronoDisplay() {
     } else {
       timeEl.style.color = 'var(--text)';
     }
-    document.getElementById('info-row-3').style.display = 'none';
+    var _ir3=document.getElementById('info-row-3'); if(_ir3) _ir3.style.display = 'none';
 
     // EMOM: show current minute
     if (isEmomMode()) {
@@ -15273,9 +15277,9 @@ function updateNextExoBar() {
    ============================================= */
 function setAmrapNiveau(n) {
   STATE.config.amrapNiveau = n;
-  const niveauReps = [0,6,8,10,12];
+  const niveauReps = {0:4,1:6,2:8,3:10,4:12};
   document.querySelectorAll('.amrap-niveau-btn').forEach(b => b.classList.remove('active'));
-  const btn = document.querySelectorAll('.amrap-niveau-btn')[n-1];
+  const btn = document.querySelectorAll('.amrap-niveau-btn')[n];
   if (btn) btn.classList.add('active');
   const infoDiv = document.getElementById('amrap-info-div');
   if (infoDiv) {
@@ -15286,7 +15290,8 @@ function setAmrapNiveau(n) {
 }
 
 function getAmrapRepsPerTour() {
-  return [0,6,8,10,12][STATE.config.amrapNiveau] || 6;
+  const map = {0:4,1:6,2:8,3:10,4:12};
+  return map[STATE.config.amrapNiveau] || 6;
 }
 
 function updateAmrapLivePanel() {
@@ -15305,7 +15310,7 @@ function amrapRenderCurrentExo() {
   const exo     = exos[idx] || exos[0];
   const reps    = getAmrapRepsPerTour();
   const p       = STATE.selectedExos[exo] || {};
-  const target  = p.reps || reps;
+  const target  = reps; // toujours basé sur le niveau sélectionné
   const poids   = p.poids ? ' · ' + p.poids + ' kg' : '';
   const niveau  = p.niveau ? ' · N' + p.niveau : '';
 
@@ -15347,13 +15352,17 @@ function nepPick(n) {
 function nepConfirm(n) {
   var popup = document.getElementById('note-exec-popup');
   if (popup) popup.classList.remove('visible');
-  if (_nepCallback) { _nepCallback(n); _nepCallback = null; }
+  var cb = _nepCallback;
+  _nepCallback = null; // Effacer AVANT d'appeler le callback
+  if (cb) cb(n);       // Le callback peut réassigner _nepCallback pour le suivant
 }
 
 function nepSkip() {
   var popup = document.getElementById('note-exec-popup');
   if (popup) popup.classList.remove('visible');
-  if (_nepCallback) { _nepCallback(null); _nepCallback = null; }
+  var cb = _nepCallback;
+  _nepCallback = null;
+  if (cb) cb(null);
 }
 
 function amrapValidateExo() {
@@ -15444,7 +15453,7 @@ function getEmomReps(exoName) {
   if (STATE.config.emomExoReps && STATE.config.emomExoReps[exoName] !== undefined) {
     return STATE.config.emomExoReps[exoName];
   }
-  return [0,6,8,10,12][STATE.config.emomNiveau] || 8;
+  const _emomMap = {0:4,1:6,2:8,3:10,4:12}; return _emomMap[STATE.config.emomNiveau] || 6;
 }
 
 function setEmomNiveau(n) {
@@ -15452,7 +15461,7 @@ function setEmomNiveau(n) {
   // Mettre à jour les boutons
   document.querySelectorAll('.amrap-niveau-btn').forEach(b => b.classList.remove('active'));
   const btns = document.querySelectorAll('.amrap-niveau-btn');
-  if (btns[n-1]) btns[n-1].classList.add('active');
+  if (btns[n]) btns[n].classList.add('active');
   // Vider les surcharges individuelles
   STATE.config.emomExoReps = {};
   const reps = [0,6,8,10,12][n];
@@ -15601,17 +15610,27 @@ function emomValidateSeqExo(minute) {
     var failBtn = document.getElementById('emom-seq-fail-btn');
     if (doneBtn) doneBtn.style.display = 'none';
     if (failBtn) failBtn.style.display = 'none';
-    // Popup notation pour chaque exo de la séquence
+    // Popup notation pour chaque exo — utilise une closure locale pour éviter
+    // l'écrasement de _nepCallback si la minute change pendant la saisie
     var emomExosN = Object.keys(STATE.selectedExos);
     var emomMinN  = minute;
     (function askNext(i) {
       if (i >= emomExosN.length) return;
-      showNoteExecPopup(emomExosN[i], function(note) {
+      var exoToNote = emomExosN[i];
+      var localCb = function(note) {
         if (note !== null) {
-          STATE.noteExecLog.push({ mode: STATE.mode, exo: emomExosN[i], minute: emomMinN, exoIdx: i, note: note });
+          STATE.noteExecLog.push({ mode: STATE.mode, exo: exoToNote, minute: emomMinN, exoIdx: i, note: note });
         }
         askNext(i + 1);
-      });
+      };
+      // Afficher popup directement avec callback local (sans passer par _nepCallback global)
+      _nepCallback = localCb;
+      var popup = document.getElementById('note-exec-popup');
+      var nameEl = document.getElementById('nep-exo-name');
+      if (nameEl) nameEl.textContent = exoToNote || '—';
+      document.querySelectorAll('.nep-btn').forEach(function(b){ b.classList.remove('selected'); b.classList.remove('lit'); });
+      var lbl = document.getElementById('nep-star-label'); if (lbl) lbl.textContent = '';
+      if (popup) popup.classList.add('visible');
     })(0);
   } else {
     STATE._emomSeqExoIdx = nextIdx;
@@ -15818,9 +15837,15 @@ function setFortimeNiveau(n) {
   STATE.fortime.finished = false;
   resetChrono();
   updateFortimeLivePanel();
-  // Mettre à jour les boutons niveau
+  // Mettre à jour les boutons niveau avec couleurs
+  const ftColors = { N1:'#1a6b2a', N2:'#b8860b', N3:'#c0550a' };
+  const ftColorsLight = { N1:'#2ecc71', N2:'#f1c40f', N3:'#e67e22' };
   document.querySelectorAll('.ft-niveau-btn').forEach(b => {
-    b.classList.toggle('selected', b.dataset.niveau === n);
+    var sel = b.dataset.niveau === n;
+    b.classList.toggle('selected', sel);
+    b.style.background   = sel ? ftColors[b.dataset.niveau] : '';
+    b.style.borderColor  = ftColorsLight[b.dataset.niveau];
+    b.style.color        = sel ? '#fff' : ftColorsLight[b.dataset.niveau];
   });
   // Mettre à jour le texte des paliers dans le config panel
   const palDiv = document.getElementById('ft-paliers-info');
