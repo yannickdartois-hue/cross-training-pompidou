@@ -410,7 +410,10 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   box-shadow: 0 0 20px rgba(231,76,60,.4);
 }.mode-btn.selected.emom-plus .mode-label { color: #fff; }.mode-btn.selected.emom-plus .mode-sub { color: #fff; opacity: 0.7; }.mode-btn.tabata { border-color: rgba(29,185,84,.5);  }/* Label coloré idle */
 .mode-btn.amrap   .mode-label { color: var(--amrap); }.mode-btn.fortime .mode-label { color: var(--fortime); }.mode-btn.emom    .mode-label { color: var(--emom); }.mode-btn.tabata  .mode-label { color: var(--tabata); }/* Selected : fond plein + glow */
-.mode-btn.selected.amrap   { background: var(--amrap);   color: #fff; border-color: var(--amrap);   box-shadow: 0 0 20px rgba(232,114,12,.35); }.mode-btn.selected .mode-label { color: inherit; }.mode-btn.selected .mode-sub { color: inherit; opacity: 0.7; }/* ============================================
+.mode-btn.selected.amrap    { background: var(--amrap);   color: #fff; border-color: var(--amrap);   box-shadow: 0 0 16px rgba(232,114,12,.35); }
+.mode-btn.selected.fortime   { background: var(--fortime); color: #fff; border-color: var(--fortime); box-shadow: 0 0 16px rgba(58,159,224,.35); }
+.mode-btn.selected.tabata    { background: var(--tabata);  color: #fff; border-color: var(--tabata);  box-shadow: 0 0 16px rgba(29,185,84,.35); }
+.mode-btn.selected.emom      { background: var(--emom);    color: #fff; border-color: var(--emom);    box-shadow: 0 0 16px rgba(123,47,190,.35); }.mode-btn.selected .mode-label { color: inherit; }.mode-btn.selected .mode-sub { color: inherit; opacity: 0.7; }/* ============================================
    CONFIG PANELS
    ============================================ */
 #config-panel { margin-top: 16px; }.config-row {
@@ -1982,6 +1985,7 @@ body {
   color: #000;
 }/* Bouton start chrono — couleur mode actif */
 body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   color: #fff; }body.mode-fortime-active #btn-start:not(.paused) { background: var(--fortime); color: #fff; }body.mode-emom-active    #btn-start:not(.paused) { background: var(--emom);    color: #fff; }body.mode-tabata-active  #btn-start:not(.paused) { background: var(--tabata);  color: #fff; }/* Toggle thème — bouton flottant */
+#sound-toggle { position:fixed;bottom:56px;right:12px;width:36px;height:36px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);font-size:16px;cursor:pointer;z-index:900;touch-action:manipulation; }
 #theme-toggle {
   position: fixed;
   bottom: 20px;
@@ -2574,6 +2578,138 @@ body.platform-safari  * { -webkit-overflow-scrolling: touch; }
 /* TABATA : masquer la zone note /4 inline (popup à la place) */
 body.mode-tabata .exec-score-wrap { display: none !important; }
 [data-mode="TABATA"] .exec-score-wrap { display: none !important; }
+
+/* ── Mode paysage tablette (landscape) ─────────────────────── */
+@media (orientation: landscape) and (min-width: 600px) {
+  #app-eleve { max-width: 100%; padding: 0 8px; }
+
+  /* Header plus compact */
+  #app-header { padding: 10px 16px; }
+  #app-header h1 { font-size: 18px; }
+
+  /* Chrono : côte à côte ring + info */
+  #chrono-main { flex-direction: row; align-items: center; gap: 16px; }
+  #ring-container { width: 160px; height: 160px; flex-shrink: 0; }
+  #chrono-info { flex: 1; }
+
+  /* Boutons mode en grille 5 colonnes */
+  #mode-grid { grid-template-columns: repeat(5, 1fr) !important; }
+
+  /* Accordion exercices en 2 colonnes */
+  .accordion-exo-grid { grid-template-columns: repeat(3, 1fr) !important; }
+
+  /* Panel live AMRAP/EMOM côte à côte */
+  #amrap-live-panel, #emom-live-panel, #fortime-live-panel {
+    max-width: 100%;
+  }
+
+  /* Bilan en 2 colonnes */
+  .bilan-score-card { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  /* Sections côte à côte */
+  #section-profil .section-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+}
+
+/* Galaxy Tab 8 spécifique (1340×800 ou similaire) */
+@media (orientation: landscape) and (min-width: 800px) {
+  #ring-container { width: 140px; height: 140px; }
+  #time-display { font-size: 42px; }
+  #chrono-buttons { flex-direction: row; gap: 8px; }
+  #chrono-buttons .chrono-btn:first-child { flex: 3; }
+  #chrono-buttons .chrono-btn:last-child { flex: 1; }
+  .accordion-exo-grid { grid-template-columns: repeat(4, 1fr) !important; }
+}
+
+/* Flash scan prof */
+@keyframes popIn {
+  0%   { transform: scale(0.5); opacity: 0; }
+  70%  { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* TABATA : fond animé effort (vert) / repos (rouge) */
+body.chrono-live.mode-tabata-effort {
+  background: linear-gradient(180deg, rgba(14,160,71,.18) 0%, var(--bg) 40%) !important;
+  transition: background .4s ease;
+}
+body.chrono-live.mode-tabata-rest {
+  background: linear-gradient(180deg, rgba(212,43,74,.18) 0%, var(--bg) 40%) !important;
+  transition: background .4s ease;
+}
+/* Chrono header TABATA plus visible */
+#chrono-header.effort-phase {
+  background: rgba(14,160,71,.18) !important;
+  border-bottom-color: var(--effort) !important;
+  box-shadow: 0 4px 20px rgba(14,160,71,.25) !important;
+}
+#chrono-header.rest-phase {
+  background: rgba(212,43,74,.18) !important;
+  border-bottom-color: var(--rest) !important;
+  box-shadow: 0 4px 20px rgba(212,43,74,.25) !important;
+}
+/* Label phase TABATA dans l'anneau */
+#phase-label.tabata-effort { color: var(--effort) !important; font-weight:900; font-size:16px; }
+#phase-label.tabata-rest   { color: var(--rest)   !important; font-weight:900; font-size:16px; }
+
+/* ── Binôme ─────────────────────────────────────────────────── */
+#binome-active-bar {
+  background: rgba(192,85,10,.15);
+  border: 1px solid rgba(192,85,10,.3);
+  border-radius: 12px;
+  padding: 10px 14px;
+}
+#profil-A-block { border-left: 3px solid var(--amrap); padding-left: 10px; border-radius: 0 8px 8px 0; }
+#profil-B-block { border-left: 3px solid var(--emom);  padding-left: 10px; border-radius: 0 8px 8px 0; }
+
+
+/* TABATA actif : zone boutons ultra-compacte */
+body.chrono-live.mode-tabata #chrono-buttons {
+  margin-top: 4px;
+  gap: 6px;
+  justify-content: center;
+}
+body.chrono-live.mode-tabata .chrono-btn {
+  height: 28px !important;
+  flex: 0 0 80px !important;
+  font-size: 10px !important;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 8px !important;
+  opacity: 0.45;
+}
+body.chrono-live.mode-tabata #btn-start:not(.paused) {
+  background: transparent !important;
+  border: 1px solid var(--border2) !important;
+  color: var(--muted) !important;
+}
+body.chrono-live.mode-tabata #btn-start.paused {
+  background: rgba(243,156,18,.15) !important;
+  border: 1px solid #F39C12 !important;
+  color: #F39C12 !important;
+  opacity: 1 !important;
+}
+body.chrono-live.mode-tabata #btn-reset {
+  flex: 0 0 80px !important;
+}
+/* Signature compacte */
+body.chrono-live.mode-tabata #chrono-header .tabata-footer {
+  margin-top: 2px;
+  padding-top: 0;
+}
+/* Modifier profil compact en TABATA */
+body.chrono-live.mode-tabata #btn-modifier {
+  height: 28px !important;
+  font-size: 9px !important;
+  margin-top: 3px !important;
+  opacity: 0.5;
+  padding: 0 10px !important;
+}
+/* Signature encore plus petite */
+body.chrono-live.mode-tabata #chrono-header > div[style*="text-align:center"] {
+  margin-top: 2px !important;
+  font-size: 9px !important;
+}
+
 </style>
 
 <script>
@@ -12694,88 +12830,128 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
 <!-- ══ APP PROF ══ -->
 <div id="app-prof" style="display:none">
-  <!-- Bandeau retour mode élève -->
-  <div style="background:linear-gradient(135deg,#1a0533,#2d1060);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100">
-    <div style="font-size:13px;font-weight:800;color:#fff">⊞ Mode Professeur</div>
-    <button onclick="switchMode('eleve')" style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:20px;color:#fff;font-family:inherit;font-size:10px;font-weight:700;letter-spacing:1px;padding:5px 12px;cursor:pointer">
+
+  <!-- Header PROF -->
+  <div style="background:linear-gradient(135deg,#0a1628,#1a2744);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:2px solid rgba(58,159,224,.3)">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div style="font-size:22px">⊞</div>
+      <div>
+        <div style="font-size:14px;font-weight:900;color:#fff;letter-spacing:1px">MODE PROFESSEUR</div>
+        <div style="font-size:10px;color:rgba(58,159,224,.8);letter-spacing:2px;text-transform:uppercase">Cross Training Pompidou</div>
+      </div>
+    </div>
+    <button onclick="switchMode('eleve')" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;color:#fff;font-family:inherit;font-size:10px;font-weight:700;letter-spacing:1px;padding:6px 14px;cursor:pointer;touch-action:manipulation">
       ← ÉLÈVE
     </button>
   </div>
 
-  <!-- Saisie QR / texte -->
-  <div class="prof-input-section">
-    <div class="section-title">Scanner un élève<span class="section-num">01</span></div>
+  <!-- Flash confirmation scan -->
+  <div id="prof-scan-flash" style="display:none;position:fixed;inset:0;z-index:9000;pointer-events:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:rgba(29,185,84,.15)">
+    <div style="font-size:80px;animation:popIn .3s ease">✅</div>
+    <div id="prof-flash-name" style="font-size:20px;font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);text-align:center;padding:0 20px"></div>
+    <div id="prof-flash-score" style="font-size:13px;color:rgba(255,255,255,.8);text-align:center"></div>
+  </div>
 
-    <!-- Choix de la méthode de scan -->
-    <div id="scan-method-picker" style="display:flex;gap:8px;margin-bottom:12px">
-      <button class="scan-method-btn" id="smb-android" onclick="setScanMethod('android')">
-        <span class="smb-icon">▶</span>
-        <span class="smb-label">Android<br><span class="smb-sub">Scan vidéo</span></span>
-      </button>
-      <button class="scan-method-btn" id="smb-ios" onclick="setScanMethod('ios')">
-        <span class="smb-icon">⬡</span>
-        <span class="smb-label">iOS<br><span class="smb-sub">Photo</span></span>
-      </button>
-      <button class="scan-method-btn" id="smb-paste" onclick="setScanMethod('paste')">
-        <span class="smb-icon">⌨</span>
-        <span class="smb-label">Manuel<br><span class="smb-sub">Coller texte</span></span>
-      </button>
+  <!-- Section scan -->
+  <div style="padding:16px;display:flex;flex-direction:column;gap:14px">
+
+    <!-- Compteur en direct -->
+    <div style="background:linear-gradient(135deg,#0a1628,#1a2744);border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(58,159,224,.2)">
+      <div>
+        <div style="font-size:11px;color:rgba(58,159,224,.7);letter-spacing:2px;font-weight:700;text-transform:uppercase">Élèves scannés</div>
+        <div id="prof-scan-count" style="font-size:48px;font-weight:900;color:#fff;line-height:1">0</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Dernière détection</div>
+        <div id="prof-last-scan" style="font-size:12px;color:rgba(58,159,224,.9);font-weight:700">—</div>
+      </div>
     </div>
 
-    <!-- Android : scan vidéo BarcodeDetector -->
+    <!-- Méthode de scan -->
+    <div>
+      <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Méthode de scan</div>
+      <div id="scan-method-picker" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <button class="scan-method-btn" id="smb-android" onclick="setScanMethod('android')">
+          <span class="smb-icon">▶</span>
+          <span class="smb-label">Android<br><span class="smb-sub">Caméra vidéo</span></span>
+        </button>
+        <button class="scan-method-btn" id="smb-ios" onclick="setScanMethod('ios')">
+          <span class="smb-icon">📷</span>
+          <span class="smb-label">iOS<br><span class="smb-sub">Photo</span></span>
+        </button>
+        <button class="scan-method-btn" id="smb-paste" onclick="setScanMethod('paste')">
+          <span class="smb-icon">⌨</span>
+          <span class="smb-label">Manuel<br><span class="smb-sub">Coller texte</span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Zone scan Android -->
     <div id="scan-zone-android" style="display:none">
-      <div style="position:relative;border-radius:10px;overflow:hidden;background:#000;aspect-ratio:4/3;margin-bottom:8px">
+      <div style="position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:4/3">
         <video id="prof-video" autoplay playsinline muted style="width:100%;height:100%;object-fit:cover;display:block"></video>
         <!-- Viseur -->
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
-          <div style="width:55%;aspect-ratio:1;border:2px solid rgba(29,185,84,.8);border-radius:8px;box-shadow:0 0 0 9999px rgba(0,0,0,.45)"></div>
+          <div style="width:60%;aspect-ratio:1;border:3px solid #2ecc71;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.5)"></div>
         </div>
-        <div id="scan-status" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);color:#aaa;font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 14px;border-radius:20px;white-space:nowrap">EN ATTENTE…</div>
+        <div id="scan-status" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);color:#aaa;font-size:11px;font-weight:700;letter-spacing:1.5px;padding:6px 16px;border-radius:20px;white-space:nowrap">
+          POINTEZ VERS UN QR CODE
+        </div>
       </div>
-      <button class="prof-parse-btn" style="background:var(--rest)" onclick="stopScan()">⬛ Arrêter le scan</button>
+      <button onclick="stopScan()" style="width:100%;margin-top:8px;padding:12px;background:rgba(255,45,85,.15);border:1.5px solid var(--rest);border-radius:10px;color:var(--rest);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation">
+        ⬛ Arrêter le scan
+      </button>
     </div>
 
-    <!-- iOS : prise de photo -->
+    <!-- Zone scan iOS -->
     <div id="scan-zone-ios" style="display:none">
-      <label id="ios-photo-label" style="display:block;width:100%;height:72px;background:var(--surface2);border:1.5px dashed var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;margin-bottom:8px;font-size:13px;font-weight:700;color:var(--text2)">
-        <span style="font-size:24px">📷</span> Prendre une photo du QR Code
+      <label style="display:flex;width:100%;height:80px;background:var(--surface2);border:2px dashed var(--fortime);border-radius:14px;align-items:center;justify-content:center;gap:12px;cursor:pointer;font-size:14px;font-weight:700;color:var(--fortime);box-sizing:border-box">
+        <span style="font-size:28px">📷</span> Scanner le QR Code
         <input type="file" accept="image/*" capture="environment" id="ios-photo-input" style="display:none" onchange="profDecodePhoto(this)">
       </label>
       <canvas id="ios-canvas" style="display:none"></canvas>
     </div>
 
-    <!-- Paste manuel -->
+    <!-- Zone paste manuel -->
     <div id="scan-zone-paste" style="display:none">
-      <textarea
-        id="prof-paste"
-        class="prof-paste-area"
-        placeholder="Coller le texte du QR Code ici&#10;Ex: Martin;Lucas;3A;T:8-72"
-        rows="3"
-        autocomplete="off"
-        autocorrect="off"
-        spellcheck="false"
-      ></textarea>
-      <button class="prof-parse-btn" onclick="profParseAndAdd(document.getElementById('prof-paste').value)">→ Analyser &amp; Ajouter</button>
+      <textarea id="prof-paste" class="prof-paste-area"
+        placeholder="Coller le texte du QR Code ici…"
+        rows="3" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
+      <button onclick="profParseAndAdd(document.getElementById('prof-paste').value)"
+        style="width:100%;padding:14px;background:var(--fortime);border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;touch-action:manipulation;margin-top:6px">
+        ✓ Analyser &amp; Ajouter
+      </button>
     </div>
 
+    <!-- Preview dernier scan -->
     <div class="prof-preview" id="prof-preview"></div>
-  </div>
 
-  <!-- Tableau de classe -->
-  <div class="prof-table-section">
-    <div class="section-title">Tableau de classe<span class="section-num">02</span></div>
-    <div class="prof-filters" id="prof-filters"></div>
-    <div id="prof-table-count" class="prof-table-count"></div>
-    <div id="prof-student-list"></div>
-    <div class="prof-export-row">
-      <button class="prof-export-btn primary" onclick="profExportCSV()">⬇ Export CSV</button>
-      <button class="prof-export-btn" onclick="profExportPDF()" style="background:var(--fortime);color:#fff;border-color:var(--fortime)">🖨 Export PDF</button>
-      <button class="prof-export-btn" onclick="profExportJSON()">⬇ JSON</button>
-      <button class="prof-export-btn" onclick="profClearAll()" style="color:var(--rest);border-color:rgba(255,45,85,.3)">✕ Vider</button>
+    <!-- Liste élèves -->
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase">Liste de classe</div>
+        <div id="prof-table-count" style="font-size:11px;color:var(--fortime);font-weight:700"></div>
+      </div>
+      <div class="prof-filters" id="prof-filters" style="margin-bottom:8px"></div>
+      <div id="prof-student-list"></div>
     </div>
-  </div>
 
+    <!-- Bouton export final — grand et visible -->
+    <div style="position:sticky;bottom:16px;z-index:50;margin-top:8px">
+      <button onclick="profExportCSV()"
+        style="width:100%;padding:18px;background:linear-gradient(135deg,#1a6b2a,#27ae60);border:none;border-radius:16px;color:#fff;font-family:inherit;font-size:17px;font-weight:900;letter-spacing:2px;cursor:pointer;touch-action:manipulation;box-shadow:0 6px 24px rgba(39,174,96,.4);text-transform:uppercase">
+        ⬇ EXPORTER LA LISTE CSV
+      </button>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button onclick="profExportPDF()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid var(--fortime);border-radius:10px;color:var(--fortime);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation">🖨 PDF</button>
+        <button onclick="profExportJSON()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation">{ } JSON</button>
+        <button onclick="profClearAll()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid rgba(255,45,85,.3);border-radius:10px;color:var(--rest);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation">✕ Vider</button>
+      </div>
+    </div>
+
+  </div>
 </div>
+
 
 <div id="app-eleve">
 
@@ -12964,40 +13140,66 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
   <!-- Bannière mode édition (visible quand l'élève clique Modifier pendant WOD) -->
   <div id="edit-mode-banner">⚠ Mode édition — le chrono tourne toujours</div>
 
-  <!-- ==================== SECTION 1 : PROFIL ==================== -->
+  <!-- ==================== SECTION 1 : PROFIL BINÔME ==================== -->
   <div class="section" id="section-profil">
     <div class="section-title" style="display:flex;align-items:center;justify-content:space-between">
-      <span>Profil Élève<span class="section-num">01</span></span>
-      <button onclick="fillTestProfile()" style="font-size:9px;font-weight:700;color:var(--muted);background:transparent;border:1px dashed var(--border2);border-radius:6px;padding:3px 8px;cursor:pointer;letter-spacing:1px;touch-action:manipulation;font-family:inherit">ÉLÈVE TEST</button>
+      <span>Profils Élèves<span class="section-num">01</span></span>
+      <button onclick="fillTestProfile()" style="font-size:9px;font-weight:700;color:var(--muted);background:transparent;border:1px dashed var(--border2);border-radius:6px;padding:3px 8px;cursor:pointer;letter-spacing:1px;touch-action:manipulation;font-family:inherit">DEMO</button>
     </div>
 
-    <!-- Vue condensée (après saisie) -->
-    <div id="profil-compact" onclick="expandProfil()">
-      <span id="profil-compact-text">—</span>
-      <span id="profil-compact-edit">✎ Modifier</span>
+    <!-- Indicateur joueur actif -->
+    <div id="binome-active-bar" style="display:none;margin-bottom:10px;border-radius:10px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between">
+      <span id="binome-active-label" style="font-size:13px;font-weight:900;color:#fff"></span>
+      <span id="binome-active-wods" style="font-size:11px;color:rgba(255,255,255,.7)"></span>
     </div>
 
-    <!-- Formulaire complet -->
-    <div id="profil-form">
-      <div class="inputs-row">
-        <div class="input-group">
-          <label>Nom élève</label>
-          <input type="text" id="inp-nom" placeholder="MARTIN" autocomplete="off" autocorrect="off" spellcheck="false" oninput="onProfilInput()" onblur="onProfilBlur()">
-        </div>
-        <div class="input-group">
-          <label>Prénom élève</label>
-          <input type="text" id="inp-prenom" placeholder="Lucas" autocomplete="off" autocorrect="off" spellcheck="false" oninput="onProfilInput()" onblur="onProfilBlur()">
-        </div>
+    <!-- Élève A -->
+    <div id="profil-A-block" style="margin-bottom:10px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+        <span style="background:var(--amrap);color:#fff;border-radius:6px;padding:2px 8px;font-size:10px">A</span>
+        <span style="color:var(--amrap)">Élève A</span>
+        <span id="profil-A-wod-count" style="font-size:10px;color:var(--muted)"></span>
       </div>
       <div class="inputs-row">
         <div class="input-group">
-          <label>Classe</label>
-          <input type="text" id="inp-classe" placeholder="TLE PRO MEI" autocomplete="off" autocorrect="off" spellcheck="false" oninput="onProfilInput()" onblur="onProfilBlur()">
+          <label>Nom</label>
+          <input type="text" id="inp-nom" placeholder="MARTIN" autocomplete="off" autocorrect="off" spellcheck="false" oninput="onProfilInput()" onblur="onProfilBlur()">
         </div>
         <div class="input-group">
-          <label>Nom coach</label>
-          <input type="text" id="inp-coach" placeholder="DUPONT" autocomplete="off" autocorrect="off" spellcheck="false">
+          <label>Prénom</label>
+          <input type="text" id="inp-prenom" placeholder="Lucas" autocomplete="off" autocorrect="off" spellcheck="false" oninput="onProfilInput()" onblur="onProfilBlur()">
         </div>
+      </div>
+    </div>
+
+    <!-- Élève B -->
+    <div id="profil-B-block">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+        <span style="background:var(--emom);color:#fff;border-radius:6px;padding:2px 8px;font-size:10px">B</span>
+        <span style="color:var(--emom)">Élève B <span style="color:var(--muted);font-weight:400">(optionnel)</span></span>
+        <span id="profil-B-wod-count" style="font-size:10px;color:var(--muted)"></span>
+      </div>
+      <div class="inputs-row">
+        <div class="input-group">
+          <label>Nom</label>
+          <input type="text" id="inp-nom-b" placeholder="DUPONT" autocomplete="off" autocorrect="off" spellcheck="false" oninput="onProfilInput()">
+        </div>
+        <div class="input-group">
+          <label>Prénom</label>
+          <input type="text" id="inp-prenom-b" placeholder="Emma" autocomplete="off" autocorrect="off" spellcheck="false" oninput="onProfilInput()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Classe + Coach communs -->
+    <div class="inputs-row" style="margin-top:8px">
+      <div class="input-group">
+        <label>Classe</label>
+        <input type="text" id="inp-classe" placeholder="TLE PRO MEI" autocomplete="off" autocorrect="off" spellcheck="false" oninput="onProfilInput()" onblur="onProfilBlur()">
+      </div>
+      <div class="input-group" id="coach-field-wrap">
+        <label>Coach</label>
+        <input type="text" id="inp-coach" placeholder="DARTOIS" autocomplete="off" autocorrect="off" spellcheck="false">
       </div>
     </div>
   </div>
@@ -13057,7 +13259,8 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
     <div class="history-header">
       <div class="section-title" style="margin:0">Sessions enregistrées <span id="session-count" style="font-size:11px;color:var(--muted);font-weight:400"></span></div>
       <div style="display:flex;gap:8px">
-        <button id="btn-export" onclick="exportJSON()">⬇ JSON</button>
+        <button id="btn-export" onclick="exportCSV()">⬇ CSV</button>
+        <button id="btn-export-csv" onclick="exportCSV()" style="background:var(--surface2);border:1px solid var(--emom);border-radius:8px;color:var(--emom);font-family:inherit;font-size:11px;font-weight:700;letter-spacing:1px;padding:8px 12px;cursor:pointer;">⬇ CSV</button>
         <button id="btn-clear-history" onclick="clearHistory()" style="background:var(--surface2);border:1px solid #c0392b;border-radius:8px;color:#c0392b;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:1px;padding:8px 12px;cursor:pointer;">✕ Effacer</button>
       </div>
     </div>
@@ -13211,6 +13414,7 @@ const STATE = {
     tabataRest: 10,        // secondes
     tabataCycles: 8,       // tours
     timeCap: 0,            // FOR TIME : 0 = pas de time cap
+    soundMode: 'sound',    // 'sound' | 'vibrate' | 'silent'
     tabataRotation: 'vertical', // 'vertical' | 'horizontal'
     amrapNiveau: 1,        // 0=4reps 1=6reps 2=8reps 3=10reps 4=12reps
     emomNiveau: 1,         // niveau global EMOM
@@ -13235,7 +13439,8 @@ const STATE = {
     tabataLog: [],    // [{ cycle, reps }]
     emomLog: [],      // [{ minute, reposRestant, echec }]
     amrapTours: 0,    // tours complets
-    amrapRepsExtra: 0,// reps supplémentaires
+    amrapRepsExtra: 0,
+    amrapTourLog: [],  // [{tour, elapsed}] temps par tour// reps supplémentaires
     amrapPartialExo: -1, // -1 = aucun tour partiel
     amrapPartialReps: 0,// reps faites dans l'exo partiel
     forTimeFinished: false,
@@ -13414,6 +13619,12 @@ function getAudioCtx() {
 }
 
 function beep(freq = 880, dur = 0.12, vol = 0.4, delay = 0) {
+  var sm = STATE.config.soundMode || localStorage.getItem('eps_sound_mode') || 'sound';
+  if (sm === 'silent') return;
+  if (sm === 'vibrate') {
+    if (navigator.vibrate) setTimeout(function(){ navigator.vibrate(80); }, delay*1000);
+    return;
+  }
   const ctx = getAudioCtx();
   if (!ctx) return;
   const t = ctx.currentTime + delay;
@@ -13682,13 +13893,16 @@ function renderConfigPanel() {
     ['N1','N2','N3'].forEach(function(n) {
       const totals = { N0:'10 reps', N1:'21 reps', N2:'36 reps', N3:'55 reps' };
       const btn = document.createElement('button');
-      const ftColors = { N1:'#1a6b2a', N2:'#b8860b', N3:'#c0550a' };
+      const ftColors      = { N1:'#1a6b2a', N2:'#b8860b', N3:'#c0550a' };
       const ftColorsLight = { N1:'#2ecc71', N2:'#f1c40f', N3:'#e67e22' };
+      const ftTextDark    = { N1:false, N2:true, N3:false }; // jaune = texte noir
       const isSelected = getFortimeNiveau() === n;
       btn.className = 'mode-btn fortime ft-niveau-btn' + (isSelected ? ' selected' : '');
       btn.dataset.niveau = n;
       btn.style.cssText = 'flex:1;height:60px;font-size:13px;' +
-        (isSelected ? 'background:'+ftColors[n]+';border-color:'+ftColors[n]+';color:#fff' : 'border-color:'+ftColorsLight[n]+';color:'+ftColorsLight[n]);
+        (isSelected
+          ? 'background:'+ftColors[n]+';border-color:'+ftColors[n]+';color:'+(ftTextDark[n]?'#000':'#fff')
+          : 'border-color:'+ftColorsLight[n]+';color:'+ftColorsLight[n]);
       btn.innerHTML = '<span class="mode-label">' + n + '</span>' +
         '<span class="mode-sub">' + totals[n] + '</span>';
       btn.onclick = function() { setFortimeNiveau(n); };
@@ -13956,6 +14170,28 @@ function startChrono() {
       c.currentCycle = 1;
       c.totalCycles = STATE.config.tabataCycles;
     }
+    // Initialiser le binôme si pas encore fait
+    if (!BINOME.seanceA) binomeInit();
+    // Synchroniser STATE.seance avec le joueur actif
+    if (BINOME.hasBinome) {
+      STATE.seance = BINOME.active === 'A' ? BINOME.seanceA : BINOME.seanceB;
+      binomeUpdateBar();
+      // Badge joueur actif sur le chrono
+      var badge = document.getElementById('binome-chrono-badge');
+      if (!badge) {
+        badge = document.createElement('div');
+        badge.id = 'binome-chrono-badge';
+        badge.style.cssText = 'position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;pointer-events:none';
+        var ch = document.getElementById('chrono-header');
+        if (ch) ch.style.position='relative', ch.appendChild(badge);
+      }
+      var p = (BINOME.active==='A'?BINOME.seanceA:BINOME.seanceB)?.profil || {};
+      var col = BINOME.active==='A' ? '#c0550a' : '#7b2fbe';
+      badge.textContent = BINOME.active + ' · ' + (p.prenom||'') + ' ' + (p.nom||'').toUpperCase();
+      badge.style.background = col + '33';
+      badge.style.color = col;
+      badge.style.border = '1px solid ' + col + '66';
+    }
   }
   c.running = true;
   c.phaseStartTime = Date.now() - c.phaseStartOffset * 1000;
@@ -14039,8 +14275,7 @@ function resetChrono() {
   if (btn) { btn.textContent = 'DÉMARRER'; btn.classList.remove('paused'); }
   const ch = document.getElementById('chrono-header');
   if (ch) ch.classList.remove('effort-phase', 'rest-phase');
-  document.body.classList.remove('chrono-live', 'mode-amrap-active', 'mode-fortime', 'mode-emom', 'mode-tabata', 'mode-fortime', 'mode-emom', 'mode-fortime',
-    'emom-zone-green', 'emom-zone-orange', 'emom-zone-red');
+  document.body.classList.remove('chrono-live','mode-amrap-active','mode-fortime','mode-emom','mode-tabata','mode-fortime','mode-emom','mode-fortime','emom-zone-green','emom-zone-orange','emom-zone-red','mode-tabata-effort','mode-tabata-rest');
   const nextBar = document.getElementById('next-exo-bar');
   if (nextBar) nextBar.classList.remove('visible');
   // Panel EMOM masqué jusqu'au démarrage
@@ -14050,7 +14285,7 @@ function resetChrono() {
   STATE.chrono._emomCardsKey = null;
   STATE.bilan = {
     tabataLog: [], emomLog: [],
-    amrapTours: 0, amrapRepsExtra: 0,
+    amrapTours: 0, amrapRepsExtra: 0, amrapTourLog: [],
     amrapPartialExo: -1, amrapPartialReps: 0,
     amrapCurrentExoIdx: 0,
     forTimeFinished: false, forTimeFinal: 0,
@@ -14239,6 +14474,8 @@ function handleTabataTick(remaining) {
       return;
     }
     c.phase = 'rest';
+    document.body.classList.remove('mode-tabata-effort'); document.body.classList.add('mode-tabata-rest');
+    var phEl2=document.getElementById('phase-label'); if(phEl2){phEl2.classList.add('tabata-rest');phEl2.classList.remove('tabata-effort');}
     updateTabataCards(); // repos → exo terminé (cycle-1) + prochain (cycle)
     // Afficher popup note exec pour l'exercice qui vient de se terminer
     var _tabataCurrentExo = getTabataExoForCycle(STATE.chrono.currentCycle - 1 || 1);
@@ -14254,6 +14491,8 @@ function handleTabataTick(remaining) {
     beep(1047, 0.1, 0.55, 0.30);
     // currentCycle est déjà le bon (incrémenté en fin d'effort)
     c.phase = 'effort';
+    document.body.classList.remove('mode-tabata-rest'); document.body.classList.add('mode-tabata-effort');
+    var phEl=document.getElementById('phase-label'); if(phEl){phEl.classList.add('tabata-effort');phEl.classList.remove('tabata-rest');}
     updateTabataCards(); // effort → afficher uniquement exo actif
   }
   // Nouvelle phase
@@ -14865,26 +15104,104 @@ function resetForm() {
   expandProfil();
 }
 
-function exportJSON() {
-  const sessions = getSessions();
-  if (sessions.length === 0) { showToast('Aucune session à exporter'); return; }
 
-  const blob = new Blob([JSON.stringify(sessions, null, 2)], { type: 'application/json' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  const date = new Date().toISOString().slice(0,10);
-  a.href = url;
-  a.download = 'eps_crosstraining_' + date + '.json';
-  a.click();
-  URL.revokeObjectURL(url);
-  showToast('Export JSON téléchargé !');
-}
 
 function clearHistory() {
   if (!confirm('Supprimer toutes les sessions sauvegardées ?')) return;
   localStorage.removeItem('eps_crosstraining');
   renderHistory();
   showToast('Historique effacé');
+}
+
+function exportCSV() {
+  var sessions = getSessions();
+  if (!sessions.length) { showToast('Aucune session à exporter'); return; }
+
+  var q = function(v) { return '"' + (v||'').toString().replace(/"/g,'""') + '"'; };
+  var noteLabels = { 1:'Insuffisant', 2:'À améliorer', 3:'Bien', 4:'Très bien' };
+  var ressentiLabels = { 1:'Épuisé', 2:'Fatigué', 3:'Légèrement fatigué', 4:'Bonne séance', 5:'Excellent' };
+
+  // En-tête fixe + colonnes dynamiques exos (max 3)
+  var headers = [
+    'Date','Heure','Nom','Prénom','Classe','Coach',
+    'Mode','Score','Statut',
+    'Exo 1','Reps 1','Note exec 1',
+    'Exo 2','Reps 2','Note exec 2',
+    'Exo 3','Reps 3','Note exec 3',
+    'Ressenti WOD (note)','Ressenti WOD','Commentaire WOD',
+    'Ressenti séance (note)','Ressenti séance','Commentaire séance'
+  ];
+
+  var rows = [headers.map(q).join(';')];
+
+  sessions.forEach(function(s) {
+    if (s.type !== 'SEANCE') return;
+    var id   = s.identite || {};
+    var date = s.timestamp ? s.timestamp.slice(0,10) : '';
+    var time = s.timestamp ? s.timestamp.slice(11,16) : '';
+    var rs   = s.ressenti || {};
+
+    (s.wods || []).forEach(function(w) {
+      var exos = w.exos || [];
+      var log  = w.noteExecLog || [];
+      var rw   = w.ressentiWod || {};
+      var bilan = w.bilan || {};
+
+      // Calcul reps par exo depuis noteExecLog ou bilan
+      var getReps = function(exo) {
+        if (w.type === 'AMRAP') {
+          var repsPerTour = {0:4,1:6,2:8,3:10,4:12}[bilan.amrapNiveau||1] || 6;
+          return (bilan.amrapTours||0) * repsPerTour;
+        } else if (w.type === 'FOR TIME') {
+          return log.filter(function(e){return e.exo===exo;}).reduce(function(a,e){return a+(e.reps||0);},0);
+        } else if (w.type === 'EMOM' || w.type === 'EMOM+1') {
+          var done = (bilan.emomLog||[]).filter(function(m){return m.success;}).length;
+          return done * (6);
+        } else if (w.type === 'TABATA') {
+          return (bilan.tabataLog||[]).length;
+        }
+        return '';
+      };
+
+      var getNoteExec = function(exo) {
+        var notes = log.filter(function(e){return e.exo===exo;}).map(function(e){return e.note;});
+        if (!notes.length) return '';
+        var avg = Math.round(notes.reduce(function(a,b){return a+b;},0)/notes.length);
+        return noteLabels[avg] || avg;
+      }
+
+      var statut = w.type === 'FOR TIME'
+        ? ((bilan.forTimeFinished ? 'Terminé' : 'Temps écoulé'))
+        : '';
+
+      var row = [
+        q(date), q(time),
+        q(id.nom), q(id.prenom), q(id.classe), q(id.coach||''),
+        q(w.type), q(w.scoreLabel||''), q(statut),
+        q(exos[0]||''), q(getReps(exos[0])), q(getNoteExec(exos[0])),
+        q(exos[1]||''), q(exos[1]?getReps(exos[1]):''), q(exos[1]?getNoteExec(exos[1]):''),
+        q(exos[2]||''), q(exos[2]?getReps(exos[2]):''), q(exos[2]?getNoteExec(exos[2]):''),
+        q(rw.niveau||''), q(rw.label||''), q(rw.commentaire||''),
+        q(rs.niveau||''), q(rs.label||''), q(rs.commentaire||'')
+      ];
+      rows.push(row.join(';'));
+    });
+  });
+
+  // BOM UTF-8 pour Excel
+  var bom = '\uFEFF';
+  var csv = bom + rows.join('\n');
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  var url  = URL.createObjectURL(blob);
+  var a    = document.createElement('a');
+  var date = new Date().toISOString().slice(0,10);
+  a.href = url;
+  a.download = 'crosstraining_' + date + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast('✓ CSV exporté (' + (rows.length-1) + ' WOD)');
 }
 
 function renderHistory() {
@@ -14954,6 +15271,90 @@ function _stripAccents(s) {
 }
 
 
+
+// ── État binôme ─────────────────────────────────────────────
+var BINOME = {
+  active: 'A',         // 'A' ou 'B' — joueur qui joue actuellement
+  seanceA: null,       // STATE.seance complet de A
+  seanceB: null,       // STATE.seance complet de B
+  hasBinome: false,    // false = mode solo
+};
+
+function binomeGetProfil(who) {
+  var nom    = document.getElementById(who==='A' ? 'inp-nom'    : 'inp-nom-b')?.value.trim()    || '';
+  var prenom = document.getElementById(who==='A' ? 'inp-prenom' : 'inp-prenom-b')?.value.trim() || '';
+  var classe = document.getElementById('inp-classe')?.value.trim() || '';
+  var coach  = document.getElementById('inp-coach')?.value.trim()  || '';
+  return { nom, prenom, classe, coach };
+}
+
+function binomeInit() {
+  var pA = binomeGetProfil('A');
+  var pB = binomeGetProfil('B');
+  BINOME.hasBinome = !!(pB.nom && pB.prenom);
+  BINOME.active = 'A';
+
+  // En binôme : coach de A = B et vice versa, champ coach masqué
+  if (BINOME.hasBinome) {
+    pA.coach = pB.prenom + ' ' + pB.nom.toUpperCase();
+    pB.coach = pA.prenom + ' ' + pA.nom.toUpperCase();
+    // Pré-remplir le champ coach avec le partenaire (modifiable si élève dispensé)
+    var coachEl = document.getElementById('inp-coach');
+    if (coachEl && !coachEl.value.trim()) coachEl.value = pA.coach;
+  }
+
+  BINOME.seanceA = { wods:[], profil: pA, ressentiSeance: null };
+  BINOME.seanceB = BINOME.hasBinome ? { wods:[], profil: pB, ressentiSeance: null } : null;
+  binomeUpdateBar();
+}
+
+function binomeUpdateBar() {
+  var bar = document.getElementById('binome-active-bar');
+  var lbl = document.getElementById('binome-active-label');
+  var wlbl = document.getElementById('binome-active-wods');
+  var cntA = document.getElementById('profil-A-wod-count');
+  var cntB = document.getElementById('profil-B-wod-count');
+  if (!BINOME.hasBinome || !bar) return;
+  var pA = BINOME.seanceA?.profil || binomeGetProfil('A');
+  var pB = BINOME.seanceB?.profil || binomeGetProfil('B');
+  var who = BINOME.active;
+  var p = who === 'A' ? pA : pB;
+  var color = who === 'A' ? 'var(--amrap)' : 'var(--emom)';
+  bar.style.display = 'flex';
+  bar.style.background = who === 'A' ? 'rgba(192,85,10,.2)' : 'rgba(123,47,190,.2)';
+  bar.style.border = '1px solid ' + color;
+  lbl.textContent = '▶ Tour de ' + p.prenom + ' ' + p.nom.toUpperCase();
+  lbl.style.color = color;
+  var wodA = (BINOME.seanceA?.wods||[]).length;
+  var wodB = (BINOME.seanceB?.wods||[]).length;
+  wlbl.textContent = 'A: ' + wodA + ' WOD' + (wodA!==1?'s':'') + ' · B: ' + wodB + ' WOD' + (wodB!==1?'s':'');
+  if (cntA) cntA.textContent = wodA > 0 ? wodA + ' WOD' + (wodA>1?'s':'') : '';
+  if (cntB) cntB.textContent = wodB > 0 ? wodB + ' WOD' + (wodB>1?'s':'') : '';
+}
+
+function binomeSwitchTo(who) {
+  BINOME.active = who;
+  // Sauvegarder l'état courant dans la bonne séance
+  var seance = who === 'A' ? BINOME.seanceA : BINOME.seanceB;
+  STATE.seance = seance || { wods:[], profil: binomeGetProfil(who), ressentiSeance: null };
+  // Mettre à jour les inputs profil avec le bon joueur
+  var p = STATE.seance.profil || binomeGetProfil(who);
+  var nomEl    = document.getElementById('inp-nom');
+  var prenomEl = document.getElementById('inp-prenom');
+  if (nomEl)    nomEl.value    = p.nom    || '';
+  if (prenomEl) prenomEl.value = p.prenom || '';
+  binomeUpdateBar();
+  showToast('Tour de ' + (p.prenom||'') + ' ' + (p.nom||'').toUpperCase());
+}
+
+function binomeSaveCurrentAndSwitch(nextWho) {
+  // Sauvegarder la séance courante
+  if (BINOME.active === 'A') BINOME.seanceA = JSON.parse(JSON.stringify(STATE.seance));
+  else BINOME.seanceB = JSON.parse(JSON.stringify(STATE.seance));
+  // Basculer
+  binomeSwitchTo(nextWho);
+}
+
 // ── Détecteur de plateforme ─────────────────────────────────
 var PLATFORM = (function() {
   var ua = navigator.userAgent || '';
@@ -14973,8 +15374,47 @@ document.addEventListener('DOMContentLoaded', function() {
   if (PLATFORM.isSafari)  document.body.classList.add('platform-safari');
 });
 
+
+function cycleSoundMode() {
+  var modes = ['sound','vibrate','silent'];
+  var icons = {'sound':'🔊','vibrate':'📳','silent':'🔇'};
+  var labels = {'sound':'Son activé','vibrate':'Vibreur','silent':'Silencieux'};
+  var current = STATE.config.soundMode || 'sound';
+  var next = modes[(modes.indexOf(current)+1) % modes.length];
+  STATE.config.soundMode = next;
+  localStorage.setItem('eps_sound_mode', next);
+  var btn = document.getElementById('sound-toggle');
+  if (btn) btn.textContent = icons[next];
+  showToast(labels[next]);
+}
+
+
+function clearProfile() {
+  if (STATE.chrono.running || (STATE.seance.wods && STATE.seance.wods.length > 0)) {
+    showToast('⚠ Termine ou sauvegarde ta séance avant de changer d\'élève');
+    return;
+  }
+  ['inp-nom','inp-prenom','inp-classe','inp-coach'].forEach(function(id){
+    var el=document.getElementById(id); if(el){el.value='';el.readOnly=false;el.style.opacity='';}
+  });
+  STATE.seance.profil = null;
+  checkAndRevealChrono();
+  var nom=document.getElementById('inp-nom');
+  if(nom) nom.focus();
+  showToast('Profil effacé — nouvel élève');
+}
+
+function applySoundModeOnLoad() {
+  var saved = localStorage.getItem('eps_sound_mode') || 'sound';
+  STATE.config.soundMode = saved;
+  var icons = {'sound':'🔊','vibrate':'📳','silent':'🔇'};
+  var btn = document.getElementById('sound-toggle');
+  if (btn) btn.textContent = icons[saved] || '🔊';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   applyThemeOnLoad();
+  applySoundModeOnLoad();
   initExoGrid();
   renderHistory();
   updateChronoDisplay();
@@ -14986,9 +15426,20 @@ document.addEventListener('DOMContentLoaded', () => {
   checkAndRevealChrono();
 
   // Écouter les changements dans les inputs profil
-  ['inp-nom','inp-prenom','inp-classe'].forEach(id => {
+  ['inp-nom','inp-prenom','inp-classe','inp-nom-b','inp-prenom-b'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener('input', checkAndRevealChrono);
+    if (el) el.addEventListener('input', function(){
+      // Pré-remplir coach si binôme détecté et coach vide
+      var nomB = (document.getElementById('inp-nom-b')||{}).value||'';
+      var preB = (document.getElementById('inp-prenom-b')||{}).value||'';
+      var nomA = (document.getElementById('inp-nom')||{}).value||'';
+      var preA = (document.getElementById('inp-prenom')||{}).value||'';
+      var coachEl = document.getElementById('inp-coach');
+      if (coachEl && !coachEl.value.trim()) {
+        if (nomB.trim() && preB.trim()) coachEl.value = preB.trim() + ' ' + nomB.trim().toUpperCase();
+      }
+      checkAndRevealChrono();
+    });
   });
 });
 
@@ -15045,7 +15496,7 @@ function buildQRString() {
   }
 
   // Coach si renseigné
-  const coachStr = coach ? ';C:' + coach.trim() : '';
+  const coachStr = (coach && coach.trim()) ? ';C:' + _stripAccents(coach.trim()) : '';
   // Ressenti WOD (pas de séance dans le QR WOD simple)
   const r = STATE.ressenti || {};
   const ressentiStr = r.niveau ? ';R:' + r.niveau + (r.commentaire ? ':' + r.commentaire.slice(0,12) : '') : '';
@@ -16283,8 +16734,17 @@ function installPWA() {
    - Au moins 1 exercice choisi
    ============================================= */
 function checkAndRevealChrono() {
-  const nom    = (document.getElementById('inp-nom')    || {}).value || '';
-  const prenom = (document.getElementById('inp-prenom') || {}).value || '';
+  // En mode binôme, utiliser le profil du joueur actif
+  var activeNom, activePrenom;
+  if (BINOME.hasBinome && BINOME.active === 'B') {
+    activeNom    = (document.getElementById('inp-nom-b')    || {}).value || '';
+    activePrenom = (document.getElementById('inp-prenom-b') || {}).value || '';
+  } else {
+    activeNom    = (document.getElementById('inp-nom')    || {}).value || '';
+    activePrenom = (document.getElementById('inp-prenom') || {}).value || '';
+  }
+  const nom    = activeNom;
+  const prenom = activePrenom;
   const classe = (document.getElementById('inp-classe') || {}).value || '';
   const hasProfile  = nom.trim() && prenom.trim() && classe.trim();
   const hasMode     = !!STATE.mode;
@@ -16522,21 +16982,106 @@ function finishSeance() {
    BILAN DE SÉANCE
    ══════════════════════════════════════════════ */
 function buildSeanceQRString() {
-  const p    = STATE.seance.profil || {};
-  const nom  = _stripAccents(p.nom    || document.getElementById('inp-nom').value.trim()    || '?');
-  const pre  = _stripAccents(p.prenom || document.getElementById('inp-prenom').value.trim() || '?');
-  const cls  = _stripAccents(p.classe || document.getElementById('inp-classe').value.trim() || '?');
-  // Score compact par WOD : retirer les splits FOR TIME pour raccourcir
-  const scores = STATE.seance.wods.map(function(w) {
-    var s = w.scoreRaw || '';
-    // Retirer les splits (après le premier |) pour réduire la longueur
-    var pipeIdx = s.indexOf('|');
-    return pipeIdx > -1 ? s.slice(0, pipeIdx) : s;
-  }).join('|');
-  const rs = STATE.seance.ressentiSeance || {};
-  const ressentiStr = rs.niveau ? ';R:' + rs.niveau + (rs.commentaire ? ':' + _stripAccents(rs.commentaire).slice(0,10) : '') : '';
-  const qrData = [nom, pre, cls, scores].join(';') + ressentiStr;
-  return qrData.length > 90 ? qrData.slice(0,90) : qrData;
+  var p   = STATE.seance.profil || {};
+  var nom = _stripAccents(p.nom    || (document.getElementById('inp-nom')   ||{}).value||'?');
+  var pre = _stripAccents(p.prenom || (document.getElementById('inp-prenom')||{}).value||'?');
+  var cls = _stripAccents(p.classe || (document.getElementById('inp-classe')||{}).value||'?');
+
+  // Abrévier un nom d'exercice : 3 lettres max par mot
+  function abrevExo(name) {
+    return _stripAccents(name).toUpperCase().split(/[\s\-]+/).map(function(w){
+      return w.slice(0,3);
+    }).join('').slice(0,6);
+  }
+
+  // Calculer note moyenne par exo depuis un log
+  function avgNoteByExo(log, exos) {
+    var map = {};
+    exos.forEach(function(e){ map[e] = []; });
+    log.forEach(function(l){ if(map[l.exo]) map[l.exo].push(l.note); });
+    return exos.map(function(e){
+      var ns = map[e];
+      if(!ns.length) return '0';
+      return String(Math.round(ns.reduce(function(a,b){return a+b;},0)/ns.length));
+    }).join(',');
+  }
+
+  // Construire chaque segment WOD
+  var wodSegs = STATE.seance.wods.map(function(w) {
+    var score = w.scoreRaw || '';
+    // Retirer splits intermédiaires FOR TIME (garder juste le score principal)
+    var pipeIdx = score.indexOf('|');
+    var scoreShort = pipeIdx > -1 ? score.slice(0, pipeIdx) : score;
+
+    // Exercices abrégés
+    var exos = w.exos || [];
+    var exStr = exos.length ? ';EX:' + exos.map(abrevExo).join(',') : '';
+
+    // Notes exec moyennes par exo
+    var log = w.noteExecLog || [];
+    var neStr = (exos.length && log.length)
+      ? ';NE:' + avgNoteByExo(log, exos)
+      : '';
+
+    // Niveau pour AMRAP/EMOM
+    var nivStr = '';
+    if (w.bilan) {
+      if (w.type === 'AMRAP' && w.bilan.amrapNiveau !== undefined)
+        nivStr = ';LV:' + w.bilan.amrapNiveau;
+      else if ((w.type === 'EMOM' || w.type === 'EMOM+1') && w.bilan.emomNiveau !== undefined)
+        nivStr = ';LV:' + w.bilan.emomNiveau;
+    }
+
+    // Durée WOD
+    var durStr = w.duration ? ';D:' + w.duration : '';
+
+    // Ressenti WOD
+    var rwStr = '';
+    if (w.ressentiWod && w.ressentiWod.niveau) {
+      rwStr = ';RW:' + w.ressentiWod.niveau + (w.ressentiWod.commentaire ? ':' + _stripAccents(w.ressentiWod.commentaire).slice(0,8) : '');
+    }
+
+    return scoreShort + exStr + neStr + nivStr + durStr + rwStr;
+  });
+
+  var rs = STATE.seance.ressentiSeance || {};
+  var resStr = rs.niveau ? ';R:' + rs.niveau + (rs.commentaire ? ':' + _stripAccents(rs.commentaire).slice(0,12) : '') : '';
+
+  var qrData = [nom, pre, cls, wodSegs.join('|')].join(';') + resStr;
+
+  // Si trop long : retirer les niveaux puis les notes puis les exercices
+  if (qrData.length > 200) {
+    wodSegs = STATE.seance.wods.map(function(w) {
+      var score = w.scoreRaw || '';
+      var pipeIdx = score.indexOf('|');
+      var scoreShort = pipeIdx > -1 ? score.slice(0, pipeIdx) : score;
+      var exos = w.exos || [];
+      var log = w.noteExecLog || [];
+      var exStr = exos.length ? ';EX:' + exos.map(abrevExo).join(',') : '';
+      var neStr = (exos.length && log.length) ? ';NE:' + avgNoteByExo(log, exos) : '';
+      return scoreShort + exStr + neStr;
+    });
+    qrData = [nom, pre, cls, wodSegs.join('|')].join(';') + resStr;
+  }
+  if (qrData.length > 250) {
+    // Retirer notes exec
+    wodSegs = STATE.seance.wods.map(function(w) {
+      var score = w.scoreRaw || '';
+      var pipeIdx = score.indexOf('|');
+      var scoreShort = pipeIdx > -1 ? score.slice(0, pipeIdx) : score;
+      var exos = w.exos || [];
+      return scoreShort + (exos.length ? ';EX:' + exos.map(abrevExo).join(',') : '');
+    });
+    qrData = [nom, pre, cls, wodSegs.join('|')].join(';') + resStr;
+  }
+  if (qrData.length > 300) {
+    // Fallback : score seul
+    qrData = [nom, pre, cls, STATE.seance.wods.map(function(w){
+      var s=w.scoreRaw||''; var p=s.indexOf('|'); return p>-1?s.slice(0,p):s;
+    }).join('|')].join(';') + resStr;
+  }
+
+  return qrData;
 }
 
 function showSeanceBilan() {
@@ -16685,6 +17230,27 @@ function saveSeanceAndClose() {
   };
 
   sessions.push(seanceData);
+
+  // En mode binôme : sauvegarder aussi la séance de l'autre élève
+  if (BINOME.hasBinome) {
+    var otherWho = BINOME.active === 'A' ? 'B' : 'A';
+    var otherSeance = otherWho === 'A' ? BINOME.seanceA : BINOME.seanceB;
+    if (otherSeance && otherSeance.wods && otherSeance.wods.length > 0) {
+      sessions.push({
+        timestamp: timestamp,
+        type: 'SEANCE',
+        identite: otherSeance.profil || {},
+        ressenti: otherSeance.ressentiSeance || {},
+        wods: otherSeance.wods.map(function(w){ return {
+          type: w.type, score: w.scoreLabel, scoreRaw: w.scoreRaw,
+          exercices: w.exos || [], heure: w.timestamp
+        }; }),
+      });
+    }
+    BINOME.seanceA = null; BINOME.seanceB = null;
+    BINOME.hasBinome = false; BINOME.active = 'A';
+  }
+
   localStorage.setItem('eps_crosstraining', JSON.stringify(sessions));
 
   STATE.ressenti = null;
@@ -16700,8 +17266,9 @@ function saveSeanceAndClose() {
       if (savedPrenom) { var e=document.getElementById('inp-prenom'); if(e) e.value=savedPrenom; }
       if (savedClasse) { var e=document.getElementById('inp-classe'); if(e) e.value=savedClasse; }
       if (savedCoach)  { var e=document.getElementById('inp-coach');  if(e) e.value=savedCoach; }
-      onProfilBlur();
-      checkAndRevealChrono();
+      var nb=document.getElementById('inp-nom-b'); if(nb) nb.value='';
+      var pb=document.getElementById('inp-prenom-b'); if(pb) pb.value='';
+      onProfilBlur(); checkAndRevealChrono();
     }, 150);
   }, 300);
 }
@@ -16763,6 +17330,15 @@ function showBilan() {
     const totalRepsPartiel  = partialIdx * repsParTour;
     const totalReps = totalRepsComplets + totalRepsPartiel;
 
+    // Calculer temps par tour
+    var tourLog = b.amrapTourLog || [];
+    var tourTimes = tourLog.map(function(t, i) {
+      return i === 0 ? t.elapsed : t.elapsed - tourLog[i-1].elapsed;
+    });
+    var avgTourTime = tourTimes.length ? Math.round(tourTimes.reduce(function(a,b){return a+b;},0)/tourTimes.length) : 0;
+    var minTime = tourTimes.length ? Math.min.apply(null,tourTimes) : 0;
+    var maxTime = tourTimes.length ? Math.max.apply(null,tourTimes) : 0;
+
     contentHTML += `
     <div class="bilan-stat-primary">
       <div class="bilan-stat-row">
@@ -16781,7 +17357,37 @@ function showBilan() {
         <span class="bilan-stat-label">Niveau · Reps/exo</span>
         <span class="bilan-stat-value" style="font-size:16px">N${STATE.config.amrapNiveau} · ${repsParTour} reps</span>
       </div>
+      ${avgTourTime > 0 ? `
+      <div class="bilan-stat-row">
+        <span class="bilan-stat-label">Tps moyen/tour</span>
+        <span class="bilan-stat-value" style="font-size:16px">${avgTourTime}s</span>
+      </div>
+      <div class="bilan-stat-row">
+        <span class="bilan-stat-label">Meilleur / Pire</span>
+        <span class="bilan-stat-value" style="font-size:14px;color:var(--effort)">${minTime}s</span>
+        <span style="color:var(--muted);margin:0 4px">/</span>
+        <span class="bilan-stat-value" style="font-size:14px;color:var(--rest)">${maxTime}s</span>
+      </div>` : ''}
     </div>`;
+
+    // Graphique sparkline des temps par tour
+    if (tourTimes.length >= 2) {
+      var barMax = maxTime || 1;
+      var bars = tourTimes.map(function(t, i) {
+        var pct = Math.round((t / barMax) * 100);
+        var col = t <= avgTourTime ? 'var(--effort)' : 'var(--rest)';
+        return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1">' +
+          '<div style="font-size:8px;color:var(--muted)">' + t + 's</div>' +
+          '<div style="width:100%;height:' + pct + 'px;min-height:4px;background:' + col + ';border-radius:3px 3px 0 0;transition:height .3s"></div>' +
+          '<div style="font-size:8px;color:var(--muted)">T' + (i+1) + '</div>' +
+        '</div>';
+      }).join('');
+      contentHTML += '<div style="margin:12px 0 8px;background:var(--surface3);border-radius:12px;padding:12px">' +
+        '<div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Temps par tour</div>' +
+        '<div style="display:flex;align-items:flex-end;gap:4px;height:80px">' + bars + '</div>' +
+        '<div style="font-size:9px;color:var(--muted);margin-top:6px;text-align:center">🟢 sous la moyenne · 🔴 au-dessus</div>' +
+      '</div>';
+    }
 
     // Détail exercices du tour partiel
     if (partialIdx > 0) {
@@ -16993,6 +17599,97 @@ function showBilan() {
     contentHTML += '</div>';
   }
 
+  // -- Récap exercices : reps + notes d'exécution --------
+  (function() {
+    var exos = Object.keys(STATE.selectedExos);
+    var log  = STATE.noteExecLog || [];
+    if (!exos.length) return;
+
+    // Calculer reps totales et note moyenne par exercice
+    var exoStats = {};
+    exos.forEach(function(exo) {
+      exoStats[exo] = { reps: 0, notes: [], paliers: 0 };
+    });
+
+    if (STATE.mode === 'AMRAP') {
+      var repsPerTour = getAmrapRepsPerTour();
+      var tours = STATE.bilan.amrapTours || 0;
+      exos.forEach(function(exo) { exoStats[exo].reps = tours * repsPerTour; });
+    } else if (STATE.mode === 'FOR TIME') {
+      // Compter depuis noteExecLog les reps par exercice
+      log.forEach(function(e) {
+        if (e.mode === 'FOR TIME' && exoStats[e.exo]) {
+          exoStats[e.exo].reps += (e.reps || 0);
+          exoStats[e.exo].paliers++;
+        }
+      });
+    } else if (isEmomMode()) {
+      var minutesDone = (STATE.bilan.emomLog||[]).filter(function(m){ return m.success; }).length;
+      exos.forEach(function(exo) {
+        var repsPerMin = getEmomReps(exo);
+        exoStats[exo].reps = minutesDone * repsPerMin;
+      });
+    } else if (STATE.mode === 'TABATA') {
+      var cycles = (STATE.bilan.tabataLog||[]).length;
+      var repsPerCycle = STATE.config.tabataRepsTarget || 0;
+      exos.forEach(function(exo) { exoStats[exo].reps = cycles * repsPerCycle; });
+    }
+
+    // Ajouter notes exec
+    log.forEach(function(e) {
+      if (exoStats[e.exo]) exoStats[e.exo].notes.push(e.note);
+    });
+
+    var noteColors = { 1:'#e74c3c', 2:'#e67e22', 3:'#f1c40f', 4:'#2ecc71' };
+    var noteLabels = { 1:'Insuffisant', 2:'À améliorer', 3:'Bien', 4:'Très bien' };
+
+    contentHTML += '<div class="bilan-exos-section">';
+    contentHTML += '<div class="bilan-exos-title">Détail exercices</div>';
+
+    exos.forEach(function(exo) {
+      var stat = exoStats[exo];
+      var avgNote = stat.notes.length
+        ? (stat.notes.reduce(function(a,b){return a+b;},0) / stat.notes.length)
+        : null;
+      var noteInt = avgNote ? Math.round(avgNote) : null;
+
+      contentHTML += '<div class="bilan-exo-row">';
+      contentHTML += '<div class="bilan-exo-top">';
+      contentHTML += '<span class="bilan-exo-name">' + exo + '</span>';
+
+      // Note exec
+      if (noteInt) {
+        contentHTML += '<span class="bilan-exo-note" style="color:'+noteColors[noteInt]+';font-weight:900;font-size:11px">'+noteLabels[noteInt]+'</span>';
+      } else {
+        contentHTML += '<span class="bilan-exo-note" style="color:var(--muted);font-size:11px">—</span>';
+      }
+      contentHTML += '</div>';
+
+      // Reps + points de note
+      contentHTML += '<div class="bilan-exo-bottom">';
+      if (stat.reps > 0) {
+        contentHTML += '<span style="font-size:11px;color:var(--muted)">';
+        if (STATE.mode === 'FOR TIME') {
+          contentHTML += stat.paliers + ' palier' + (stat.paliers>1?'s':'') + ' · ' + stat.reps + ' reps';
+        } else {
+          contentHTML += stat.reps + ' reps';
+        }
+        contentHTML += '</span>';
+      }
+      // Dots note exec (une par occurrence)
+      if (stat.notes.length) {
+        contentHTML += '<div style="display:flex;gap:4px;margin-left:auto">';
+        stat.notes.forEach(function(n) {
+          contentHTML += '<div class="bilan-exo-note-dot active-'+n+'" style="background:'+noteColors[n]+'"></div>';
+        });
+        contentHTML += '</div>';
+      }
+      contentHTML += '</div>';
+      contentHTML += '</div>';
+    });
+    contentHTML += '</div>';
+  })();
+
   // -- Ressenti — récap (saisi avant via showRessentiThenBilan) --------
   const _r = STATE.ressenti || {};
   const _emojiMap = { 1:'😩', 2:'😓', 3:'😐', 4:'🙂', 5:'😄' };
@@ -17080,55 +17777,35 @@ function onProfilInput() {
 }
 
 function fillTestProfile() {
-  const nomEl    = document.getElementById('inp-nom');
-  const prenomEl = document.getElementById('inp-prenom');
-  const classeEl = document.getElementById('inp-classe');
-  const coachEl  = document.getElementById('inp-coach');
-  if (nomEl)    nomEl.value    = 'FONTANY';
-  if (prenomEl) prenomEl.value = 'François';
-  if (classeEl) classeEl.value = 'Terminale 4';
-  if (coachEl)  coachEl.value  = 'Dartois';
-  expandProfil();
+  var n=document.getElementById('inp-nom');     if(n) n.value='MARTIN';
+  var p=document.getElementById('inp-prenom');  if(p) p.value='Lucas';
+  var cl=document.getElementById('inp-classe'); if(cl) cl.value='TLE PRO';
+  var nb=document.getElementById('inp-nom-b');  if(nb) nb.value='FONTANY';
+  var pb=document.getElementById('inp-prenom-b'); if(pb) pb.value='Emma';
+  var co=document.getElementById('inp-coach');  if(co) co.value='Emma FONTANY';
   checkAndRevealChrono();
 }
 
 function fillTestProfile() {
   var n=document.getElementById('inp-nom'),p=document.getElementById('inp-prenom'),cl=document.getElementById('inp-classe'),co=document.getElementById('inp-coach');
-  if(n)n.value='FONTANY'; if(p)p.value='Fran\u00e7ois'; if(cl)cl.value='Terminale 4'; if(co)co.value='DARTOIS';
+  if(n)n.value='MARTIN'; if(p)p.value='Lucas'; if(cl)cl.value='TLE PRO'; if(co)co.value='DARTOIS';
+  var nb=document.getElementById('inp-nom-b'); var pb=document.getElementById('inp-prenom-b');
+  if(nb)nb.value='FONTANY'; if(pb)pb.value='Emma';
+  onProfilInput(); checkAndRevealChrono();
   expandProfil(); checkAndRevealChrono();
 }
 
 function onProfilBlur() {
-  // Condenser immédiatement si le focus quitte tout le bloc profil
-  setTimeout(() => {
-    const active = document.activeElement;
-    const form   = document.getElementById('profil-form');
-    if (form && !form.contains(active)) {
-      clearTimeout(window._profilCondenseTimer);
-      condenseProfil();
-    }
-  }, 150);
+  // Vue condensée supprimée — nouveau layout binôme
 }
 
 function condenseProfil() {
-  const nom    = (document.getElementById('inp-nom')    || {}).value || '';
-  const prenom = (document.getElementById('inp-prenom') || {}).value || '';
-  const classe = (document.getElementById('inp-classe') || {}).value || '';
-  if (!nom.trim() || !prenom.trim() || !classe.trim()) return;
-  const txt = document.getElementById('profil-compact-text');
-  if (txt) txt.textContent = nom.toUpperCase() + ' ' + prenom + ' · ' + classe.toUpperCase();
-  document.getElementById('profil-compact').classList.add('visible');
-  document.getElementById('profil-form').style.display = 'none';
+  // Supprimé — nouveau layout binôme
 }
 
 function expandProfil() {
-  var pc = document.getElementById('profil-compact');
-  if (pc) pc.classList.remove('visible');
-  var pf = document.getElementById('profil-form');
-  if (pf) pf.style.display = '';
-  setTimeout(function(){
-    var n = document.getElementById('inp-nom'); if(n) n.focus();
-  }, 50);
+  // Supprimé — nouveau layout binôme
+  var n = document.getElementById('inp-nom'); if(n) n.focus();
 }
 
 
@@ -17136,15 +17813,85 @@ function expandProfil() {
 
 function bilanNextWod() {
   _saveCurrentWod();
-  closeBilan();
-  setTimeout(function() {
-    try {
-      _resetForNextWod();
-      showToast('WOD ' + STATE.seance.wods.length + ' sauvegardé ✓ Configure le suivant !');
-    } catch(e) {
-      console.error('bilanNextWod error:', e.message);
-    }
+  // Sauvegarder dans la bonne séance binôme
+  if (BINOME.active === 'A') BINOME.seanceA = JSON.parse(JSON.stringify(STATE.seance));
+  else if (BINOME.seanceB) BINOME.seanceB = JSON.parse(JSON.stringify(STATE.seance));
+
+  if (BINOME.hasBinome) {
+    // Proposer de passer à l'autre ou continuer
+    closeBilan();
+    setTimeout(function(){ binomeShowSwitchModal(); }, 150);
+  } else {
+    closeBilan();
+    setTimeout(function() {
+      try {
+        _resetForNextWod();
+        showToast('WOD ' + STATE.seance.wods.length + ' sauvegardé ✓ Configure le suivant !');
+      } catch(e) {}
+    }, 150);
+  }
+}
+
+
+function binomeShowSwitchModal() {
+  var other = BINOME.active === 'A' ? 'B' : 'A';
+  var pOther = other === 'A'
+    ? (BINOME.seanceA?.profil || binomeGetProfil('A'))
+    : (BINOME.seanceB?.profil || binomeGetProfil('B'));
+  var pCurrent = BINOME.active === 'A'
+    ? (BINOME.seanceA?.profil || binomeGetProfil('A'))
+    : (BINOME.seanceB?.profil || binomeGetProfil('B'));
+  var colorOther = other === 'A' ? 'var(--amrap)' : 'var(--emom)';
+  var colorCurrent = BINOME.active === 'A' ? 'var(--amrap)' : 'var(--emom)';
+
+  var modal = document.createElement('div');
+  modal.id = 'binome-switch-modal';
+  modal.style.cssText = 'position:fixed;inset:0;z-index:9300;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;padding:16px';
+  modal.innerHTML =
+    '<div style="background:var(--surface);border-radius:20px 20px 16px 16px;padding:24px;width:100%;max-width:480px">' +
+      '<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;text-align:center">À qui le tour ?</div>' +
+      '<div style="display:flex;flex-direction:column;gap:10px">' +
+        '<button onclick="binomeDoSwitch(\'' + other + '\')" style="padding:16px;background:' + colorOther + '22;border:2px solid ' + colorOther + ';border-radius:14px;color:var(--text);font-family:inherit;cursor:pointer;touch-action:manipulation;text-align:left">' +
+          '<div style="font-size:11px;font-weight:700;color:' + colorOther + ';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">▶ Passer à ' + other + '</div>' +
+          '<div style="font-size:16px;font-weight:900">' + pOther.prenom + ' ' + pOther.nom.toUpperCase() + '</div>' +
+          '<div style="font-size:11px;color:var(--muted);margin-top:2px">C\'est maintenant ton tour de coacher !</div>' +
+        '</button>' +
+        '<button onclick="binomeStayAndContinue()" style="padding:14px;background:' + colorCurrent + '15;border:1.5px solid ' + colorCurrent + '50;border-radius:14px;color:var(--text);font-family:inherit;cursor:pointer;touch-action:manipulation;text-align:left">' +
+          '<div style="font-size:11px;font-weight:700;color:' + colorCurrent + ';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">↩ Rester sur ' + BINOME.active + '</div>' +
+          '<div style="font-size:15px;font-weight:800">' + pCurrent.prenom + ' ' + pCurrent.nom.toUpperCase() + ' — WOD suivant</div>' +
+        '</button>' +
+        '<button onclick="binomeFinishModal()" style="padding:12px;background:var(--surface3);border:1px solid var(--border2);border-radius:12px;color:var(--muted);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation">' +
+          '🏁 Terminer la séance des deux élèves' +
+        '</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(modal);
+}
+
+function binomeDoSwitch(who) {
+  var modal = document.getElementById('binome-switch-modal');
+  if (modal) modal.remove();
+  binomeSaveCurrentAndSwitch(who);
+  setTimeout(function(){
+    _resetForNextWod();
+    showToast('Tour de ' + (who==='A'?BINOME.seanceA:BINOME.seanceB)?.profil?.prenom + ' !');
   }, 150);
+}
+
+function binomeStayAndContinue() {
+  var modal = document.getElementById('binome-switch-modal');
+  if (modal) modal.remove();
+  setTimeout(function(){
+    _resetForNextWod();
+    showToast('WOD suivant !');
+  }, 150);
+}
+
+function binomeFinishModal() {
+  var modal = document.getElementById('binome-switch-modal');
+  if (modal) modal.remove();
+  // Déclencher le ressenti séance
+  bilanFinishSeance();
 }
 
 function bilanFinishSeance() {
@@ -17191,9 +17938,18 @@ function _saveCurrentWod() {
     timestamp: new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})
   };
   if (!STATE.seance.profil) {
+    // En binôme, utiliser le profil du joueur actif
+    var pNom, pPrenom;
+    if (BINOME.hasBinome && BINOME.active === 'B') {
+      pNom    = (document.getElementById('inp-nom-b')    ||{}).value||'';
+      pPrenom = (document.getElementById('inp-prenom-b') ||{}).value||'';
+    } else {
+      pNom    = (document.getElementById('inp-nom')    ||{}).value||'';
+      pPrenom = (document.getElementById('inp-prenom') ||{}).value||'';
+    }
     STATE.seance.profil = {
-      nom:    (document.getElementById('inp-nom')   ||{}).value||'',
-      prenom: (document.getElementById('inp-prenom')||{}).value||'',
+      nom:    pNom,
+      prenom: pPrenom,
       classe: (document.getElementById('inp-classe')||{}).value||'',
       coach:  (document.getElementById('inp-coach') ||{}).value||''
     };
@@ -17384,7 +18140,7 @@ function showBilanSeanceFinal() {
   // Actions
   html += '<div class="bilan-actions">';
   html += '<button class="bilan-btn bilan-btn-save" onclick="saveSeanceAndClose()">✓ Sauvegarder &amp; Terminer</button>';
-  html += '<button class="bilan-btn" style="background:var(--fortime);color:#fff" onclick="window.print()">🖨 Imprimer / PDF</button>';
+  html += '<button class="bilan-btn" style="background:var(--fortime);color:#fff" onclick="printBilanSeance()">🖨 Imprimer / PDF</button>';
   html += '</div>';
 
   modal.innerHTML = html;
@@ -17392,6 +18148,69 @@ function showBilanSeanceFinal() {
   overlay.scrollTop = 0;
   setTimeout(function(){ requestAnimationFrame(function(){ renderQR(qrStr); }); }, 500);
 }
+
+function printBilanSeance() {
+  var wods = STATE.seance.wods;
+  var p    = STATE.seance.profil || {};
+  var rs   = STATE.seance.ressentiSeance || {};
+  var date = new Date().toLocaleDateString('fr-FR');
+  var noteLabels = { 1:'Insuffisant', 2:'À améliorer', 3:'Bien', 4:'Très bien' };
+  var resLabels  = { 1:'★☆☆☆☆', 2:'★★☆☆☆', 3:'★★★☆☆', 4:'★★★★☆', 5:'★★★★★' };
+
+  var area = document.getElementById('print-area');
+  if (!area) { area = document.createElement('div'); area.id = 'print-area'; document.body.appendChild(area); }
+
+  var rows = wods.map(function(w, i) {
+    var noteExec = '';
+    if (w.noteExecLog && w.noteExecLog.length) {
+      var byExo = {};
+      w.noteExecLog.forEach(function(e) {
+        if (!byExo[e.exo]) byExo[e.exo] = [];
+        byExo[e.exo].push(e.note);
+      });
+      noteExec = Object.keys(byExo).map(function(exo) {
+        var avg = byExo[exo].reduce(function(a,b){return a+b;},0) / byExo[exo].length;
+        return exo + ' : ' + (noteLabels[Math.round(avg)] || '');
+      }).join(' | ');
+    }
+    var resWod = '';
+    if (w.ressentiWod && w.ressentiWod.niveau) {
+      resWod = w.ressentiWod.label + (w.ressentiWod.commentaire ? ' — ' + w.ressentiWod.commentaire : '');
+    }
+    return '<tr>' +
+      '<td><strong>WOD ' + (i+1) + '</strong></td>' +
+      '<td>' + (w.type||'') + '</td>' +
+      '<td><strong>' + (w.scoreLabel||'') + '</strong></td>' +
+      '<td>' + (w.exos||[]).join(', ') + '</td>' +
+      '<td>' + noteExec + '</td>' +
+      '<td>' + resWod + '</td>' +
+    '</tr>';
+  }).join('');
+
+  var resSeance = rs.niveau
+    ? resLabels[rs.niveau] + ' ' + (rs.label||'') + (rs.commentaire?' — '+rs.commentaire:'')
+    : '—';
+
+  area.innerHTML =
+    '<h2>Cross Training Pompidou — Bilan de séance</h2>' +
+    '<div class="print-meta">' +
+      '<strong>' + (p.prenom||'') + ' ' + (p.nom||'').toUpperCase() + '</strong>' +
+      ' &nbsp;·&nbsp; ' + (p.classe||'') +
+      (p.coach ? ' &nbsp;·&nbsp; Coach : ' + p.coach : '') +
+      ' &nbsp;·&nbsp; ' + date +
+    '</div>' +
+    '<table>' +
+      '<thead><tr>' +
+        '<th>WOD</th><th>Mode</th><th>Score</th>' +
+        '<th>Exercices</th><th>Notes exec</th><th>Ressenti WOD</th>' +
+      '</tr></thead>' +
+      '<tbody>' + rows + '</tbody>' +
+    '</table>' +
+    '<div style="margin-top:12px;font-size:11px"><strong>Ressenti séance :</strong> ' + resSeance + '</div>';
+
+  window.print();
+}
+
 
 function showRessentiThenBilan(callback) {
   _ressentiNiveau = 0;
@@ -17517,9 +18336,9 @@ function showSectionsAfterWod() {
 }
 
 function toggleSectionsVisibility(forceShow) {
-  // Si le chrono tourne, demander confirmation
-  if (STATE.chrono.running && !forceShow) {
-    if (STATE.chrono.running) pauseChrono();
+  if (STATE.chrono.running) {
+    pauseChrono();
+    showToast('⏸ WOD en pause — modifie tes exercices puis reprends');
   }
   const isHidden = document.getElementById('section-profil') &&
     document.getElementById('section-profil').classList.contains('wod-focus-mode');
@@ -17958,8 +18777,9 @@ async function startAndroidScan() {
   const video    = document.getElementById('prof-video');
 
   if (!('BarcodeDetector' in window)) {
-    if (statusEl) statusEl.textContent = 'BarcodeDetector non supporté';
-    showProfError('BarcodeDetector non disponible sur ce navigateur. Essaie Chrome Android 83+ ou utilise le mode iOS/Manuel.');
+    // Fallback automatique : utiliser jsQR avec canvas (fonctionne partout)
+    showToast('Mode photo activé (BarcodeDetector indisponible)');
+    setScanMethod('ios');
     return;
   }
 
@@ -17998,7 +18818,10 @@ async function startAndroidScan() {
               if (statusEl) { statusEl.textContent = 'Pointez vers un QR Code'; statusEl.style.color = '#aaa'; }
             }, 2000);
           }
-          beep(880, 0.15, 0.4);
+          // Bip fort pour gymnase + vibration
+          beep(880, 0.4, 0.15, 0);
+          beep(1100, 0.4, 0.2, 0.12);
+          if (navigator.vibrate) navigator.vibrate([80, 40, 80]);
           profParseAndAdd(raw);
         }
       } catch(e) {}
@@ -18040,7 +18863,9 @@ function profDecodePhoto(input) {
       });
 
       if (code) {
-        beep(880, 0.15, 0.4);
+        beep(880, 0.4, 0.15, 0);
+        beep(1100, 0.4, 0.2, 0.12);
+        if (navigator.vibrate) navigator.vibrate([80, 40, 80]);
         profParseAndAdd(code.data);
       } else {
         showProfError('QR Code non reconnu. Essaie une photo plus nette, bien cadrée.');
@@ -18136,28 +18961,135 @@ function profParseAndAdd(raw) {
   }
 
   const now = new Date();
-  const student = {
-    nom: nom.trim(),
-    prenom: prenom.trim(),
-    classe: classe.trim(),
-    mode,
-    scoreRaw,
-    scoreLabel,
-    coach,
-    ressentiNiveau,
-    ressentiLabel,
-    ressentiCommentaire,
-    noteExecLog: [],
-    ts:   now.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' }),
-    date: now.toLocaleDateString('fr-FR'),
-  };
 
-  // Toujours ajouter une nouvelle ligne (plusieurs WODs possibles par élève)
-  PROF.students.push(student);
-  showToast('✓ Ajouté : ' + prenom + ' ' + nom);
+  // Décomposer les WODs multiples : SCORE_WOD1|SCORE_WOD2|SCORE_WOD3
+  // Un score WOD commence par A:, F:, E:, E+:, T:
+  function parseOneScore(s) {
+    var tokens = s.split(';');
+    var scoreRaw = tokens[0];
+    var exos = [], noteExecLog = [], niveau = '', duree = '', ressentiWodNiveau = '', ressentiWodComment = '';
+    tokens.slice(1).forEach(function(t) {
+      if (t.startsWith('EX:')) exos = t.slice(3).split(',').filter(Boolean);
+      else if (t.startsWith('NE:')) {
+        var notes = t.slice(3).split(',');
+        notes.forEach(function(n, i) {
+          var v = parseInt(n);
+          if (v >= 1 && v <= 4) noteExecLog.push({ exo: exos[i] || ('Exo '+(i+1)), note: v });
+        });
+      } else if (t.startsWith('LV:')) niveau = t.slice(3);
+      else if (t.startsWith('D:'))  duree = t.slice(2);
+      else if (t.startsWith('RW:')) {
+        var rw = t.slice(3).split(':');
+        ressentiWodNiveau = rw[0];
+        ressentiWodComment = rw.slice(1).join(':') || '';
+      }
+    });
+    var rwLabels = {'1':'Épuisé','2':'Très fatigué','3':'Moyen','4':'Léger','5':'Frais'};
+
+    var mode = '?', label = scoreRaw;
+    if (scoreRaw.startsWith('A:')) {
+      mode = 'AMRAP';
+      var m1=scoreRaw.match(/(\d+)t/), m2=scoreRaw.match(/=(\d+)r/), m3=scoreRaw.match(/N(\d)/);
+      label = (m1?m1[1]+' tours':'?') + (m2?' · '+m2[1]+' reps':'') + (m3?' · N'+m3[1]:(niveau?' · N'+niveau:''));
+    } else if (scoreRaw.startsWith('F:')) {
+      mode = 'FOR TIME';
+      var fin = scoreRaw.slice(2).startsWith('OK');
+      label = (fin?'✓ ':'✗ Cap ') + scoreRaw.slice(2).replace('OK-','').replace('CAP-','').split('|')[0];
+    } else if (scoreRaw.startsWith('E+:')) {
+      mode = 'EMOM+1';
+      label = scoreRaw.slice(3).split('|')[0].replace('/',' / ') + ' min' + (niveau?' · N'+niveau:'');
+    } else if (scoreRaw.startsWith('E:')) {
+      mode = 'EMOM';
+      label = scoreRaw.slice(2).split('|')[0].replace('/',' / ') + ' min' + (niveau?' · N'+niveau:'');
+    } else if (scoreRaw.startsWith('T:')) {
+      mode = 'TABATA';
+      label = scoreRaw.slice(2).split('-')[0] + 'r plancher';
+    }
+    return { mode, scoreRaw, scoreLabel: label, exos, noteExecLog, niveau, duree,
+             ressentiWodNiveau, ressentiWodComment, ressentiWodLabel: rwLabels[ressentiWodNiveau]||'' };
+  }
+
+  // Séparer les WODs (chaque segment commence par A:, F:, E:, E+:, T:)
+  var wodSegments = scoreRaw.split('|').reduce(function(acc, seg) {
+    if (/^(A:|F:|E\+:|E:|T:)/.test(seg)) { acc.push(seg); }
+    else if (acc.length) { acc[acc.length-1] += '|' + seg; }
+    return acc;
+  }, []);
+  if (!wodSegments.length) wodSegments = [scoreRaw];
+
+  wodSegments.forEach(function(seg, wi) {
+    var parsed = parseOneScore(seg);
+    var student = {
+      nom: nom.trim(), prenom: prenom.trim(), classe: classe.trim(),
+      wodIndex: wi + 1, wodTotal: wodSegments.length,
+      mode: parsed.mode, scoreRaw: parsed.scoreRaw, scoreLabel: parsed.scoreLabel,
+      exos: parsed.exos || [], noteExecLog: parsed.noteExecLog || [],
+      niveau: parsed.niveau || '', duree: parsed.duree || '',
+      ressentiWodNiveau: parsed.ressentiWodNiveau || '',
+      ressentiWodLabel:  parsed.ressentiWodLabel  || '',
+      ressentiWodComment: parsed.ressentiWodComment || '',
+      coach,
+      ressentiNiveau: wi === wodSegments.length-1 ? ressentiNiveau : '',
+      ressentiLabel:  wi === wodSegments.length-1 ? ressentiLabel  : '',
+      ressentiCommentaire: wi === wodSegments.length-1 ? ressentiCommentaire : '',
+      ts:   now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}),
+      date: now.toLocaleDateString('fr-FR'),
+    };
+    PROF.students.push(student);
+  });
+
+  // Vérifier doublon (même nom+prénom déjà dans la liste)
+  var key = nom.trim().toUpperCase() + '|' + prenom.trim().toUpperCase();
+  var existingIdx = PROF.students.slice(0, PROF.students.length - wodSegments.length)
+    .findIndex(function(s){ return (s.nom.toUpperCase()+'|'+s.prenom.toUpperCase()) === key; });
+
+  if (existingIdx >= 0) {
+    // Doublon détecté — afficher modal de confirmation
+    profShowDuplicateModal(nom, prenom, wodSegments.length, function(replace) {
+      if (replace) {
+        // Supprimer toutes les anciennes lignes de cet élève
+        PROF.students = PROF.students.filter(function(s, i){
+          return (s.nom.toUpperCase()+'|'+s.prenom.toUpperCase()) !== key ||
+                 i >= PROF.students.length - wodSegments.length;
+        });
+      } else {
+        // Annuler : retirer les lignes qu'on vient d'ajouter
+        PROF.students.splice(PROF.students.length - wodSegments.length, wodSegments.length);
+      }
+      profSave();
+      profRenderTable();
+      profUpdateCounter();
+    });
+    return;
+  }
+
+  showToast('✓ ' + prenom + ' ' + nom + ' — ' + wodSegments.length + ' WOD' + (wodSegments.length>1?'s':''));
+
+  // Flash visuel ✅ à l'écran
+  var flash = document.getElementById('prof-scan-flash');
+  var flashName = document.getElementById('prof-flash-name');
+  var flashScore = document.getElementById('prof-flash-score');
+  if (flash) {
+    var lastWod = PROF.students[PROF.students.length-1];
+    flashName.textContent = prenom + ' ' + nom.toUpperCase();
+    flashScore.textContent = lastWod.scoreLabel + (wodSegments.length>1 ? ' · ' + wodSegments.length + ' WODs' : '');
+    flash.style.display = 'flex';
+    clearTimeout(flash._timer);
+    flash._timer = setTimeout(function(){ flash.style.display = 'none'; }, 1500);
+  }
+
+  // Mettre à jour compteur
+  var countEl = document.getElementById('prof-scan-count');
+  if (countEl) {
+    var total = [...new Set(PROF.students.map(function(s){ return s.nom+'|'+s.prenom; }))].length;
+    countEl.textContent = total;
+  }
+  // Dernière détection
+  var lastEl = document.getElementById('prof-last-scan');
+  if (lastEl) lastEl.textContent = prenom + ' ' + nom.toUpperCase();
 
   profSave();
-  profRenderPreview(student);
+  profRenderPreview(PROF.students[PROF.students.length - 1]);
   profRenderTable();
 
   // Vider paste si mode manuel
@@ -18197,37 +19129,69 @@ function profRenderTable() {
   const filtersEl = document.getElementById('prof-filters');
   if (!listEl) return;
 
-  // Construire les filtres par classe
+  // Appeler le compteur
+  profUpdateCounter();
+
+  // Construire filtres par classe + barre de recherche
   const classes = [...new Set(PROF.students.map(s => s.classe))].sort();
   filtersEl.innerHTML = '';
+
+  // Barre de recherche
+  var searchEl = document.getElementById('prof-search');
+  if (!searchEl) {
+    var searchWrap = document.createElement('div');
+    searchWrap.style.cssText = 'margin-bottom:8px';
+    searchEl = document.createElement('input');
+    searchEl.id = 'prof-search';
+    searchEl.type = 'text';
+    searchEl.placeholder = '🔍 Rechercher un élève…';
+    searchEl.autocomplete = 'off';
+    searchEl.style.cssText = 'width:100%;box-sizing:border-box;padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface3);color:var(--text);font-family:inherit;font-size:13px;outline:none';
+    searchEl.oninput = function(){ profRenderTable(); };
+    searchWrap.appendChild(searchEl);
+    filtersEl.appendChild(searchWrap);
+  } else {
+    filtersEl.appendChild(searchEl.parentElement);
+  }
+
+  // Filtres classe
   if (classes.length > 1) {
+    var filterRow = document.createElement('div');
+    filterRow.style.cssText = 'display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px';
     const allBtn = document.createElement('button');
     allBtn.className = 'prof-filter-btn' + (PROF.filterClasse === 'all' ? ' active' : '');
     allBtn.textContent = 'Toutes';
     allBtn.onclick = () => { PROF.filterClasse = 'all'; profRenderTable(); };
-    filtersEl.appendChild(allBtn);
+    filterRow.appendChild(allBtn);
     classes.forEach(cl => {
       const btn = document.createElement('button');
       btn.className = 'prof-filter-btn' + (PROF.filterClasse === cl ? ' active' : '');
-      btn.textContent = cl;
+      var n = [...new Set(PROF.students.filter(s=>s.classe===cl).map(s=>s.nom+'|'+s.prenom))].length;
+      btn.textContent = cl + ' (' + n + ')';
       btn.onclick = () => { PROF.filterClasse = cl; profRenderTable(); };
-      filtersEl.appendChild(btn);
+      filterRow.appendChild(btn);
     });
+    filtersEl.appendChild(filterRow);
   }
 
-  // Filtrer
-  const filtered = PROF.filterClasse === 'all'
-    ? PROF.students
-    : PROF.students.filter(s => s.classe === PROF.filterClasse);
+  // Appliquer filtre classe + recherche
+  var searchVal = (document.getElementById('prof-search')||{}).value || '';
+  const filtered = PROF.students.filter(s => {
+    var matchClasse = PROF.filterClasse === 'all' || s.classe === PROF.filterClasse;
+    var matchSearch = !searchVal.trim() || (s.nom+' '+s.prenom+' '+s.classe).toLowerCase().includes(searchVal.toLowerCase());
+    return matchClasse && matchSearch;
+  });
 
-  // Trier par classe puis nom
+  // Trier par nom puis wodIndex
   const sorted = [...filtered].sort((a,b) =>
-    a.classe.localeCompare(b.classe) || a.nom.localeCompare(b.nom)
+    a.nom.localeCompare(b.nom,'fr') || a.prenom.localeCompare(b.prenom,'fr') || (a.wodIndex||1)-(b.wodIndex||1)
   );
 
-  countEl.textContent = sorted.length + ' élève' + (sorted.length > 1 ? 's' : '') +
+  // Stats rapides
+  var nbEleves = [...new Set(filtered.map(s=>s.nom+'|'+s.prenom))].length;
+  countEl.textContent = nbEleves + ' élève' + (nbEleves>1?'s':'') +
     (PROF.filterClasse !== 'all' ? ' · ' + PROF.filterClasse : '') +
-    ' · ' + PROF.students.length + ' total';
+    ' · ' + filtered.length + ' WOD' + (filtered.length>1?'s':'');
 
   listEl.innerHTML = '';
   if (sorted.length === 0) {
@@ -18235,36 +19199,181 @@ function profRenderTable() {
     return;
   }
 
-  const modeColors = { AMRAP:'var(--amrap)', 'FOR TIME':'var(--fortime)', EMOM:'var(--emom)', TABATA:'var(--tabata)' };
+  // Grouper par élève pour détecter séance complète
+  var byEleve = {};
+  sorted.forEach(function(s) {
+    var k = s.nom+'|'+s.prenom;
+    if (!byEleve[k]) byEleve[k] = [];
+    byEleve[k].push(s);
+  });
 
-  sorted.forEach((s, idx) => {
-    const color = modeColors[s.mode] || 'var(--muted)';
-    const row = document.createElement('div');
+  const modeColors = { AMRAP:'var(--amrap)', 'FOR TIME':'var(--fortime)', EMOM:'var(--emom)', 'EMOM+1':'var(--emom)', TABATA:'var(--tabata)' };
+  const nColors = {1:'#e74c3c',2:'#e67e22',3:'#f1c40f',4:'#2ecc71'};
+  const noteLabels = {1:'Insuf.',2:'À amél.',3:'Bien',4:'Très bien'};
+
+  // Afficher par élève (groupé)
+  var seenEleves = new Set();
+  sorted.forEach((s) => {
+    var k = s.nom+'|'+s.prenom;
+    var isFirstWod = !seenEleves.has(k);
+    seenEleves.add(k);
+    var realIdx = PROF.students.indexOf(s);
+    var color = modeColors[s.mode] || 'var(--muted)';
+
+    // Badge séance complète vs partielle
+    var wodTotal = s.wodTotal || 1;
+    var seanceComplete = s.ressentiNiveau && s.ressentiNiveau !== '';
+    var statusBadge = seanceComplete
+      ? '<span style="font-size:9px;background:rgba(46,204,113,.15);border:1px solid #2ecc71;border-radius:8px;padding:1px 6px;color:#2ecc71;font-weight:700">✓ COMPLET</span>'
+      : '<span style="font-size:9px;background:rgba(241,196,15,.12);border:1px solid #f1c40f;border-radius:8px;padding:1px 6px;color:#f1c40f;font-weight:700">WOD ' + (s.wodIndex||1) + '/' + wodTotal + '</span>';
+
+    // Exercices + notes
+    var exoHtml = '';
+    if (s.exos && s.exos.length) {
+      exoHtml = '<div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4">' +
+        s.exos.map(function(exo, ei) {
+          var notes = (s.noteExecLog||[]).filter(function(n){return n.exo===exo;});
+          var noteAvg = notes.length ? Math.round(notes.reduce(function(a,b){return a+b.note;},0)/notes.length) : null;
+          return exo + (noteAvg ? ' <span style="color:'+nColors[noteAvg]+';font-weight:700">'+noteLabels[noteAvg]+'</span>' : '');
+        }).join(' · ') +
+      '</div>';
+    }
+
+    var row = document.createElement('div');
     row.className = 'prof-student-row';
-    row.innerHTML = `
-      <div class="prof-student-info">
-        <div class="prof-student-name">${s.prenom} ${s.nom.toUpperCase()}</div>
-        <div class="prof-student-detail">${s.classe} · ${s.ts} · <span style="color:${color};font-weight:900">${s.mode}</span></div>
-      </div>
-      <div class="prof-student-score" style="color:${color}">${s.scoreLabel}</div>
-      <button class="prof-student-delete" onclick="profDeleteStudent(${PROF.students.indexOf(s)})" title="Supprimer">✕</button>
-    `;
+    row.style.cssText = 'display:flex;align-items:flex-start;gap:8px;padding:10px 12px;border-bottom:1px solid var(--border);' +
+      (isFirstWod ? 'border-top:2px solid var(--border2);' : 'border-left:3px solid '+color+';padding-left:20px;');
+
+    row.innerHTML =
+      '<div style="flex:1;min-width:0">' +
+        (isFirstWod ?
+          '<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">' +
+            '<span style="font-size:14px;font-weight:900;color:var(--text)">' + s.prenom + ' ' + s.nom.toUpperCase() + '</span>' +
+            statusBadge +
+          '</div>' +
+          '<div style="font-size:11px;color:var(--muted)">' + s.classe + (s.coach?' · '+s.coach:'') + ' · ' + s.ts + '</div>'
+        : '') +
+        '<div style="display:flex;align-items:center;gap:6px;margin-top:'+(isFirstWod?'6':'0')+'px">' +
+          '<span style="font-size:10px;font-weight:900;color:'+color+';letter-spacing:1px;text-transform:uppercase">' + s.mode + '</span>' +
+          (s.niveau ? '<span style="font-size:9px;background:var(--surface3);border-radius:6px;padding:1px 5px;color:var(--muted)">N'+s.niveau+'</span>' : '') +
+          '<span style="font-size:12px;font-weight:700;color:var(--text)">' + s.scoreLabel + '</span>' +
+          (s.duree ? '<span style="font-size:9px;color:var(--muted)">'+s.duree+'min</span>' : '') +
+        '</div>' +
+        exoHtml +
+        (s.ressentiWodNiveau ? '<div style="font-size:10px;color:var(--muted);margin-top:2px">Ressenti WOD : '+s.ressentiWodLabel+'</div>' : '') +
+        (isFirstWod && s.ressentiNiveau ? '<div style="font-size:10px;color:var(--muted)">Séance : '+s.ressentiLabel+'</div>' : '') +
+      '</div>' +
+      '<button onclick="profDeleteStudent('+realIdx+')" style="background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:4px;flex-shrink:0;touch-action:manipulation" title="Supprimer">✕</button>';
+
     listEl.appendChild(row);
   });
+
+  // Stats en bas
+  var statsDiv = document.createElement('div');
+  statsDiv.style.cssText = 'padding:12px;margin-top:8px;background:var(--surface2);border-radius:12px;font-size:11px;color:var(--muted)';
+  var modes = {};
+  filtered.forEach(function(s){ modes[s.mode]=(modes[s.mode]||0)+1; });
+  statsDiv.innerHTML = '<strong style="color:var(--text2)">Répartition :</strong> ' +
+    Object.entries(modes).map(function(e){
+      return '<span style="color:'+(modeColors[e[0]]||'#aaa')+';font-weight:700">'+e[0]+'</span> '+e[1];
+    }).join(' · ');
+  listEl.appendChild(statsDiv);
+}
+
+function profUpdateCounter() {
+  var countEl = document.getElementById('prof-scan-count');
+  if (countEl) {
+    var total = [...new Set(PROF.students.map(function(s){ return s.nom+'|'+s.prenom; }))].length;
+    countEl.textContent = total;
+  }
+}
+
+function profShowDuplicateModal(nom, prenom, wodCount, callback) {
+  var existing = document.getElementById('prof-dup-modal');
+  if (existing) existing.remove();
+
+  var modal = document.createElement('div');
+  modal.id = 'prof-dup-modal';
+  modal.style.cssText = 'position:fixed;inset:0;z-index:9100;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:20px';
+  modal.innerHTML =
+    '<div style="background:var(--surface);border-radius:16px;padding:24px;max-width:320px;width:100%;text-align:center">' +
+      '<div style="font-size:36px;margin-bottom:12px">⚠️</div>' +
+      '<div style="font-size:16px;font-weight:900;color:var(--text);margin-bottom:8px">' + prenom + ' ' + nom.toUpperCase() + '</div>' +
+      '<div style="font-size:13px;color:var(--muted);margin-bottom:20px">Cet élève est déjà dans la liste.<br>Remplacer ses données ?</div>' +
+      '<div style="display:flex;flex-direction:column;gap:8px">' +
+        '<button onclick="profDupChoice(true)" style="padding:14px;background:#e74c3c;border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;touch-action:manipulation">🔄 Remplacer</button>' +
+        '<button onclick="profDupChoice(false)" style="padding:14px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;touch-action:manipulation">Annuler (garder l\'ancien)</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(modal);
+  window._profDupCallback = callback;
+}
+
+function profDupChoice(replace) {
+  var modal = document.getElementById('prof-dup-modal');
+  if (modal) modal.remove();
+  if (window._profDupCallback) { window._profDupCallback(replace); window._profDupCallback = null; }
 }
 
 function profDeleteStudent(idx) {
-  PROF.students.splice(idx, 1);
+  // Supprimer tous les WODs de cet élève (même nom+prénom)
+  var s = PROF.students[idx];
+  if (!s) return;
+  var key = s.nom.toUpperCase()+'|'+s.prenom.toUpperCase();
+  PROF.students = PROF.students.filter(function(st){
+    return (st.nom.toUpperCase()+'|'+st.prenom.toUpperCase()) !== key;
+  });
   profSave();
   profRenderTable();
+  profUpdateCounter();
+  showToast('Élève supprimé');
+}
+
+function profShowExportModal(classes) {
+  var existing = document.getElementById('prof-export-modal');
+  if (existing) existing.remove();
+
+  var counts = {};
+  PROF.students.forEach(function(s){ counts[s.classe]=(counts[s.classe]||0)+1; });
+  var nbTotal = [...new Set(PROF.students.map(function(s){return s.nom+'|'+s.prenom;}))].length;
+
+  var btns = '<button onclick="profExportCSV(\'all\')" style="width:100%;padding:13px;background:linear-gradient(135deg,#1a6b2a,#27ae60);border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:13px;font-weight:900;cursor:pointer;touch-action:manipulation;margin-bottom:6px">⬇ Toutes les classes (' + nbTotal + ' élèves)</button>';
+  classes.forEach(function(cl) {
+    var n = [...new Set(PROF.students.filter(function(s){return s.classe===cl;}).map(function(s){return s.nom+'|'+s.prenom;}))].length;
+    btns += '<button onclick="profExportCSV(\'' + cl.replace(/'/g,"\\'") + '\')" style="width:100%;padding:12px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation;margin-bottom:6px">' + cl + ' (' + n + ' élève' + (n>1?'s':'') + ')</button>';
+  });
+
+  var modal = document.createElement('div');
+  modal.id = 'prof-export-modal';
+  modal.style.cssText = 'position:fixed;inset:0;z-index:9100;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center;padding:20px';
+  modal.innerHTML =
+    '<div style="background:var(--surface);border-radius:16px 16px 0 0;padding:20px;width:100%;max-width:480px">' +
+      '<div style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:4px">Exporter le CSV</div>' +
+      '<div style="font-size:12px;color:var(--muted);margin-bottom:16px">Choisir quelle classe exporter :</div>' +
+      btns +
+      '<button onclick="document.getElementById(\'prof-export-modal\').remove()" style="width:100%;padding:11px;background:none;border:1px solid var(--border2);border-radius:10px;color:var(--muted);font-family:inherit;font-size:12px;cursor:pointer;touch-action:manipulation">Annuler</button>' +
+    '</div>';
+  document.body.appendChild(modal);
+  modal.addEventListener('click', function(e){ if(e.target===modal) modal.remove(); });
 }
 
 function profClearAll() {
-  if (!confirm('Vider tous les élèves du tableau ?')) return;
-  PROF.students = [];
-  profSave();
-  profRenderTable();
-  showToast('Tableau vidé');
+  var modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;z-index:9200;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:20px';
+  modal.innerHTML = '<div style="background:var(--surface);border-radius:16px;padding:24px;max-width:300px;width:100%;text-align:center">' +
+    '<div style="font-size:36px;margin-bottom:12px">🗑️</div>' +
+    '<div style="font-size:15px;font-weight:900;color:var(--text);margin-bottom:8px">Vider la liste ?</div>' +
+    '<div style="font-size:12px;color:var(--muted);margin-bottom:20px">Tous les élèves scannés seront supprimés.</div>' +
+    '<div style="display:flex;flex-direction:column;gap:8px">' +
+      '<button id="prof-clear-confirm" style="padding:13px;background:#e74c3c;border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;touch-action:manipulation">Vider</button>' +
+      '<button id="prof-clear-cancel" style="padding:11px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation">Annuler</button>' +
+    '</div></div>';
+  document.body.appendChild(modal);
+  modal.querySelector('#prof-clear-confirm').onclick = function() {
+    PROF.students = []; profSave(); profRenderTable(); profUpdateCounter();
+    showToast('Liste vidée'); modal.remove();
+  };
+  modal.querySelector('#prof-clear-cancel').onclick = function(){ modal.remove(); };
 }
 
 /* ══════════════════════════════════════════════
@@ -18302,63 +19411,105 @@ function profExportPDF() {
   window.print();
 }
 
-function profExportCSV() {
+function profExportCSV(classeFilter) {
   if (PROF.students.length === 0) { showToast('Aucun élève à exporter'); return; }
 
-  const sorted = [...PROF.students].sort((a, b) => {
+  // Si classeFilter non précisé, proposer de filtrer par classe
+  if (classeFilter === undefined) {
+    var classes = [...new Set(PROF.students.map(function(s){ return s.classe; }))].sort();
+    if (classes.length > 1) {
+      // Afficher modal de choix
+      profShowExportModal(classes);
+      return;
+    }
+    classeFilter = 'all';
+  }
+
+  // Filtrer selon la classe
+  var students = classeFilter === 'all'
+    ? PROF.students
+    : PROF.students.filter(function(s){ return s.classe === classeFilter; });
+
+  // Dialog nom de fichier avec date/heure
+  var now = new Date();
+  var dateStr = now.toLocaleDateString('fr-FR').replace(/\//g,'-');
+  var timeStr = now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}).replace(':','h');
+  // Classe dans le nom
+  var classeSlug = (classeFilter !== 'all' ? classeFilter : (
+    Object.entries(students.reduce(function(acc,s){ acc[s.classe]=(acc[s.classe]||0)+1; return acc; },{}))
+      .sort(function(a,b){return b[1]-a[1];})[0]?.[0] || ''
+  )).replace(/[^a-zA-Z0-9\u00c0-\u024f]/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'');
+
+  var nbEleves = [...new Set(students.map(function(s){return s.nom+'|'+s.prenom;}))].length;
+  var defaultName = 'CrossTraining_' + (classeSlug?classeSlug+'_':'') + dateStr + '_' + timeStr;
+  var fileName = prompt(
+    'Export : ' + nbEleves + ' élève' + (nbEleves>1?'s':'') + ' · ' + students.length + ' ligne' + (students.length>1?'s':'') + '\nNom du fichier CSV :',
+    defaultName
+  );
+  // Fermer le modal de sélection si ouvert
+  var em = document.getElementById('prof-export-modal'); if(em) em.remove();
+  if (fileName === null) return;
+  if (!fileName.trim()) fileName = defaultName;
+  fileName = fileName.trim().replace(/[^a-zA-Z0-9_\-.\u00c0-\u024f ]/g, '_');
+
+  const sorted = [...students].sort((a, b) => {
     const n = a.nom.toLowerCase().localeCompare(b.nom.toLowerCase(), 'fr');
     if (n !== 0) return n;
-    return a.prenom.toLowerCase().localeCompare(b.prenom.toLowerCase(), 'fr');
+    const p = a.prenom.toLowerCase().localeCompare(b.prenom.toLowerCase(), 'fr');
+    if (p !== 0) return p;
+    return (a.wodIndex||1) - (b.wodIndex||1);
   });
 
-  // Colonnes EMOM dynamiques
-  let maxEmomMin = 0;
-  sorted.forEach(s => { if (s.bilan && s.bilan.emomLog) maxEmomMin = Math.max(maxEmomMin, s.bilan.emomLog.length); });
+  const noteLabels = {1:'Insuffisant',2:'À améliorer',3:'Bien',4:'Très bien'};
 
-  // Colonnes notes exec dynamiques — une colonne par exo unique
-  const allExosForNotes = [];
-  sorted.forEach(s => {
-    (s.noteExecLog || []).forEach(function(n) {
-      if (n.exo && !allExosForNotes.includes(n.exo)) allExosForNotes.push(n.exo);
-    });
-  });
+  const headers = [
+    'Nom','Prénom','Classe','Coach',
+    'WOD n°','WOD total','Mode','Durée (min)','Score','Niveau',
+    'Exercice 1','Note exec 1',
+    'Exercice 2','Note exec 2',
+    'Exercice 3','Note exec 3',
+    'Ressenti WOD (note)','Ressenti WOD','Commentaire WOD',
+    'Ressenti séance (note)','Ressenti séance','Commentaire séance',
+    'Heure scan','Date scan'
+  ];
 
-  const headers = ['Nom','Pr\u00e9nom','Classe','Coach','Mode','Score','Temps moyen (EMOM)','Meilleur temps (EMOM)'];
-  for (let m = 1; m <= maxEmomMin; m++) { headers.push('Min ' + m + ' (r\u00e9sultat)', 'Min ' + m + ' (temps)', 'Min ' + m + ' (repos)'); }
-  allExosForNotes.forEach(function(exo) { headers.push('Note exec \u2014 ' + exo); });
-  headers.push('Ressenti (note)', 'Ressenti', 'Commentaire', 'Heure', 'Date');
-
-  const q = v => '"' + (v || '').toString().replace(/"/g, '""') + '"';
+  const q = v => {
+    var s = String(v == null ? '' : v).replace(/"/g, '""');
+    return /[;\n"]/.test(s) ? '"' + s + '"' : s;
+  };
 
   const rows = [
-    headers.join(','),
+    headers.join(';'),
     ...sorted.map(s => {
-      const log = (s.bilan && s.bilan.emomLog) ? s.bilan.emomLog : [];
-      const valides = log.filter(l => l.success === true && l.tempsSec != null);
-      const avgT = valides.length ? Math.round(valides.reduce((a,l)=>a+l.tempsSec,0)/valides.length) : '';
-      const bestT = valides.length ? Math.min(...valides.map(l=>l.tempsSec)) : '';
-      const cols = [q(s.nom),q(s.prenom),q(s.classe),q(s.coach||''),q(s.mode),q(s.scoreLabel),
-        q(avgT!==''?avgT+'s':''), q(bestT!==''?bestT+'s':'')];
-      for (let m = 1; m <= maxEmomMin; m++) {
-        const e = log.find(l=>l.minute===m);
-        if (e) { cols.push(q(e.success===true?'OK':e.success===false?'Non termin\u00e9':'-'), q(e.tempsSec!=null?e.tempsSec+'s':''), q(e.repos!=null?e.repos+'s':'')); }
-        else { cols.push(q(''),q(''),q('')); }
+      function getNoteForExo(exo) {
+        var notes = (s.noteExecLog||[]).filter(function(n){return n.exo===exo;});
+        if (!notes.length) return '';
+        var avg = notes.reduce(function(a,b){return a+b.note;},0)/notes.length;
+        return noteLabels[Math.round(avg)] || '';
       }
-      allExosForNotes.forEach(function(exo) {
-        const notes = (s.noteExecLog || []).filter(function(n){ return n.exo === exo; });
-        cols.push(q(notes.length ? notes.map(function(n){ return n.note; }).join('/') : ''));
-      });
-      cols.push(q(s.ressentiNiveau||''),q(s.ressentiLabel||''),q(s.ressentiCommentaire||''),q(s.ts||''),q(s.date||''));
-      return cols.join(',');
+      var exos = s.exos || [];
+      return [
+        q(s.nom), q(s.prenom), q(s.classe), q(s.coach||''),
+        q(s.wodIndex||1), q(s.wodTotal||1),
+        q(s.mode), q(s.duree||''), q(s.scoreLabel), q(s.niveau||''),
+        q(exos[0]||''), q(exos[0]?getNoteForExo(exos[0]):''),
+        q(exos[1]||''), q(exos[1]?getNoteForExo(exos[1]):''),
+        q(exos[2]||''), q(exos[2]?getNoteForExo(exos[2]):''),
+        q(s.ressentiWodNiveau||''), q(s.ressentiWodLabel||''), q(s.ressentiWodComment||''),
+        q(s.ressentiNiveau||''), q(s.ressentiLabel||''), q(s.ressentiCommentaire||''),
+        q(s.ts||''), q(s.date||'')
+      ].join(';');
     })
   ];
 
   const blob = new Blob(['\uFEFF' + rows.join('\n')], { type: 'text/csv;charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'classe_crosstraining_' + new Date().toISOString().slice(0,10) + '.csv';
-  a.click(); URL.revokeObjectURL(url);
-  showToast('CSV export\u00e9 (' + sorted.length + ' lignes)');
+  a.href = url;
+  a.download = fileName + '.csv';
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('CSV exporté — ' + sorted.length + ' lignes');
 }
 
 function profExportJSON() {
@@ -18562,6 +19713,7 @@ function profExportJSON() {
 </div>
 
 <button id="theme-toggle" onclick="toggleTheme()" title="Changer le thème">☀️</button>
+<button id="sound-toggle" onclick="cycleSoundMode()" title="Mode sonore">🔊</button>
 
 
 
