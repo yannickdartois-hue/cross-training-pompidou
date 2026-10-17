@@ -2,18 +2,17 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <!-- PWA -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="CrossTraining">
-  <meta name="theme-color" content="#178A3E" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0a0a0a"  media="(prefers-color-scheme: dark)">
-  <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIkVQUyBDcm9zcyBUcmFpbmluZyIsICJzaG9ydF9uYW1lIjogIkNyb3NzVHJhaW5pbmciLCAiZGVzY3JpcHRpb24iOiAiQXBwbGljYXRpb24gZCfDqXZhbHVhdGlvbiBXT0QgcG91ciBsJ0VQUyIsICJzdGFydF91cmwiOiAiLiIsICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLCAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLCAiYmFja2dyb3VuZF9jb2xvciI6ICIjRjRGNUY3IiwgInRoZW1lX2NvbG9yIjogIiMxNzhBM0UiLCAiaWNvbnMiOiBbeyJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxOTIgMTkyJyUzRSUzQ3JlY3Qgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIHJ4PSczMicgZmlsbD0nJTIzMTc4QTNFJy8lM0UlM0N0ZXh0IHg9Jzk2JyB5PScxMzAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdBcmlhbCBCbGFjaycgZm9udC1zaXplPScxMDAnIGZpbGw9J3doaXRlJyUzReKPsSUzQy90ZXh0JTNFJTNDL3N2ZyUzRSIsICJzaXplcyI6ICIxOTJ4MTkyIiwgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23178A3E'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-size='20' fill='white'%3E%E2%8F%B1%3C/text%3E%3C/svg%3E" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23178A3E'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-size='20' fill='white'%3E%E2%8F%B1%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Cross train.">
+<meta name="theme-color" content="#4b5563">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <!-- PWA -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>EPS Cross Training — Évaluation</title>
 <style>/* =============================================
    DESIGN V2 — HIÉRARCHIE VISUELLE
@@ -12817,6 +12816,13 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 /******/ ])["default"];
 });
 </script>
+
+<style id="appicon-css">.appicon{width:40px;height:40px;border-radius:9px;vertical-align:middle;margin:0 10px 0 0;box-shadow:0 1px 3px rgba(0,0,0,.25);flex:none;display:inline-block;object-fit:cover}
+.appicon.big{width:72px;height:72px;border-radius:16px;margin:0 auto 10px;display:block}
+.appicon.fill{width:100%;height:100%;margin:0;border-radius:inherit;box-shadow:none;display:block}
+.appicon.logoimg{width:46px;height:46px;margin:0;border-radius:12px}
+.test-banner{background:#facc15;color:#111;font:700 15px/1.3 system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:99999}
+@media print{.appicon,.test-banner{display:none!important}}</style>
 </head>
 <body>
 
@@ -12968,7 +12974,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
     <div style="position:absolute;top:-30px;right:-20px;width:120px;height:120px;background:radial-gradient(circle,rgba(123,47,190,.4) 0%,transparent 70%);pointer-events:none"></div>
     <div style="position:absolute;bottom:-10px;left:20px;width:80px;height:80px;background:radial-gradient(circle,rgba(33,118,174,.3) 0%,transparent 70%);pointer-events:none"></div>
     <div style="position:relative;padding:16px 16px 14px;display:flex;align-items:center;gap:14px">
-      <div style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;backdrop-filter:blur(4px)">🏋️</div>
+      <div style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;backdrop-filter:blur(4px);overflow:hidden"><img class="appicon fill" src="icon-192.png" alt="" width="40" height="40"></div>
       <div style="flex:1;min-width:0">
         <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:.3px;line-height:1">Cross Training</div>
         <div style="font-size:14px;font-weight:800;color:rgba(180,140,255,.95);letter-spacing:3px;text-transform:uppercase;line-height:1.3;margin-top:2px">Pompidou</div>
@@ -19741,5 +19747,6 @@ function profExportJSON() {
   </div>
 </div>
 <div id="toast"></div>
+<script>if('serviceWorker' in navigator&&location.protocol==='https:'){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
 </body>
 </html>
