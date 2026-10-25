@@ -2545,8 +2545,8 @@ body.dark-mode #chrono-header {
   #print-area th { background: #f0f0f0; font-weight: bold; }
   #print-area h2 { font-size: 14px; margin: 0 0 8px; }
   #print-area .print-meta { font-size: 10px; color: #666; margin-bottom: 12px; }
-}@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+}
+  :root[data-theme="dark"]{
     --bg:       #0f1117;
     --surface2: #1a1d27;
     --surface3: #22263a;
@@ -2556,7 +2556,7 @@ body.dark-mode #chrono-header {
     --text2:    #b0b8d0;
     --muted:    #6b7494;
   }
-}
+
 
 /* ── Étoiles ressenti séance ─────────────────────────── */
 .ressenti-star-btn.selected { opacity: 1 !important; color: #f1c40f; transform: scale(1.1); }
