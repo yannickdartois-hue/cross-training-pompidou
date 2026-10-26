@@ -147,7 +147,7 @@ body.dark-mode #chrono-header {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -212,14 +212,14 @@ body.dark-mode #chrono-header {
   font-variant-numeric: tabular-nums;
   transition: color var(--t-mid);
 }#phase-label {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--muted);
   transition: color var(--t-mid);
 }#cycle-display {
-  font-size: 14px;
+  font-size: max(14px,var(--fs-min,15px));
   font-weight: 900;
   color: var(--text2);
   letter-spacing: 0;
@@ -230,7 +230,7 @@ body.dark-mode #chrono-header {
   flex-direction: column;
   gap: 14px;
 }.info-row { display: flex; flex-direction: column; gap: 3px; }.info-label {
-  font-size: 8px;
+  font-size: max(8px,var(--fs-min,15px));
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--muted);
@@ -251,7 +251,7 @@ body.dark-mode #chrono-header {
   border: none;
   border-radius: 10px;
   font-family: inherit;
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -270,7 +270,7 @@ body.dark-mode #chrono-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 2.5px;
   text-transform: uppercase;
@@ -289,7 +289,7 @@ body.dark-mode #chrono-header {
 body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-fortime .section-title::before { background: var(--fortime); }body.mode-emom    .section-title::before { background: var(--emom); }body.mode-tabata  .section-title::before { background: var(--tabata); }/* Numéro de section */
 .section-num {
   margin-left: auto;
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 0.5px;
   background: var(--emom);
@@ -310,7 +310,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   gap: 6px;
   margin-bottom: 10px;
 }.input-group label {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text2);
@@ -351,7 +351,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   text-overflow: ellipsis;
   white-space: nowrap;
 }#profil-compact-edit {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   color: var(--muted);
   letter-spacing: 1px;
   flex-shrink: 0;
@@ -392,7 +392,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   opacity: 0;
   transition: opacity var(--t-mid);
 }.mode-btn .mode-sub {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1.5px;
   opacity: 0.6;
@@ -425,7 +425,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   padding: 10px 12px;
   margin-bottom: 8px;
 }.config-label {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -458,7 +458,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   border-radius: 8px;
   color: var(--text2);
   font-family: inherit;
-  font-size: 11px; font-weight: 700;
+  font-size: max(11px,var(--fs-min,15px)); font-weight: 700;
   padding: 10px 4px;
   cursor: pointer; text-align: center;
   -webkit-tap-highlight-color: transparent;
@@ -476,7 +476,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   border-radius: 10px;
   color: var(--text2);
   font-family: inherit;
-  font-size: 10px; font-weight: 700;
+  font-size: max(10px,var(--fs-min,15px)); font-weight: 700;
   padding: 10px 6px;
   cursor: pointer; text-align: center;
   line-height: 1.35;
@@ -508,7 +508,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   justify-content: space-between;
   margin-bottom: 12px;
 }.exo-card-name {
-  font-size: 13px; font-weight: 900;
+  font-size: max(13px,var(--fs-min,15px)); font-weight: 900;
   text-transform: uppercase; letter-spacing: 1px;
   color: var(--text);
 }.exo-remove {
@@ -517,7 +517,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   border-radius: 6px;
   background: transparent;
   color: var(--muted);
-  font-size: 14px;
+  font-size: max(14px,var(--fs-min,15px));
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: color var(--t-fast), border-color var(--t-fast);
@@ -525,7 +525,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   display: flex; align-items: center;
   justify-content: space-between;
 }.exo-param-label {
-  font-size: 9px; letter-spacing: 2px;
+  font-size: max(9px,var(--fs-min,15px)); letter-spacing: 2px;
   text-transform: uppercase; color: var(--text2);
   min-width: 56px; font-weight: 700;
 }/* Level buttons — carrés nets avec fond coloré actif */
@@ -536,7 +536,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   background: var(--surface2);
   color: var(--muted);
   font-family: inherit;
-  font-size: 11px; font-weight: 900;
+  font-size: max(11px,var(--fs-min,15px)); font-weight: 900;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: all var(--t-fast);
@@ -560,7 +560,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   border-radius: 10px;
   color: #000;
   font-family: inherit;
-  font-size: 14px; font-weight: 900;
+  font-size: max(14px,var(--fs-min,15px)); font-weight: 900;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   cursor: pointer;
@@ -580,7 +580,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   border-radius: 8px;
   color: var(--text2);
   font-family: inherit;
-  font-size: 10px; font-weight: 700;
+  font-size: max(10px,var(--fs-min,15px)); font-weight: 700;
   letter-spacing: 1px;
   padding: 8px 12px;
   cursor: pointer;
@@ -594,11 +594,11 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   display: flex; align-items: center;
   justify-content: space-between;
   gap: 10px;
-}.session-info { font-size: 13px; font-weight: 700; }.session-meta { font-size: 9px; color: var(--muted); margin-top: 3px; letter-spacing: 0.5px; }.session-wod {
-  font-size: 9px; font-weight: 900; letter-spacing: 1.5px;
+}.session-info { font-size: max(13px,var(--fs-min,15px)); font-weight: 700; }.session-meta { font-size: max(9px,var(--fs-min,15px)); color: var(--muted); margin-top: 3px; letter-spacing: 0.5px; }.session-wod {
+  font-size: max(9px,var(--fs-min,15px)); font-weight: 900; letter-spacing: 1.5px;
   padding: 5px 8px; border-radius: 5px; flex-shrink: 0;
   text-transform: uppercase;
-}.session-wod.amrap { background: rgba(232,114,12,.2);  color: var(--amrap);   border: 1px solid rgba(232,114,12,.3); }.session-wod.fortime { background: rgba(33,118,174,.2);  color: var(--fortime); border: 1px solid rgba(33,118,174,.3); }.session-wod.emom { background: rgba(123,47,190,.2);  color: var(--emom);    border: 1px solid rgba(123,47,190,.3); }.session-wod.tabata { background: rgba(29,185,84,.2);   color: var(--tabata);  border: 1px solid rgba(29,185,84,.3);  }.empty-history { color: var(--muted); font-size: 12px; text-align: center; padding: 24px 0; }/* ============================================
+}.session-wod.amrap { background: rgba(232,114,12,.2);  color: var(--amrap);   border: 1px solid rgba(232,114,12,.3); }.session-wod.fortime { background: rgba(33,118,174,.2);  color: var(--fortime); border: 1px solid rgba(33,118,174,.3); }.session-wod.emom { background: rgba(123,47,190,.2);  color: var(--emom);    border: 1px solid rgba(123,47,190,.3); }.session-wod.tabata { background: rgba(29,185,84,.2);   color: var(--tabata);  border: 1px solid rgba(29,185,84,.3);  }.empty-history { color: var(--muted); font-size: max(12px,var(--fs-min,15px)); text-align: center; padding: 24px 0; }/* ============================================
    TOAST
    ============================================ */
 #toast {
@@ -607,7 +607,7 @@ body.mode-amrap   .section-title::before { background: var(--amrap); }body.mode-
   transform: translateX(-50%) translateY(12px);
   background: var(--text);
   color: var(--bg);
-  font-size: 12px; font-weight: 900;
+  font-size: max(12px,var(--fs-min,15px)); font-weight: 900;
   letter-spacing: 1.5px;
   padding: 11px 22px;
   border-radius: 6px;
@@ -640,7 +640,7 @@ body.chrono-live.mode-emom #exo-cards { display: none !important; }/* Séparateu
 }.exo-card.tabata-done::before {
   content: '✓ Terminé';
   display: block;
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--tabata);
@@ -653,7 +653,7 @@ body.chrono-live.mode-emom #exo-cards { display: none !important; }/* Séparateu
 }.exo-card.tabata-next::before {
   content: '→ À VENIR';
   display: block;
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1.5px;
   color: var(--rest);
@@ -690,13 +690,13 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   margin-bottom: 10px;
   -webkit-tap-highlight-color: transparent;
 }.setup-toggle-label {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--muted);
 }.setup-chevron {
-  font-size: 12px;
+  font-size: max(12px,var(--fs-min,15px));
   color: var(--muted);
   transition: transform var(--t-mid);
   display: inline-block;
@@ -748,7 +748,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   transform-origin: center;
   display: inline-block;
 }.rep-tap-label {
-  font-size: 8px;
+  font-size: max(8px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -778,7 +778,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-right: none;
   color: var(--muted);
   font-family: inherit;
-  font-size: 14px;
+  font-size: max(14px,var(--fs-min,15px));
   font-weight: 900;
   cursor: pointer;
   display: flex;
@@ -793,7 +793,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   align-items: center;
   gap: 8px;
 }.exec-score-label {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -826,7 +826,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   gap: 6px;
   margin-bottom: 10px;
 }.live-rep-preview {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--muted);
   letter-spacing: 0.5px;
@@ -857,7 +857,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border);
 }.bilan-mode-tag {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -867,7 +867,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   font-weight: 900;
   line-height: 1.1;
 }.bilan-eleve {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   color: var(--text2);
   margin-top: 2px;
 }/* Bloc stat principal */
@@ -885,7 +885,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   justify-content: space-between;
   gap: 10px;
 }.bilan-stat-label {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -904,7 +904,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-radius: 10px;
   overflow: hidden;
 }.bilan-table-title {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -917,7 +917,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-top: 1px solid var(--border);
   gap: 10px;
 }.bilan-table-row:first-of-type { border-top: none; }.bilan-cycle-num {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--muted);
   min-width: 60px;
@@ -932,12 +932,12 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-radius: 3px;
   transition: width 0.4s ease;
 }.bilan-cycle-val {
-  font-size: 14px;
+  font-size: max(14px,var(--fs-min,15px));
   font-weight: 900;
   min-width: 48px;
   text-align: right;
 }.bilan-cycle-tag {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   padding: 3px 6px;
   border-radius: 4px;
@@ -958,7 +958,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1px;
   padding: 6px 12px;
@@ -974,7 +974,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border: 1px solid var(--border2);
   border-radius: 12px;
 }.bilan-qr-label {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -984,7 +984,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-radius: 8px;
   padding: 8px;
 }.bilan-qr-data {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   color: var(--muted);
   font-family: monospace;
   word-break: break-all;
@@ -1002,7 +1002,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border: none;
   border-radius: 10px;
   font-family: inherit;
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1035,7 +1035,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   letter-spacing: 1px;
   text-align: center;
 }.ressenti-modal-sub {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   color: var(--muted);
   text-align: center;
   letter-spacing: 0.5px;
@@ -1048,7 +1048,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   background: var(--tabata);
   color: #000;
   font-family: inherit;
-  font-size: 14px;
+  font-size: max(14px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1068,7 +1068,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-radius: 10px;
   color: var(--muted);
   font-family: inherit;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1082,7 +1082,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   background: rgba(255,149,0,.12);
   border-bottom: 2px solid rgba(255,149,0,.4);
   padding: 10px 16px;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1px;
   color: #ff9500;
@@ -1101,7 +1101,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
 }@keyframes shake {
   0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)}
 }.ressenti-title {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1128,7 +1128,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   touch-action: manipulation !important;
   opacity: 0.45;
 }.ressenti-emoji-btn span {
-  font-size: 8px;
+  font-size: max(8px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -1147,7 +1147,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-radius: 8px;
   color: var(--text);
   font-family: inherit;
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   padding: 10px 12px;
   resize: vertical;
   box-sizing: border-box;
@@ -1156,7 +1156,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   outline: none;
   border-color: var(--tabata);
 }.ressenti-textarea::placeholder { color: var(--muted); }.ressenti-required-hint {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   color: var(--muted);
   letter-spacing: 0.5px;
   text-align: right;
@@ -1171,7 +1171,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-radius: 10px;
   overflow: hidden;
 }.bilan-exos-title {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1190,7 +1190,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   justify-content: space-between;
   gap: 8px;
 }.bilan-exo-name {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1210,7 +1210,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   gap: 10px;
   flex-wrap: wrap;
 }.bilan-exo-chip {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 700;
   padding: 3px 8px;
   border-radius: 4px;
@@ -1248,7 +1248,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   border-radius: 1px;
   transform: translateX(-50%);
 }.bilan-exo-reps-label {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   min-width: 80px;
   text-align: right;
@@ -1273,7 +1273,7 @@ body.emom-zone-orange .exo-card.tabata-next::before {
   background: transparent;
   color: var(--muted);
   font-family: inherit;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1304,7 +1304,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   border-radius: 10px;
   color: var(--text);
   font-family: 'Courier New', monospace;
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 700;
   padding: 12px 14px;
   resize: none;
@@ -1320,7 +1320,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   border-radius: 10px;
   color: #fff;
   font-family: inherit;
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1342,7 +1342,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   font-size: 18px;
   font-weight: 900;
 }.prof-preview-meta {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   color: var(--text2);
   letter-spacing: 0.5px;
 }.prof-preview-score {
@@ -1351,18 +1351,18 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   gap: 6px;
   margin-top: 2px;
 }.prof-score-chip {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 5px;
   letter-spacing: 0.5px;
 }.prof-preview-error {
-  font-size: 12px;
+  font-size: max(12px,var(--fs-min,15px));
   color: var(--rest);
   font-weight: 700;
 }/* Tableau de classe */
 .prof-table-section { padding: 16px; }.prof-table-count {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   color: var(--muted);
   font-weight: 700;
   letter-spacing: 1px;
@@ -1373,7 +1373,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   flex-wrap: wrap;
   margin-bottom: 12px;
 }.prof-filter-btn {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 700;
   padding: 5px 10px;
   border-radius: 5px;
@@ -1401,18 +1401,18 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   gap: 10px;
   position: relative;
 }.prof-student-row:active { opacity: 0.7; }.prof-student-info { flex: 1; min-width: 0; }.prof-student-name {
-  font-size: 14px;
+  font-size: max(14px,var(--fs-min,15px));
   font-weight: 900;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }.prof-student-detail {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   color: var(--muted);
   margin-top: 2px;
   letter-spacing: 0.5px;
 }.prof-student-score {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   text-align: right;
   flex-shrink: 0;
@@ -1432,7 +1432,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   -webkit-tap-highlight-color: transparent;
 }.prof-student-delete:active { color: var(--rest); background: rgba(255,45,85,.1); }.prof-empty {
   color: var(--muted);
-  font-size: 12px;
+  font-size: max(12px,var(--fs-min,15px));
   text-align: center;
   padding: 28px 0;
   line-height: 1.8;
@@ -1449,7 +1449,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   background: var(--surface2);
   color: var(--text2);
   font-family: inherit;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1487,14 +1487,14 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   font-size: 20px;
   line-height: 1;
 }.smb-label {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 900;
   text-align: center;
   line-height: 1.3;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }.smb-sub {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -1509,7 +1509,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   border-radius: 8px;
   color: var(--muted);
   font-family: inherit;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 0.5px;
   text-align: center;
@@ -1532,7 +1532,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   border-radius: 8px;
   color: var(--muted);
   font-family: inherit;
-  font-size: 12px;
+  font-size: max(12px,var(--fs-min,15px));
   font-weight: 900;
   text-align: center;
   line-height: 1.4;
@@ -1555,7 +1555,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   border-radius: 10px;
   margin-bottom: 10px;
 }.amrap-tours-label {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1568,7 +1568,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   font-variant-numeric: tabular-nums;
   transition: transform 0.2s, color 0.2s;
 }.amrap-tours-unit {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   color: var(--muted);
   font-weight: 700;
 }/* Carte exo courant */
@@ -1588,7 +1588,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   letter-spacing: 1px;
   color: var(--text);
 }.amrap-seq-target {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--amrap);
   letter-spacing: 0.5px;
@@ -1620,7 +1620,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   border-radius: 8px;
   color: var(--muted);
   font-family: inherit;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
@@ -1643,7 +1643,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   letter-spacing: 1px;
   flex: 1;
 }#tabata-exo-progress {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--muted);
   letter-spacing: 1px;
@@ -1658,7 +1658,7 @@ body.mode-prof  #app-eleve { display: none; }body.mode-eleve #app-prof { display
   padding: 10px 14px;
   margin-top: 8px;
 }#next-exo-bar.visible { display: flex; }#next-exo-label {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1684,7 +1684,7 @@ body.mode-amrap-active #ring-container {
   width: var(--ring-size);   /* même taille que les autres modes */
   height: var(--ring-size);
   flex-shrink: 0;
-}body.mode-amrap-active #time-display { font-size: 28px; letter-spacing: -1px; }body.mode-amrap-active #phase-label { font-size: 8px; letter-spacing: 2px; }body.mode-amrap-active #cycle-display { display: none; }body.mode-amrap-active .info-value { font-size: 15px; }body.mode-amrap-active .info-label { font-size: 8px; }body.mode-amrap-active #chrono-info { gap: 8px; }body.mode-amrap-active #chrono-main { gap: 14px; }body.mode-amrap-active #chrono-header { padding: 10px 16px 10px; border-bottom-width: 2px; }body.mode-amrap-active #mode-badge { margin-bottom: 6px; font-size: 9px; padding: 3px 8px; }body.mode-amrap-active #chrono-buttons { margin-top: 8px; }body.mode-amrap-active .chrono-btn { height: 48px; }/* Masquer niveau pendant l'effort AMRAP */
+}body.mode-amrap-active #time-display { font-size: 28px; letter-spacing: -1px; }body.mode-amrap-active #phase-label { font-size: max(8px,var(--fs-min,15px)); letter-spacing: 2px; }body.mode-amrap-active #cycle-display { display: none; }body.mode-amrap-active .info-value { font-size: 15px; }body.mode-amrap-active .info-label { font-size: max(8px,var(--fs-min,15px)); }body.mode-amrap-active #chrono-info { gap: 8px; }body.mode-amrap-active #chrono-main { gap: 14px; }body.mode-amrap-active #chrono-header { padding: 10px 16px 10px; border-bottom-width: 2px; }body.mode-amrap-active #mode-badge { margin-bottom: 6px; font-size: max(9px,var(--fs-min,15px)); padding: 3px 8px; }body.mode-amrap-active #chrono-buttons { margin-top: 8px; }body.mode-amrap-active .chrono-btn { height: 48px; }/* Masquer niveau pendant l'effort AMRAP */
 body.mode-amrap-active .exo-setup-zone,
 body.mode-amrap-active .exo-toggle,
 body.mode-amrap-active .section:not(#section-exos-wrapper) {
@@ -1726,7 +1726,7 @@ body.emom-zone-green  #time-display { color: var(--tabata) !important; }body.emo
   justify-content: space-between;
   padding: 8px 12px;
   border-top: 1px solid var(--border);
-  font-size: 12px;
+  font-size: max(12px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--text2);
 }.emom-summary-score {
@@ -1749,7 +1749,7 @@ body.emom-zone-green  #time-display { color: var(--tabata) !important; }body.emo
   justify-content: space-between;
   gap: 8px;
 }.emom-exo-reps-name {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text2);
@@ -1773,13 +1773,13 @@ body.emom-zone-green  #time-display { color: var(--tabata) !important; }body.emo
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }.accordion-filiere-title {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text2);
 }.accordion-chevron {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   color: var(--muted);
   transition: transform var(--t-mid);
 }.accordion-chevron.open { transform: rotate(180deg); }/* Corps filière */
@@ -1797,7 +1797,7 @@ body.emom-zone-green  #time-display { color: var(--tabata) !important; }body.emo
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }.accordion-zone-title {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1837,7 +1837,7 @@ body.emom-zone-green  #time-display { color: var(--tabata) !important; }body.emo
   border-radius: 50%;
   flex-shrink: 0;
 }.exo-toggle-v2-name {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--muted);
   line-height: 1.3;
@@ -1859,7 +1859,7 @@ body.emom-zone-green  #time-display { color: var(--tabata) !important; }body.emo
   align-items: center;
   justify-content: space-between;
 }.fortime-palier-label {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1871,11 +1871,11 @@ body.emom-zone-green  #time-display { color: var(--tabata) !important; }body.emo
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }.fortime-palier-unit {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   color: var(--muted);
   font-weight: 700;
 }.fortime-progress {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--muted);
   letter-spacing: 1px;
@@ -1915,17 +1915,17 @@ body.emom-zone-green  #time-display { color: var(--tabata) !important; }body.emo
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--text2);
-}.fortime-split-reps { color: var(--fortime); min-width: 40px; }.fortime-split-time { font-variant-numeric: tabular-nums; }.fortime-split-delta { font-size: 9px; color: var(--muted); }/* EMOM +1 indicateur */
+}.fortime-split-reps { color: var(--fortime); min-width: 40px; }.fortime-split-time { font-variant-numeric: tabular-nums; }.fortime-split-delta { font-size: max(9px,var(--fs-min,15px)); color: var(--muted); }/* EMOM +1 indicateur */
 #emomplus-indicator {
   background: rgba(142,68,173,.12);
   border: 1px solid rgba(142,68,173,.3);
   border-radius: 8px;
   padding: 6px 12px;
   margin-top: 8px;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--emom);
   display: none;
@@ -1954,7 +1954,7 @@ body {
 }/* Boutons mode WOD — accents renforcés */
 .mode-btn.selected.amrap { box-shadow: 0 4px 16px rgba(212,96,10,.35); }.mode-btn.selected.fortime { box-shadow: 0 4px 16px rgba(21,96,168,.35); }.mode-btn.selected.emom { box-shadow: 0 4px 16px rgba(107,36,175,.35); }.mode-btn.selected.tabata { box-shadow: 0 4px 16px rgba(23,138,62,.35); }/* Section titles — plus visibles */
 .section-title {
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 900;
   color: var(--text2);
 }/* Valeurs importantes — texte pleine couleur */
@@ -2014,7 +2014,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   border: none;
   color: var(--text2);
   font-family: inherit;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -2032,7 +2032,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   border: 1px solid rgba(192,57,43,.25);
   border-radius: 8px;
   padding: 10px 12px;
-  font-size: 12px;
+  font-size: max(12px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--lv3);
   margin-top: 8px;
@@ -2100,7 +2100,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   color: var(--text);
   line-height: 1.3;
 }.confirm-body {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   color: var(--text2);
   text-align: center;
   line-height: 1.6;
@@ -2117,7 +2117,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   background: var(--lv3);
   color: #fff;
   font-family: inherit;
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -2132,7 +2132,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   background: transparent;
   color: var(--text2);
   font-family: inherit;
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
@@ -2150,9 +2150,9 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   }
   #chrono-main    { gap: 8px; }
   #time-display   { font-size: 22px; }
-  .chrono-btn     { height: 44px; font-size: 10px; }
-  #mode-badge     { font-size: 9px; padding: 3px 8px; }
-  .mode-btn       { height: 54px; font-size: 11px; }
+  .chrono-btn     { height: 44px; font-size: max(10px,var(--fs-min,15px)); }
+  #mode-badge     { font-size: max(9px,var(--fs-min,15px)); padding: 3px 8px; }
+  .mode-btn       { height: 54px; font-size: max(11px,var(--fs-min,15px)); }
   .accordion-exo-grid { grid-template-columns: 1fr 1fr; }
   .counter-btn    { width: 38px; height: 38px; font-size: 18px; }
   .mini-counter .counter-btn { width: 30px; height: 30px; font-size: 16px; }
@@ -2179,7 +2179,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   }
 
   /* Boutons plus grands (zone de tap) */
-  .chrono-btn         { height: 60px; font-size: 14px; }
+  .chrono-btn         { height: 60px; font-size: max(14px,var(--fs-min,15px)); }
   .counter-btn        { width: 54px; height: 54px; }
   .amrap-seq-validate-btn { height: 72px; font-size: 18px; }
   .fortime-next-btn   { height: 72px; font-size: 18px; }
@@ -2196,7 +2196,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
 
   /* Section switcher mode prof/élève */
   #mode-switcher      { margin: 14px 16px 0; }
-  .mode-switch-btn    { height: 46px; font-size: 12px; }
+  .mode-switch-btn    { height: 46px; font-size: max(12px,var(--fs-min,15px)); }
 }/* Grande tablette / iPad Pro 1024px+ */
 @media (min-width: 1024px) {
   #app-eleve, #app-prof {
@@ -2265,7 +2265,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: 8px;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--text2);
   letter-spacing: 0.5px;
@@ -2274,7 +2274,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   gap: 5px;
   flex-wrap: wrap;
 }.seance-wod-chip {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 900;
   padding: 3px 8px;
   border-radius: 4px;
@@ -2289,7 +2289,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   border-radius: 10px;
   color: #fff;
   font-family: inherit;
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -2306,7 +2306,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   border-radius: 10px;
   color: #fff;
   font-family: inherit;
-  font-size: 14px;
+  font-size: max(14px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -2325,7 +2325,7 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   justify-content: space-between;
   gap: 10px;
 }.bilan-seance-wod-num {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   font-weight: 700;
   color: var(--muted);
   letter-spacing: 2px;
@@ -2334,15 +2334,15 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
 }.bilan-seance-wod-info {
   flex: 1;
 }.bilan-seance-wod-type {
-  font-size: 14px;
+  font-size: max(14px,var(--fs-min,15px));
   font-weight: 900;
   letter-spacing: 1px;
 }.bilan-seance-wod-score {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   color: var(--text2);
   margin-top: 2px;
 }.bilan-seance-wod-exos {
-  font-size: 9px;
+  font-size: max(9px,var(--fs-min,15px));
   color: var(--muted);
   margin-top: 3px;
 }/* Export CSV dans le bilan */
@@ -2405,13 +2405,13 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   line-height: 1;
   flex-shrink: 0;
 }.aide-section-title {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 1px;
   flex: 1;
 }.aide-section-chevron {
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   color: var(--muted);
   transition: transform var(--t-mid);
 }.aide-section-chevron.open { transform: rotate(180deg); }.aide-section-body {
@@ -2421,13 +2421,13 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   background: var(--surface);
 }.aide-section-body.open { display: block; }/* Contenu aide */
 .aide-p {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   color: var(--text2);
   line-height: 1.7;
   margin-bottom: 10px;
 }.aide-p:last-child { margin-bottom: 0; }.aide-tag {
   display: inline-block;
-  font-size: 10px;
+  font-size: max(10px,var(--fs-min,15px));
   font-weight: 900;
   padding: 2px 8px;
   border-radius: 4px;
@@ -2444,13 +2444,13 @@ body.mode-amrap-active   #btn-start:not(.paused) { background: var(--amrap);   c
   border-radius: 50%;
   background: var(--emom);
   color: #fff;
-  font-size: 11px;
+  font-size: max(11px,var(--fs-min,15px));
   font-weight: 900;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
 }.aide-step-text {
-  font-size: 13px;
+  font-size: max(13px,var(--fs-min,15px));
   color: var(--text2);
   line-height: 1.6;
   flex: 1;
@@ -2504,7 +2504,7 @@ body.dark-mode #chrono-header {
   padding: 18px 20px 16px;
 }
 #note-exec-popup .nep-label {
-  font-size: 10px; color: rgba(180,140,255,.8);
+  font-size: max(10px,var(--fs-min,15px)); color: rgba(180,140,255,.8);
   letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
   margin-bottom: 8px;
 }
@@ -2528,12 +2528,12 @@ body.dark-mode #chrono-header {
 #note-exec-popup .nep-btn[data-n="3"].lit { background:#f1c40f; border-color:#f1c40f; color:#000; transform:scale(1.08); }
 #note-exec-popup .nep-btn[data-n="4"].lit { background:#2ecc71; border-color:#2ecc71; color:#fff; transform:scale(1.08); }
 #note-exec-popup .nep-star-label {
-  font-size: 12px; color: var(--muted); min-height: 16px; margin-bottom: 14px;
+  font-size: max(12px,var(--fs-min,15px)); color: var(--muted); min-height: 16px; margin-bottom: 14px;
 }
 #note-exec-popup .nep-skip {
   background: transparent; border: 1px solid var(--border2);
   border-radius: 8px; color: var(--muted); padding: 7px 20px;
-  font-size: 12px; cursor: pointer; font-family: inherit;
+  font-size: max(12px,var(--fs-min,15px)); cursor: pointer; font-family: inherit;
   touch-action: manipulation; width: 100%;
 }
 /* ── Styles impression PDF ─────────────────────── */
@@ -2566,7 +2566,7 @@ body.dark-mode #chrono-header {
 #ressenti-seance-overlay.visible { display: flex !important; }
 
 /* ── Adaptations Galaxy Tab (Android tablet) ─────────────── */
-body.platform-android .chrono-btn   { height: 56px; font-size: 14px; }
+body.platform-android .chrono-btn   { height: 56px; font-size: max(14px,var(--fs-min,15px)); }
 body.platform-android .nep-btn      { width: 68px; height: 68px; font-size: 24px; }
 body.platform-android .mode-btn     { padding: 14px 10px; }
 body.platform-android .ressenti-emoji-btn { width: 52px; height: 52px; font-size: 26px; }
@@ -2670,7 +2670,7 @@ body.chrono-live.mode-tabata #chrono-buttons {
 body.chrono-live.mode-tabata .chrono-btn {
   height: 28px !important;
   flex: 0 0 80px !important;
-  font-size: 10px !important;
+  font-size: max(10px,var(--fs-min,15px)) !important;
   font-weight: 700;
   letter-spacing: 0.5px;
   border-radius: 8px !important;
@@ -2698,7 +2698,7 @@ body.chrono-live.mode-tabata #chrono-header .tabata-footer {
 /* Modifier profil compact en TABATA */
 body.chrono-live.mode-tabata #btn-modifier {
   height: 28px !important;
-  font-size: 9px !important;
+  font-size: max(9px,var(--fs-min,15px)) !important;
   margin-top: 3px !important;
   opacity: 0.5;
   padding: 0 10px !important;
@@ -2706,7 +2706,7 @@ body.chrono-live.mode-tabata #btn-modifier {
 /* Signature encore plus petite */
 body.chrono-live.mode-tabata #chrono-header > div[style*="text-align:center"] {
   margin-top: 2px !important;
-  font-size: 9px !important;
+  font-size: max(9px,var(--fs-min,15px)) !important;
 }
 
 </style>
@@ -12823,6 +12823,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 .appicon.logoimg{width:46px;height:46px;margin:0;border-radius:12px}
 .test-banner{background:#facc15;color:#111;font:700 15px/1.3 system-ui,sans-serif;text-align:center;padding:8px 12px;position:relative;z-index:99999}
 @media print{.appicon,.test-banner{display:none!important}}</style>
+<style>/* Lisibilité terrain : textes à 15 px minimum à l'écran ; tailles d'origine à l'impression. */@media print{:root{--fs-min:0px}}</style>
 </head>
 <body>
 
@@ -12831,7 +12832,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
   <!-- Caché — le switch se fait via le bouton PROF dans le header -->
   <button class="mode-switch-btn active" id="btn-mode-eleve" onclick="switchMode('eleve')">◉ Mode Élève</button>
   <button class="mode-switch-btn" id="btn-mode-prof" onclick="switchMode('prof')">⊞ Mode Prof</button>
-  <button id="btn-install-pwa" class="mode-switch-btn" style="display:none;flex:0 0 auto;font-size:10px;padding:0 10px" onclick="installPWA()">⬇ Installer</button>
+  <button id="btn-install-pwa" class="mode-switch-btn" style="display:none;flex:0 0 auto;font-size:max(10px,var(--fs-min,15px));padding:0 10px" onclick="installPWA()">⬇ Installer</button>
 </div>
 
 <!-- ══ APP PROF ══ -->
@@ -12842,11 +12843,11 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
     <div style="display:flex;align-items:center;gap:10px">
       <div style="font-size:22px">⊞</div>
       <div>
-        <div style="font-size:14px;font-weight:900;color:#fff;letter-spacing:1px">MODE PROFESSEUR</div>
-        <div style="font-size:10px;color:rgba(58,159,224,.8);letter-spacing:2px;text-transform:uppercase">Cross Training Pompidou</div>
+        <div style="font-size:max(14px,var(--fs-min,15px));font-weight:900;color:#fff;letter-spacing:1px">MODE PROFESSEUR</div>
+        <div style="font-size:max(10px,var(--fs-min,15px));color:rgba(58,159,224,.8);letter-spacing:2px;text-transform:uppercase">Cross Training Pompidou</div>
       </div>
     </div>
-    <button onclick="switchMode('eleve')" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;color:#fff;font-family:inherit;font-size:10px;font-weight:700;letter-spacing:1px;padding:6px 14px;cursor:pointer;touch-action:manipulation">
+    <button onclick="switchMode('eleve')" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;color:#fff;font-family:inherit;font-size:max(10px,var(--fs-min,15px));font-weight:700;letter-spacing:1px;padding:6px 14px;cursor:pointer;touch-action:manipulation">
       ← ÉLÈVE
     </button>
   </div>
@@ -12855,7 +12856,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
   <div id="prof-scan-flash" style="display:none;position:fixed;inset:0;z-index:9000;pointer-events:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;background:rgba(29,185,84,.15)">
     <div style="font-size:80px;animation:popIn .3s ease">✅</div>
     <div id="prof-flash-name" style="font-size:20px;font-weight:900;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);text-align:center;padding:0 20px"></div>
-    <div id="prof-flash-score" style="font-size:13px;color:rgba(255,255,255,.8);text-align:center"></div>
+    <div id="prof-flash-score" style="font-size:max(13px,var(--fs-min,15px));color:rgba(255,255,255,.8);text-align:center"></div>
   </div>
 
   <!-- Section scan -->
@@ -12864,18 +12865,18 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
     <!-- Compteur en direct -->
     <div style="background:linear-gradient(135deg,#0a1628,#1a2744);border-radius:16px;padding:16px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(58,159,224,.2)">
       <div>
-        <div style="font-size:11px;color:rgba(58,159,224,.7);letter-spacing:2px;font-weight:700;text-transform:uppercase">Élèves scannés</div>
+        <div style="font-size:max(11px,var(--fs-min,15px));color:rgba(58,159,224,.7);letter-spacing:2px;font-weight:700;text-transform:uppercase">Élèves scannés</div>
         <div id="prof-scan-count" style="font-size:48px;font-weight:900;color:#fff;line-height:1">0</div>
       </div>
       <div style="text-align:right">
-        <div style="font-size:11px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Dernière détection</div>
-        <div id="prof-last-scan" style="font-size:12px;color:rgba(58,159,224,.9);font-weight:700">—</div>
+        <div style="font-size:max(11px,var(--fs-min,15px));color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">Dernière détection</div>
+        <div id="prof-last-scan" style="font-size:max(12px,var(--fs-min,15px));color:rgba(58,159,224,.9);font-weight:700">—</div>
       </div>
     </div>
 
     <!-- Méthode de scan -->
     <div>
-      <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Méthode de scan</div>
+      <div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Méthode de scan</div>
       <div id="scan-method-picker" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
         <button class="scan-method-btn" id="smb-android" onclick="setScanMethod('android')">
           <span class="smb-icon">▶</span>
@@ -12900,18 +12901,18 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
           <div style="width:60%;aspect-ratio:1;border:3px solid #2ecc71;border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.5)"></div>
         </div>
-        <div id="scan-status" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);color:#aaa;font-size:11px;font-weight:700;letter-spacing:1.5px;padding:6px 16px;border-radius:20px;white-space:nowrap">
+        <div id="scan-status" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);color:#aaa;font-size:max(11px,var(--fs-min,15px));font-weight:700;letter-spacing:1.5px;padding:6px 16px;border-radius:20px;white-space:nowrap">
           POINTEZ VERS UN QR CODE
         </div>
       </div>
-      <button onclick="stopScan()" style="width:100%;margin-top:8px;padding:12px;background:rgba(255,45,85,.15);border:1.5px solid var(--rest);border-radius:10px;color:var(--rest);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation">
+      <button onclick="stopScan()" style="width:100%;margin-top:8px;padding:12px;background:rgba(255,45,85,.15);border:1.5px solid var(--rest);border-radius:10px;color:var(--rest);font-family:inherit;font-size:max(13px,var(--fs-min,15px));font-weight:700;cursor:pointer;touch-action:manipulation">
         ⬛ Arrêter le scan
       </button>
     </div>
 
     <!-- Zone scan iOS -->
     <div id="scan-zone-ios" style="display:none">
-      <label style="display:flex;width:100%;height:80px;background:var(--surface2);border:2px dashed var(--fortime);border-radius:14px;align-items:center;justify-content:center;gap:12px;cursor:pointer;font-size:14px;font-weight:700;color:var(--fortime);box-sizing:border-box">
+      <label style="display:flex;width:100%;height:80px;background:var(--surface2);border:2px dashed var(--fortime);border-radius:14px;align-items:center;justify-content:center;gap:12px;cursor:pointer;font-size:max(14px,var(--fs-min,15px));font-weight:700;color:var(--fortime);box-sizing:border-box">
         <span style="font-size:28px">📷</span> Scanner le QR Code
         <input type="file" accept="image/*" capture="environment" id="ios-photo-input" style="display:none" onchange="profDecodePhoto(this)">
       </label>
@@ -12924,7 +12925,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
         placeholder="Coller le texte du QR Code ici…"
         rows="3" autocomplete="off" autocorrect="off" spellcheck="false"></textarea>
       <button onclick="profParseAndAdd(document.getElementById('prof-paste').value)"
-        style="width:100%;padding:14px;background:var(--fortime);border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;touch-action:manipulation;margin-top:6px">
+        style="width:100%;padding:14px;background:var(--fortime);border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:max(14px,var(--fs-min,15px));font-weight:900;cursor:pointer;touch-action:manipulation;margin-top:6px">
         ✓ Analyser &amp; Ajouter
       </button>
     </div>
@@ -12935,8 +12936,8 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
     <!-- Liste élèves -->
     <div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase">Liste de classe</div>
-        <div id="prof-table-count" style="font-size:11px;color:var(--fortime);font-weight:700"></div>
+        <div style="font-size:max(11px,var(--fs-min,15px));font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase">Liste de classe</div>
+        <div id="prof-table-count" style="font-size:max(11px,var(--fs-min,15px));color:var(--fortime);font-weight:700"></div>
       </div>
       <div class="prof-filters" id="prof-filters" style="margin-bottom:8px"></div>
       <div id="prof-student-list"></div>
@@ -12949,9 +12950,9 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
         ⬇ EXPORTER LA LISTE CSV
       </button>
       <div style="display:flex;gap:8px;margin-top:8px">
-        <button onclick="profExportPDF()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid var(--fortime);border-radius:10px;color:var(--fortime);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation">🖨 PDF</button>
-        <button onclick="profExportJSON()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation">{ } JSON</button>
-        <button onclick="profClearAll()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid rgba(255,45,85,.3);border-radius:10px;color:var(--rest);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation">✕ Vider</button>
+        <button onclick="profExportPDF()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid var(--fortime);border-radius:10px;color:var(--fortime);font-family:inherit;font-size:max(12px,var(--fs-min,15px));font-weight:700;cursor:pointer;touch-action:manipulation">🖨 PDF</button>
+        <button onclick="profExportJSON()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:max(12px,var(--fs-min,15px));font-weight:700;cursor:pointer;touch-action:manipulation">{ } JSON</button>
+        <button onclick="profClearAll()" style="flex:1;padding:12px;background:var(--surface2);border:1px solid rgba(255,45,85,.3);border-radius:10px;color:var(--rest);font-family:inherit;font-size:max(12px,var(--fs-min,15px));font-weight:700;cursor:pointer;touch-action:manipulation">✕ Vider</button>
       </div>
     </div>
 
@@ -12977,11 +12978,11 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
       <div style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;backdrop-filter:blur(4px);overflow:hidden"><img class="appicon fill" src="icon-192.png" alt="" width="40" height="40"></div>
       <div style="flex:1;min-width:0">
         <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:.3px;line-height:1">Cross Training</div>
-        <div style="font-size:14px;font-weight:800;color:rgba(180,140,255,.95);letter-spacing:3px;text-transform:uppercase;line-height:1.3;margin-top:2px">Pompidou</div>
+        <div style="font-size:max(14px,var(--fs-min,15px));font-weight:800;color:rgba(180,140,255,.95);letter-spacing:3px;text-transform:uppercase;line-height:1.3;margin-top:2px">Pompidou</div>
       </div>
       <!-- Bouton prof discret -->
       <button onclick="switchMode('prof')" id="btn-header-prof"
-        style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;color:rgba(255,255,255,.6);font-family:inherit;font-size:10px;font-weight:700;letter-spacing:1px;padding:5px 10px;cursor:pointer;touch-action:manipulation;white-space:nowrap">
+        style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;color:rgba(255,255,255,.6);font-family:inherit;font-size:max(10px,var(--fs-min,15px));font-weight:700;letter-spacing:1px;padding:5px 10px;cursor:pointer;touch-action:manipulation;white-space:nowrap">
         ⊞ PROF
       </button>
     </div>
@@ -13046,8 +13047,8 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
     <!-- Signature discrète -->
     <div style="text-align:center;margin-top:6px;opacity:0.55;pointer-events:none;user-select:none">
-      <span style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text2)">Cross Training</span>
-      <span style="font-size:9px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2)"> · Pompidou</span>
+      <span style="font-size:max(9px,var(--fs-min,15px));font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--text2)">Cross Training</span>
+      <span style="font-size:max(9px,var(--fs-min,15px));font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--text2)"> · Pompidou</span>
     </div>
 
     <!-- Bouton modifier visible pendant le WOD -->
@@ -13078,7 +13079,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
       </button>
 
       <!-- Bouton pas terminé -->
-      <button id="emom-seq-fail-btn" onclick="emomSequenceFail()" style="display:none;width:100%;height:40px;margin-top:6px;background:transparent;border:1.5px solid var(--rest);border-radius:10px;color:var(--rest);font-family:inherit;font-size:12px;font-weight:700;letter-spacing:1px;cursor:pointer;touch-action:manipulation">
+      <button id="emom-seq-fail-btn" onclick="emomSequenceFail()" style="display:none;width:100%;height:40px;margin-top:6px;background:transparent;border:1.5px solid var(--rest);border-radius:10px;color:var(--rest);font-family:inherit;font-size:max(12px,var(--fs-min,15px));font-weight:700;letter-spacing:1px;cursor:pointer;touch-action:manipulation">
         ✗ Pas terminé dans la minute
       </button>
 
@@ -13150,21 +13151,21 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
   <div class="section" id="section-profil">
     <div class="section-title" style="display:flex;align-items:center;justify-content:space-between">
       <span>Profils Élèves<span class="section-num">01</span></span>
-      <button onclick="fillTestProfile()" style="font-size:9px;font-weight:700;color:var(--muted);background:transparent;border:1px dashed var(--border2);border-radius:6px;padding:3px 8px;cursor:pointer;letter-spacing:1px;touch-action:manipulation;font-family:inherit">DEMO</button>
+      <button onclick="fillTestProfile()" style="font-size:max(9px,var(--fs-min,15px));font-weight:700;color:var(--muted);background:transparent;border:1px dashed var(--border2);border-radius:6px;padding:3px 8px;cursor:pointer;letter-spacing:1px;touch-action:manipulation;font-family:inherit">DEMO</button>
     </div>
 
     <!-- Indicateur joueur actif -->
     <div id="binome-active-bar" style="display:none;margin-bottom:10px;border-radius:10px;padding:8px 14px;display:flex;align-items:center;justify-content:space-between">
-      <span id="binome-active-label" style="font-size:13px;font-weight:900;color:#fff"></span>
-      <span id="binome-active-wods" style="font-size:11px;color:rgba(255,255,255,.7)"></span>
+      <span id="binome-active-label" style="font-size:max(13px,var(--fs-min,15px));font-weight:900;color:#fff"></span>
+      <span id="binome-active-wods" style="font-size:max(11px,var(--fs-min,15px));color:rgba(255,255,255,.7)"></span>
     </div>
 
     <!-- Élève A -->
     <div id="profil-A-block" style="margin-bottom:10px">
-      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px">
-        <span style="background:var(--amrap);color:#fff;border-radius:6px;padding:2px 8px;font-size:10px">A</span>
+      <div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+        <span style="background:var(--amrap);color:#fff;border-radius:6px;padding:2px 8px;font-size:max(10px,var(--fs-min,15px))">A</span>
         <span style="color:var(--amrap)">Élève A</span>
-        <span id="profil-A-wod-count" style="font-size:10px;color:var(--muted)"></span>
+        <span id="profil-A-wod-count" style="font-size:max(10px,var(--fs-min,15px));color:var(--muted)"></span>
       </div>
       <div class="inputs-row">
         <div class="input-group">
@@ -13180,10 +13181,10 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
     <!-- Élève B -->
     <div id="profil-B-block">
-      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px">
-        <span style="background:var(--emom);color:#fff;border-radius:6px;padding:2px 8px;font-size:10px">B</span>
+      <div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+        <span style="background:var(--emom);color:#fff;border-radius:6px;padding:2px 8px;font-size:max(10px,var(--fs-min,15px))">B</span>
         <span style="color:var(--emom)">Élève B <span style="color:var(--muted);font-weight:400">(optionnel)</span></span>
-        <span id="profil-B-wod-count" style="font-size:10px;color:var(--muted)"></span>
+        <span id="profil-B-wod-count" style="font-size:max(10px,var(--fs-min,15px));color:var(--muted)"></span>
       </div>
       <div class="inputs-row">
         <div class="input-group">
@@ -13231,11 +13232,11 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
     <div class="mode-grid" style="grid-template-columns:1fr 1fr;margin-top:8px">
       <button class="mode-btn emom" onclick="selectMode('EMOM')">
         <span class="mode-label">EMOM</span>
-        <span class="mode-sub" style="font-size:9px;letter-spacing:1px">= FIXE / MIN</span>
+        <span class="mode-sub" style="font-size:max(9px,var(--fs-min,15px));letter-spacing:1px">= FIXE / MIN</span>
       </button>
       <button class="mode-btn emom-plus" onclick="selectMode('EMOM+1')">
-        <span class="mode-label" style="font-size:12px;letter-spacing:2px">EMOM <span class="emom-plus-one">+1</span></span>
-        <span class="mode-sub" style="font-size:9px;letter-spacing:1px">↗ +1 REP / MIN</span>
+        <span class="mode-label" style="font-size:max(12px,var(--fs-min,15px));letter-spacing:2px">EMOM <span class="emom-plus-one">+1</span></span>
+        <span class="mode-sub" style="font-size:max(9px,var(--fs-min,15px));letter-spacing:1px">↗ +1 REP / MIN</span>
       </button>
     </div>
 
@@ -13263,16 +13264,16 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
   <!-- ==================== HISTORIQUE ==================== -->
   <div id="history-section">
     <div class="history-header">
-      <div class="section-title" style="margin:0">Sessions enregistrées <span id="session-count" style="font-size:11px;color:var(--muted);font-weight:400"></span></div>
+      <div class="section-title" style="margin:0">Sessions enregistrées <span id="session-count" style="font-size:max(11px,var(--fs-min,15px));color:var(--muted);font-weight:400"></span></div>
       <div style="display:flex;gap:8px">
         <button id="btn-export" onclick="exportCSV()">⬇ CSV</button>
-        <button id="btn-export-csv" onclick="exportCSV()" style="background:var(--surface2);border:1px solid var(--emom);border-radius:8px;color:var(--emom);font-family:inherit;font-size:11px;font-weight:700;letter-spacing:1px;padding:8px 12px;cursor:pointer;">⬇ CSV</button>
-        <button id="btn-clear-history" onclick="clearHistory()" style="background:var(--surface2);border:1px solid #c0392b;border-radius:8px;color:#c0392b;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:1px;padding:8px 12px;cursor:pointer;">✕ Effacer</button>
+        <button id="btn-export-csv" onclick="exportCSV()" style="background:var(--surface2);border:1px solid var(--emom);border-radius:8px;color:var(--emom);font-family:inherit;font-size:max(11px,var(--fs-min,15px));font-weight:700;letter-spacing:1px;padding:8px 12px;cursor:pointer;">⬇ CSV</button>
+        <button id="btn-clear-history" onclick="clearHistory()" style="background:var(--surface2);border:1px solid #c0392b;border-radius:8px;color:#c0392b;font-family:inherit;font-size:max(11px,var(--fs-min,15px));font-weight:700;letter-spacing:1px;padding:8px 12px;cursor:pointer;">✕ Effacer</button>
       </div>
     </div>
     <input id="history-filter" type="text" placeholder="Filtrer par nom, prénom, classe…"
       oninput="renderHistory()"
-      style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface3);color:var(--text);font-family:inherit;font-size:13px;outline:none">
+      style="width:100%;box-sizing:border-box;margin:8px 0;padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface3);color:var(--text);font-family:inherit;font-size:max(13px,var(--fs-min,15px));outline:none">
     <div id="history-list"></div>
   </div>
 
@@ -13289,9 +13290,9 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
   <div id="ressenti-modal">
     <!-- Bandeau coloré selon type : wod (coloré) ou séance (étoiles) -->
     <div id="ressenti-header-band" style="border-radius:14px 14px 0 0;padding:14px 16px 12px;margin:-20px -20px 16px;background:var(--amrap)">
-      <div id="ressenti-type-label" style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:2px">Ressenti WOD</div>
+      <div id="ressenti-type-label" style="font-size:max(10px,var(--fs-min,15px));font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:2px">Ressenti WOD</div>
       <div id="ressenti-modal-title" style="font-size:18px;font-weight:900;color:#fff">😓 Comment tu te sens ?</div>
-      <div id="ressenti-modal-sub" style="font-size:11px;color:rgba(255,255,255,.8);margin-top:2px">Sélectionne ton ressenti avant de voir le bilan</div>
+      <div id="ressenti-modal-sub" style="font-size:max(11px,var(--fs-min,15px));color:rgba(255,255,255,.8);margin-top:2px">Sélectionne ton ressenti avant de voir le bilan</div>
     </div>
     <div class="ressenti-emojis" id="ressenti-modal-emojis">
       <button class="ressenti-emoji-btn lv1" data-lv="1" onclick="selectRessenti(1)">😩<span>Épuisé</span></button>
@@ -13316,16 +13317,16 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
     <!-- Bandeau header -->
     <div style="background:linear-gradient(135deg,#1a0533,#2d1060);border-radius:18px 18px 0 0;padding:18px 20px 16px;text-align:center">
-      <div style="font-size:10px;font-weight:700;color:rgba(180,140,255,.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Ressenti de séance</div>
+      <div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:rgba(180,140,255,.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Ressenti de séance</div>
       <div style="font-size:22px;font-weight:900;color:#fff;margin-bottom:4px">🏆 Comment tu t'es senti ?</div>
-      <div id="ressenti-seance-nb" style="font-size:12px;color:rgba(255,255,255,.55)">— WODs réalisés</div>
+      <div id="ressenti-seance-nb" style="font-size:max(12px,var(--fs-min,15px));color:rgba(255,255,255,.55)">— WODs réalisés</div>
     </div>
 
     <div style="padding:20px">
 
       <!-- Section 1 : Étoiles (note globale) -->
       <div style="margin-bottom:20px">
-        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Note globale</div>
+        <div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Note globale</div>
         <div style="display:flex;justify-content:center;gap:6px;margin-bottom:4px">
           <button class="ressenti-star-btn" data-lv="1" onclick="selectRessentiSeance(1)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
           <button class="ressenti-star-btn" data-lv="2" onclick="selectRessentiSeance(2)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
@@ -13333,7 +13334,7 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
           <button class="ressenti-star-btn" data-lv="4" onclick="selectRessentiSeance(4)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
           <button class="ressenti-star-btn" data-lv="5" onclick="selectRessentiSeance(5)" style="font-size:36px;background:none;border:none;cursor:pointer;color:#f1c40f;opacity:.25;transition:all .15s;touch-action:manipulation">★</button>
         </div>
-        <div id="ressenti-seance-star-label" style="text-align:center;font-size:12px;color:var(--muted);min-height:16px"></div>
+        <div id="ressenti-seance-star-label" style="text-align:center;font-size:max(12px,var(--fs-min,15px));color:var(--muted);min-height:16px"></div>
       </div>
 
       <!-- Séparateur -->
@@ -13341,27 +13342,27 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
       <!-- Section 2 : Fatigue (smileys) -->
       <div style="margin-bottom:20px">
-        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Niveau de fatigue</div>
+        <div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Niveau de fatigue</div>
         <div style="display:flex;justify-content:space-between;gap:4px">
           <button class="ressenti-fatigue-btn" data-lv="1" onclick="selectFatigueSeance(1)"
             style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
-            <span style="font-size:24px">😩</span><span style="font-size:8px;color:var(--muted);font-weight:700">Épuisé</span>
+            <span style="font-size:24px">😩</span><span style="font-size:max(8px,var(--fs-min,15px));color:var(--muted);font-weight:700">Épuisé</span>
           </button>
           <button class="ressenti-fatigue-btn" data-lv="2" onclick="selectFatigueSeance(2)"
             style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
-            <span style="font-size:24px">😓</span><span style="font-size:8px;color:var(--muted);font-weight:700">Fatigué</span>
+            <span style="font-size:24px">😓</span><span style="font-size:max(8px,var(--fs-min,15px));color:var(--muted);font-weight:700">Fatigué</span>
           </button>
           <button class="ressenti-fatigue-btn" data-lv="3" onclick="selectFatigueSeance(3)"
             style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
-            <span style="font-size:24px">😐</span><span style="font-size:8px;color:var(--muted);font-weight:700">Moyen</span>
+            <span style="font-size:24px">😐</span><span style="font-size:max(8px,var(--fs-min,15px));color:var(--muted);font-weight:700">Moyen</span>
           </button>
           <button class="ressenti-fatigue-btn" data-lv="4" onclick="selectFatigueSeance(4)"
             style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
-            <span style="font-size:24px">🙂</span><span style="font-size:8px;color:var(--muted);font-weight:700">Léger</span>
+            <span style="font-size:24px">🙂</span><span style="font-size:max(8px,var(--fs-min,15px));color:var(--muted);font-weight:700">Léger</span>
           </button>
           <button class="ressenti-fatigue-btn" data-lv="5" onclick="selectFatigueSeance(5)"
             style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border-radius:10px;border:2px solid transparent;background:var(--surface3);cursor:pointer;touch-action:manipulation;transition:all .15s">
-            <span style="font-size:24px">😄</span><span style="font-size:8px;color:var(--muted);font-weight:700">En forme</span>
+            <span style="font-size:24px">😄</span><span style="font-size:max(8px,var(--fs-min,15px));color:var(--muted);font-weight:700">En forme</span>
           </button>
         </div>
       </div>
@@ -13371,10 +13372,10 @@ function findAlignmentPattern(matrix, alignmentPatternQuads, topRight, topLeft, 
 
       <!-- Section 3 : Commentaire -->
       <div style="margin-bottom:16px">
-        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">Commentaire</div>
+        <div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">Commentaire</div>
         <textarea id="ressenti-seance-commentaire" placeholder="Bilan global de ta séance : ce qui était dur, ce que tu as réussi, comment tu te sens…"
           maxlength="400" rows="3" oninput="onRessentiSeanceInput()"
-          style="width:100%;box-sizing:border-box;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:inherit;font-size:13px;padding:10px 12px;resize:none;outline:none"></textarea>
+          style="width:100%;box-sizing:border-box;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:inherit;font-size:max(13px,var(--fs-min,15px));padding:10px 12px;resize:none;outline:none"></textarea>
       </div>
 
       <button id="ressenti-seance-confirm-btn" onclick="confirmRessentiSeance()" disabled
@@ -13817,7 +13818,7 @@ function renderConfigPanel() {
     // Durée totale calculée
     const totalInfoDiv = document.createElement('div');
     totalInfoDiv.id = 'tabata-total-info';
-    totalInfoDiv.style.cssText = 'font-size:11px;color:var(--muted);padding:2px 12px 8px;text-align:center;letter-spacing:0.3px';
+    totalInfoDiv.style.cssText = 'font-size:max(11px,var(--fs-min,15px));color:var(--muted);padding:2px 12px 8px;text-align:center;letter-spacing:0.3px';
     panel.appendChild(totalInfoDiv);
     syncTabataTotalInfo();
 
@@ -13834,12 +13835,12 @@ function renderConfigPanel() {
       </div>
       <div style="display:flex;gap:5px;flex:1;min-width:0">
         <button class="rotation-btn ${STATE.config.tabataRotation==='vertical'?'active':''}"
-          id="rot-vertical" onclick="setTabataRotation('vertical')" style="min-height:38px;font-size:10px;padding:4px 6px">
-          ↕ Vertical<br><span style="font-size:8px;opacity:.7">A→B→C→A</span>
+          id="rot-vertical" onclick="setTabataRotation('vertical')" style="min-height:38px;font-size:max(10px,var(--fs-min,15px));padding:4px 6px">
+          ↕ Vertical<br><span style="font-size:max(8px,var(--fs-min,15px));opacity:.7">A→B→C→A</span>
         </button>
         <button class="rotation-btn ${STATE.config.tabataRotation==='horizontal'?'active':''}"
-          id="rot-horizontal" onclick="setTabataRotation('horizontal')" style="min-height:38px;font-size:10px;padding:4px 6px">
-          ↔ Horiz.<br><span style="font-size:8px;opacity:.7">AAA→BBB</span>
+          id="rot-horizontal" onclick="setTabataRotation('horizontal')" style="min-height:38px;font-size:max(10px,var(--fs-min,15px));padding:4px 6px">
+          ↔ Horiz.<br><span style="font-size:max(8px,var(--fs-min,15px));opacity:.7">AAA→BBB</span>
         </button>
       </div>`;
     panel.appendChild(cyclesRotRow);
@@ -13861,7 +13862,7 @@ function renderConfigPanel() {
     // Avertissement cycles divisibles
     const warnDiv = document.createElement('div');
     warnDiv.id = 'cycles-warning';
-    warnDiv.style.cssText = 'font-size:10px;color:var(--amrap);padding:4px 12px 0;display:none';
+    warnDiv.style.cssText = 'font-size:max(10px,var(--fs-min,15px));color:var(--amrap);padding:4px 12px 0;display:none';
     warnDiv.textContent = "⚠ En mode Horizontal, les cycles doivent être divisibles par le nombre d'exercices";
     panel.appendChild(warnDiv);
 
@@ -13879,14 +13880,14 @@ function renderConfigPanel() {
         ${[0,1,2,3,4].map(n => `
           <button class="amrap-niveau-btn ${STATE.config.amrapNiveau===n?'active':''} lv${n}"
             onclick="setAmrapNiveau(${n})">
-            N${n}<br><span style="font-size:9px;opacity:.7">${niveauRepsAll[n]}r</span>
+            N${n}<br><span style="font-size:max(9px,var(--fs-min,15px));opacity:.7">${niveauRepsAll[n]}r</span>
           </button>`).join('')}
       </div>`;
     panel.appendChild(niveauDiv);
 
     // Info
     const infoDiv = document.createElement('div');
-    infoDiv.style.cssText = 'font-size:10px;color:var(--muted);padding:6px 12px;line-height:1.6';
+    infoDiv.style.cssText = 'font-size:max(10px,var(--fs-min,15px));color:var(--muted);padding:6px 12px;line-height:1.6';
     infoDiv.innerHTML = '1 tour = faire chaque exercice <strong style="color:var(--text2)" id="amrap-reps-info">' +
       niveauRepsAll[STATE.config.amrapNiveau] + ' fois</strong>.<br>Objectif : max de tours en ' + STATE.config.duration + ' min.';
     infoDiv.id = 'amrap-info-div';
@@ -13905,7 +13906,7 @@ function renderConfigPanel() {
       const isSelected = getFortimeNiveau() === n;
       btn.className = 'mode-btn fortime ft-niveau-btn' + (isSelected ? ' selected' : '');
       btn.dataset.niveau = n;
-      btn.style.cssText = 'flex:1;height:60px;font-size:13px;' +
+      btn.style.cssText = 'flex:1;height:60px;font-size:max(13px,var(--fs-min,15px));' +
         (isSelected
           ? 'background:'+ftColors[n]+';border-color:'+ftColors[n]+';color:'+(ftTextDark[n]?'#000':'#fff')
           : 'border-color:'+ftColorsLight[n]+';color:'+ftColorsLight[n]);
@@ -13919,7 +13920,7 @@ function renderConfigPanel() {
     // Info paliers
     const palDiv = document.createElement('div');
     palDiv.id = 'ft-paliers-info';
-    palDiv.style.cssText = 'font-size:10px;color:var(--muted);padding:2px 4px 4px;letter-spacing:0.5px';
+    palDiv.style.cssText = 'font-size:max(10px,var(--fs-min,15px));color:var(--muted);padding:2px 4px 4px;letter-spacing:0.5px';
     const pal = FORTIME_PALIERS[getFortimeNiveau()] || [];
     const palTotal = pal.reduce((a, b) => a + b, 0);
     palDiv.textContent = 'Paliers : ' + pal.join(' → ') + '  (' + palTotal + ' reps au total)';
@@ -13936,11 +13937,11 @@ function renderConfigPanel() {
       [0,1,2,3,4].map(function(n) {
         return '<button class="amrap-niveau-btn ' + (STATE.config.emomNiveau===n?'active ':' ') + 'lv'+n+'" ' +
           'onclick="setEmomNiveau('+n+')">' +
-          'N'+n+'<br><span style="font-size:9px;opacity:.7">'+nReps[n]+'r</span></button>';
+          'N'+n+'<br><span style="font-size:max(9px,var(--fs-min,15px));opacity:.7">'+nReps[n]+'r</span></button>';
       }).join('') + '</div>';
     panel.appendChild(nDiv);
     const info2 = document.createElement('div');
-    info2.style.cssText = 'font-size:10px;color:var(--muted);padding:4px 12px 0';
+    info2.style.cssText = 'font-size:max(10px,var(--fs-min,15px));color:var(--muted);padding:4px 12px 0';
     info2.textContent = 'Min 1 = ' + nReps[STATE.config.emomNiveau] + 'r, Min 2 = ' +
       (nReps[STATE.config.emomNiveau]+1) + 'r, Min 3 = ' + (nReps[STATE.config.emomNiveau]+2) + 'r…';
     panel.appendChild(info2);
@@ -13958,14 +13959,14 @@ function renderConfigPanel() {
       [0,1,2,3,4].map(n =>
         '<button class="amrap-niveau-btn ' + (STATE.config.emomNiveau===n?'active ':' ') + 'lv'+n+'" ' +
         'onclick="setEmomNiveau('+n+')">' +
-        'N'+n+'<br><span style="font-size:9px;opacity:.7">'+niveauReps[n]+'r</span></button>'
+        'N'+n+'<br><span style="font-size:max(9px,var(--fs-min,15px));opacity:.7">'+niveauReps[n]+'r</span></button>'
       ).join('') + '</div>';
     panel.appendChild(niveauDiv);
 
     // Info
     const infoDiv = document.createElement('div');
     infoDiv.id = 'emom-info-div';
-    infoDiv.style.cssText = 'font-size:10px;color:var(--muted);padding:4px 12px 0;line-height:1.6';
+    infoDiv.style.cssText = 'font-size:max(10px,var(--fs-min,15px));color:var(--muted);padding:4px 12px 0;line-height:1.6';
     infoDiv.innerHTML = 'Chaque minute : faire <strong style="color:var(--text2)" id="emom-reps-info">' +
       niveauReps[STATE.config.emomNiveau] + '</strong> reps de chaque exercice, puis repos.';
     panel.appendChild(infoDiv);
@@ -14091,7 +14092,7 @@ async function acquireWakeLock() {
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'wakelock-warn';
-      toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);color:#fff;font-size:11px;padding:6px 14px;border-radius:20px;z-index:9000;pointer-events:none;text-align:center;max-width:280px';
+      toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.75);color:#fff;font-size:max(11px,var(--fs-min,15px));padding:6px 14px;border-radius:20px;z-index:9000;pointer-events:none;text-align:center;max-width:280px';
       toast.textContent = '⚠ Écran non verrouillé sur iOS — gardez l\u2019écran allumé manuellement';
       document.body.appendChild(toast);
       setTimeout(function(){ toast.style.display='none'; }, 5000);
@@ -14187,7 +14188,7 @@ function startChrono() {
       if (!badge) {
         badge = document.createElement('div');
         badge.id = 'binome-chrono-badge';
-        badge.style.cssText = 'position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;pointer-events:none';
+        badge.style.cssText = 'position:absolute;top:8px;left:50%;transform:translateX(-50%);font-size:max(10px,var(--fs-min,15px));font-weight:900;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;pointer-events:none';
         var ch = document.getElementById('chrono-header');
         if (ch) ch.style.position='relative', ch.appendChild(badge);
       }
@@ -14712,7 +14713,7 @@ function initExoAccordion() {
     var _fc_i = _fc[fi] || _fc[0];
     fHeader.style.cssText = 'background:'+_fc_i.bg+';border-left:3px solid '+_fc_i.border+';';
     fHeader.innerHTML =
-      '<span style="font-size:14px;margin-right:6px">'+_fc_i.icon+'</span>' +
+      '<span style="font-size:max(14px,var(--fs-min,15px));margin-right:6px">'+_fc_i.icon+'</span>' +
       '<span class="accordion-filiere-title" style="color:'+_fc_i.text+'">' + filiere.filiere + '</span>' +
       '<span class="accordion-chevron" id="fchev-' + fi + '">▼</span>';
     fHeader.onclick = () => toggleAccordionFiliere(fi);
@@ -14731,7 +14732,7 @@ function initExoAccordion() {
       var _zc_i = _zc[zone.zone] || {bg:'',border:'',text:'var(--text2)',dot:'•'};
       zHeader.style.cssText = 'background:'+_zc_i.bg+';border-left:3px solid '+_zc_i.border+';margin-left:8px;';
       zHeader.innerHTML =
-        '<span style="font-size:13px;margin-right:5px">'+_zc_i.dot+'</span>' +
+        '<span style="font-size:max(13px,var(--fs-min,15px));margin-right:5px">'+_zc_i.dot+'</span>' +
         '<span class="accordion-zone-title" style="color:'+_zc_i.text+'">' + zone.zone + '</span>' +
         '<span class="accordion-chevron" id="zchev-' + zId + '">▼</span>';
       zHeader.onclick = (e) => { e.stopPropagation(); toggleAccordionZone(zId); };
@@ -15559,7 +15560,7 @@ function renderQR(str, containerId) {
 
   if (!ok) {
     if (document.body.contains(tmpDiv)) document.body.removeChild(tmpDiv);
-    container.innerHTML = '<div style="font-size:9px;word-break:break-all;padding:8px;background:var(--surface3);border-radius:8px">' + str + '</div>';
+    container.innerHTML = '<div style="font-size:max(9px,var(--fs-min,15px));word-break:break-all;padding:8px;background:var(--surface3);border-radius:8px">' + str + '</div>';
     return;
   }
 
@@ -15571,7 +15572,7 @@ function renderQR(str, containerId) {
       clearInterval(poll);
       if (!copyQR() && attempts >= 20) {
         if (document.body.contains(tmpDiv)) document.body.removeChild(tmpDiv);
-        container.innerHTML = '<div style="font-size:9px;word-break:break-all;padding:8px;background:var(--surface3);border-radius:8px">' + str + '</div>';
+        container.innerHTML = '<div style="font-size:max(9px,var(--fs-min,15px));word-break:break-all;padding:8px;background:var(--surface3);border-radius:8px">' + str + '</div>';
       }
     }
   }, 100);
@@ -15941,7 +15942,7 @@ function renderEmomExoRepsConfig() {
   const exos = Object.keys(STATE.selectedExos);
   if (!exos.length) { container.style.display = 'none'; return; }
   container.style.display = '';
-  let html = '<div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Reps par exercice</div>';
+  let html = '<div style="font-size:max(9px,var(--fs-min,15px));font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Reps par exercice</div>';
   exos.forEach(function(name) {
     const reps = getEmomReps(name);
     const sid  = 'emomreps-' + safeId(name);
@@ -16001,18 +16002,18 @@ function emomRenderSeqCard(minute) {
   var nextReps = nextExo ? (STATE.mode === 'EMOM+1' ? getEmomPlusReps(nextExo, minute) : getEmomReps(nextExo)) : 0;
   var nextHtml = nextExo
     ? '<div style="margin-top:10px;padding:8px 10px;background:var(--surface3);border-radius:8px;display:flex;align-items:center;gap:8px">' +
-        '<span style="font-size:9px;font-weight:900;color:var(--rest);letter-spacing:1.5px;white-space:nowrap">→ À VENIR</span>' +
-        '<span style="font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;flex:1">' + nextExo + '</span>' +
-        '<span style="font-size:11px;color:var(--muted)">' + nextReps + ' reps</span>' +
+        '<span style="font-size:max(9px,var(--fs-min,15px));font-weight:900;color:var(--rest);letter-spacing:1.5px;white-space:nowrap">→ À VENIR</span>' +
+        '<span style="font-size:max(13px,var(--fs-min,15px));font-weight:700;color:var(--text2);text-transform:uppercase;flex:1">' + nextExo + '</span>' +
+        '<span style="font-size:max(11px,var(--fs-min,15px));color:var(--muted)">' + nextReps + ' reps</span>' +
       '</div>'
     : '';
   var isLastExo = (idx + 1 >= exos.length);
   var failBtnHtml = isLastExo
-    ? '<button style="width:100%;height:52px;margin-top:8px;background:rgba(212,43,74,.12);border:2px solid var(--rest);border-radius:10px;color:var(--rest);font-family:inherit;font-size:14px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;touch-action:manipulation" onclick="emomSequenceFail()">✗ Non terminé</button>'
+    ? '<button style="width:100%;height:52px;margin-top:8px;background:rgba(212,43,74,.12);border:2px solid var(--rest);border-radius:10px;color:var(--rest);font-family:inherit;font-size:max(14px,var(--fs-min,15px));font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;touch-action:manipulation" onclick="emomSequenceFail()">✗ Non terminé</button>'
     : '';
   card.innerHTML =
     '<div class="amrap-seq-card" style="border-color:var(--emom);box-shadow:0 0 0 2px rgba(123,47,190,.2)">' +
-    '<div style="font-size:10px;font-weight:700;color:var(--emom);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Exo ' + (idx+1) + ' / ' + exos.length + '</div>' +
+    '<div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:var(--emom);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Exo ' + (idx+1) + ' / ' + exos.length + '</div>' +
     '<div class="amrap-seq-exo-name">' + exo + '</div>' +
     '<div class="amrap-seq-target" style="font-size:22px;font-weight:900;color:var(--emom);margin:4px 0">' + reps + ' reps' + poids + niv + '</div>' +
     '<button class="amrap-seq-validate-btn" style="background:var(--emom);margin-top:8px" onclick="emomValidateSeqExo(' + minute + ')">✓ Validé</button>' +
@@ -16041,16 +16042,16 @@ function emomValidateSeqExo(minute) {
     var card = document.getElementById('emom-seq-card');
     if (card) card.innerHTML =
       '<div style="text-align:center;padding:20px 8px">' +
-        '<div style="font-size:13px;font-weight:700;color:var(--emom);margin-bottom:14px">✓ Séquence terminée !</div>' +
+        '<div style="font-size:max(13px,var(--fs-min,15px));font-weight:700;color:var(--emom);margin-bottom:14px">✓ Séquence terminée !</div>' +
         '<div style="display:flex;justify-content:center;gap:24px;align-items:center">' +
           '<div style="text-align:center">' +
             '<div style="font-size:32px;font-weight:900;color:var(--effort);line-height:1">' + tempsSec + 's</div>' +
-            '<div style="font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:1px;text-transform:uppercase">Temps</div>' +
+            '<div style="font-size:max(10px,var(--fs-min,15px));color:var(--muted);margin-top:3px;letter-spacing:1px;text-transform:uppercase">Temps</div>' +
           '</div>' +
           '<div style="width:1px;height:40px;background:var(--border2)"></div>' +
           '<div style="text-align:center">' +
             '<div style="font-size:32px;font-weight:900;color:var(--rest);line-height:1">' + repos + 's</div>' +
-            '<div style="font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:1px;text-transform:uppercase">Repos</div>' +
+            '<div style="font-size:max(10px,var(--fs-min,15px));color:var(--muted);margin-top:3px;letter-spacing:1px;text-transform:uppercase">Repos</div>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -16128,15 +16129,15 @@ function emomSequenceFail() {
   var card = document.getElementById('emom-seq-card');
   if (card) card.innerHTML =
     '<div style="padding:16px 8px">' +
-      '<div style="font-size:11px;font-weight:700;color:var(--rest);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px">✗ Non terminé — ' + stopExo + '</div>' +
-      '<div style="font-size:12px;color:var(--muted);margin-bottom:14px">Répétitions réalisées sur ' + reps + ' :</div>' +
+      '<div style="font-size:max(11px,var(--fs-min,15px));font-weight:700;color:var(--rest);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px">✗ Non terminé — ' + stopExo + '</div>' +
+      '<div style="font-size:max(12px,var(--fs-min,15px));color:var(--muted);margin-bottom:14px">Répétitions réalisées sur ' + reps + ' :</div>' +
       '<div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px">' +
         '<button onclick="emomPartialAdj(-1)" style="width:52px;height:52px;border-radius:50%;border:2px solid var(--border2);background:var(--surface3);font-size:24px;font-weight:900;cursor:pointer;touch-action:manipulation;font-family:inherit">−</button>' +
         '<span id="emom-partial-val" style="font-size:48px;font-weight:900;min-width:64px;text-align:center">0</span>' +
         '<button onclick="emomPartialAdj(1)" style="width:52px;height:52px;border-radius:50%;border:2px solid var(--border2);background:var(--surface3);font-size:24px;font-weight:900;cursor:pointer;touch-action:manipulation;font-family:inherit">+</button>' +
       '</div>' +
-      '<button onclick="emomConfirmFail(' + minute + ',' + stopIdx + ',' + reps + ')" style="width:100%;height:52px;background:var(--rest);border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;touch-action:manipulation">✗ Confirmer</button>' +
-      '<button onclick="emomRenderSeqCard(' + minute + ')" style="width:100%;height:40px;margin-top:6px;background:transparent;border:1px solid var(--border2);border-radius:8px;color:var(--muted);font-family:inherit;font-size:11px;cursor:pointer;touch-action:manipulation">← Annuler</button>' +
+      '<button onclick="emomConfirmFail(' + minute + ',' + stopIdx + ',' + reps + ')" style="width:100%;height:52px;background:var(--rest);border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:max(14px,var(--fs-min,15px));font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;touch-action:manipulation">✗ Confirmer</button>' +
+      '<button onclick="emomRenderSeqCard(' + minute + ')" style="width:100%;height:40px;margin-top:6px;background:transparent;border:1px solid var(--border2);border-radius:8px;color:var(--muted);font-family:inherit;font-size:max(11px,var(--fs-min,15px));cursor:pointer;touch-action:manipulation">← Annuler</button>' +
     '</div>';
 }
 
@@ -16160,9 +16161,9 @@ function emomConfirmFail(minute, stopIdx, cible) {
   var card = document.getElementById('emom-seq-card');
   if (card) card.innerHTML =
     '<div style="text-align:center;padding:16px 8px">' +
-      '<div style="font-size:13px;font-weight:700;color:var(--rest);margin-bottom:8px">✗ Non terminé</div>' +
+      '<div style="font-size:max(13px,var(--fs-min,15px));font-weight:700;color:var(--rest);margin-bottom:8px">✗ Non terminé</div>' +
       '<div style="font-size:28px;font-weight:900">' + partialReps + ' / ' + cible + '</div>' +
-      '<div style="font-size:11px;color:var(--muted);margin-top:4px">' + stopExo + '</div>' +
+      '<div style="font-size:max(11px,var(--fs-min,15px));color:var(--muted);margin-top:4px">' + stopExo + '</div>' +
     '</div>';
 }
 
@@ -16190,7 +16191,7 @@ function emomRebuildMinutesList() {
   for (var m = 1; m <= totalMin; m++) {
     const dot = document.createElement('div');
     dot.id = 'emom-min-row-' + m;
-    dot.style.cssText = 'width:28px;height:28px;border-radius:50%;background:var(--surface3);border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:var(--muted);transition:all .3s';
+    dot.style.cssText = 'width:28px;height:28px;border-radius:50%;background:var(--surface3);border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:max(9px,var(--fs-min,15px));font-weight:900;color:var(--muted);transition:all .3s';
     dot.textContent = m;
     list.appendChild(dot);
   }
@@ -16346,7 +16347,7 @@ function ftRenderSeqCard() {
       '<div style="text-align:center;padding:24px 8px">' +
         '<div style="font-size:28px;margin-bottom:8px">\uD83C\uDFC1</div>' +
         '<div style="font-size:16px;font-weight:900;color:var(--fortime)">WOD TERMIN\u00c9 !</div>' +
-        '<div style="font-size:13px;color:var(--muted);margin-top:6px">Temps : <strong>' + fmtTime(getFortimeElapsed()) + '</strong></div>' +
+        '<div style="font-size:max(13px,var(--fs-min,15px));color:var(--muted);margin-top:6px">Temps : <strong>' + fmtTime(getFortimeElapsed()) + '</strong></div>' +
       '</div>';
     return;
   }
@@ -16363,22 +16364,22 @@ function ftRenderSeqCard() {
   if (!isLast) {
     const nextExo  = exos[eIdx + 1];
     nextLabel = '<div style="margin-top:10px;padding:8px 10px;background:var(--surface3);border-radius:8px;display:flex;align-items:center;gap:8px">' +
-      '<span style="font-size:9px;font-weight:900;color:var(--rest);letter-spacing:1.5px;white-space:nowrap">\u2192 \u00c0 VENIR</span>' +
-      '<span style="font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;flex:1">' + nextExo + '</span>' +
-      '<span style="font-size:11px;color:var(--muted)">' + reps + ' reps</span>' +
+      '<span style="font-size:max(9px,var(--fs-min,15px));font-weight:900;color:var(--rest);letter-spacing:1.5px;white-space:nowrap">\u2192 \u00c0 VENIR</span>' +
+      '<span style="font-size:max(13px,var(--fs-min,15px));font-weight:700;color:var(--text2);text-transform:uppercase;flex:1">' + nextExo + '</span>' +
+      '<span style="font-size:max(11px,var(--fs-min,15px));color:var(--muted)">' + reps + ' reps</span>' +
       '</div>';
   } else if (pIdx + 1 < paliers.length) {
     const nextReps = paliers[pIdx + 1];
     nextLabel = '<div style="margin-top:10px;padding:8px 10px;background:var(--surface3);border-radius:8px;display:flex;align-items:center;gap:8px">' +
-      '<span style="font-size:9px;font-weight:900;color:var(--rest);letter-spacing:1.5px;white-space:nowrap">\u2192 PALIER ' + (pIdx + 2) + '</span>' +
-      '<span style="font-size:13px;font-weight:700;color:var(--text2);text-transform:uppercase;flex:1">' + exos[0] + '</span>' +
-      '<span style="font-size:11px;color:var(--muted)">' + nextReps + ' reps</span>' +
+      '<span style="font-size:max(9px,var(--fs-min,15px));font-weight:900;color:var(--rest);letter-spacing:1.5px;white-space:nowrap">\u2192 PALIER ' + (pIdx + 2) + '</span>' +
+      '<span style="font-size:max(13px,var(--fs-min,15px));font-weight:700;color:var(--text2);text-transform:uppercase;flex:1">' + exos[0] + '</span>' +
+      '<span style="font-size:max(11px,var(--fs-min,15px));color:var(--muted)">' + nextReps + ' reps</span>' +
       '</div>';
   }
 
   card.innerHTML =
     '<div class="amrap-seq-card" style="border-color:var(--fortime);box-shadow:0 0 0 2px rgba(230,126,34,.2)">' +
-      '<div style="font-size:10px;font-weight:700;color:var(--fortime);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">' +
+      '<div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:var(--fortime);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">' +
         'Palier ' + (pIdx+1) + ' \u2014 ' + reps + ' reps' +
       '</div>' +
       '<div class="amrap-seq-exo-name">' + exo + '</div>' +
@@ -16447,7 +16448,7 @@ function ftShowFinish(auto) {
     splitsHtml = '<div style="margin-top:14px;text-align:left;border-top:1px solid var(--border2);padding-top:10px">' +
       STATE.fortime.splits.map(function(s,i){
         var prev = i > 0 ? STATE.fortime.splits[i-1].elapsed : 0;
-        return '<div style="display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:3px">' +
+        return '<div style="display:flex;justify-content:space-between;font-size:max(11px,var(--fs-min,15px));color:var(--muted);margin-bottom:3px">' +
           '<span>Palier ' + (i+1) + ' \u2014 ' + paliers[i] + ' reps</span>' +
           '<span><strong style="color:var(--text)">' + fmtTime(s.elapsed) + '</strong> (+' + fmtTime(s.elapsed-prev) + ')</span>' +
           '</div>';
@@ -16460,7 +16461,7 @@ function ftShowFinish(auto) {
       '<div style="font-size:28px;margin-bottom:8px">' + icon + '</div>' +
       '<div style="font-size:16px;font-weight:900;color:' + color + ';margin-bottom:12px">' + label + '</div>' +
       '<div style="font-size:52px;font-weight:900;color:' + color + ';line-height:1">' + fmtTime(elapsed) + '</div>' +
-      '<div style="font-size:12px;color:var(--muted);margin-top:6px">' + sub + '</div>' +
+      '<div style="font-size:max(12px,var(--fs-min,15px));color:var(--muted);margin-top:6px">' + sub + '</div>' +
       splitsHtml +
     '</div>';
 
@@ -17125,7 +17126,7 @@ function showSeanceBilan() {
         '<div class="bilan-seance-wod-score">' + w.scoreLabel + '</div>' +
         '<div class="bilan-seance-wod-exos">' + exosStr + '</div>' +
       '</div>' +
-      '<span style="font-size:10px;color:var(--muted)">' + w.timestamp + '</span>' +
+      '<span style="font-size:max(10px,var(--fs-min,15px));color:var(--muted)">' + w.timestamp + '</span>' +
     '</div>';
   });
   html += '</div>';
@@ -17146,9 +17147,9 @@ function showSeanceBilan() {
       '<div class="ressenti-title">Ressenti WOD</div>' +
       '<div style="display:flex;align-items:center;gap:10px;margin-top:4px">' +
         '<span style="font-size:28px">' + (emojiMap[r.niveau]||'') + '</span>' +
-        '<span style="font-size:13px;font-weight:700;color:var(--text2)">' + (r.label||'') + '</span>' +
+        '<span style="font-size:max(13px,var(--fs-min,15px));font-weight:700;color:var(--text2)">' + (r.label||'') + '</span>' +
       '</div>' +
-      (r.commentaire ? '<div style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5">' + r.commentaire + '</div>' : '') +
+      (r.commentaire ? '<div style="font-size:max(12px,var(--fs-min,15px));color:var(--muted);margin-top:6px;line-height:1.5">' + r.commentaire + '</div>' : '') +
     '</div>';
   }
 
@@ -17370,9 +17371,9 @@ function showBilan() {
       </div>
       <div class="bilan-stat-row">
         <span class="bilan-stat-label">Meilleur / Pire</span>
-        <span class="bilan-stat-value" style="font-size:14px;color:var(--effort)">${minTime}s</span>
+        <span class="bilan-stat-value" style="font-size:max(14px,var(--fs-min,15px));color:var(--effort)">${minTime}s</span>
         <span style="color:var(--muted);margin:0 4px">/</span>
-        <span class="bilan-stat-value" style="font-size:14px;color:var(--rest)">${maxTime}s</span>
+        <span class="bilan-stat-value" style="font-size:max(14px,var(--fs-min,15px));color:var(--rest)">${maxTime}s</span>
       </div>` : ''}
     </div>`;
 
@@ -17383,15 +17384,15 @@ function showBilan() {
         var pct = Math.round((t / barMax) * 100);
         var col = t <= avgTourTime ? 'var(--effort)' : 'var(--rest)';
         return '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1">' +
-          '<div style="font-size:8px;color:var(--muted)">' + t + 's</div>' +
+          '<div style="font-size:max(8px,var(--fs-min,15px));color:var(--muted)">' + t + 's</div>' +
           '<div style="width:100%;height:' + pct + 'px;min-height:4px;background:' + col + ';border-radius:3px 3px 0 0;transition:height .3s"></div>' +
-          '<div style="font-size:8px;color:var(--muted)">T' + (i+1) + '</div>' +
+          '<div style="font-size:max(8px,var(--fs-min,15px));color:var(--muted)">T' + (i+1) + '</div>' +
         '</div>';
       }).join('');
       contentHTML += '<div style="margin:12px 0 8px;background:var(--surface3);border-radius:12px;padding:12px">' +
-        '<div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Temps par tour</div>' +
+        '<div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">Temps par tour</div>' +
         '<div style="display:flex;align-items:flex-end;gap:4px;height:80px">' + bars + '</div>' +
-        '<div style="font-size:9px;color:var(--muted);margin-top:6px;text-align:center">🟢 sous la moyenne · 🔴 au-dessus</div>' +
+        '<div style="font-size:max(9px,var(--fs-min,15px));color:var(--muted);margin-top:6px;text-align:center">🟢 sous la moyenne · 🔴 au-dessus</div>' +
       '</div>';
     }
 
@@ -17411,7 +17412,7 @@ function showBilan() {
     contentHTML += `
     <div style="margin-top:10px">
       <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'':'none'"
-        style="background:transparent;border:1px dashed var(--border2);border-radius:8px;width:100%;height:34px;color:var(--muted);font-family:inherit;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;opacity:0.5">
+        style="background:transparent;border:1px dashed var(--border2);border-radius:8px;width:100%;height:34px;color:var(--muted);font-family:inherit;font-size:max(10px,var(--fs-min,15px));font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;opacity:0.5">
         ✎ correction coach
       </button>
       <div style="display:none;margin-top:8px">
@@ -17459,7 +17460,7 @@ function showBilan() {
       </div>`;
     });
     if (b.tabataLog.length === 0) {
-      contentHTML += '<div class="bilan-table-row" style="color:var(--muted);font-size:12px">Aucun cycle enregistré</div>';
+      contentHTML += '<div class="bilan-table-row" style="color:var(--muted);font-size:max(12px,var(--fs-min,15px))">Aucun cycle enregistré</div>';
     }
     contentHTML += '</div>';
 
@@ -17528,8 +17529,8 @@ function showBilan() {
           ? '<span class="bilan-cycle-tag tag-echec">✗</span>'
           : '<span class="bilan-cycle-tag" style="color:var(--muted)">-</span>';
       const timeTag = isOk && entry.tempsSec != null
-        ? '<span style="font-size:10px;color:var(--muted);margin-right:4px">' + entry.tempsSec + 's · repos ' + (entry.repos||0) + 's</span>'
-        : isFail ? '<span style="font-size:10px;color:var(--rest)">Non terminé</span>' : '';
+        ? '<span style="font-size:max(10px,var(--fs-min,15px));color:var(--muted);margin-right:4px">' + entry.tempsSec + 's · repos ' + (entry.repos||0) + 's</span>'
+        : isFail ? '<span style="font-size:max(10px,var(--fs-min,15px));color:var(--rest)">Non terminé</span>' : '';
 
       contentHTML += '<div class="bilan-table-row">' +
         '<span class="bilan-cycle-num">Min ' + m + '</span>' +
@@ -17665,16 +17666,16 @@ function showBilan() {
 
       // Note exec
       if (noteInt) {
-        contentHTML += '<span class="bilan-exo-note" style="color:'+noteColors[noteInt]+';font-weight:900;font-size:11px">'+noteLabels[noteInt]+'</span>';
+        contentHTML += '<span class="bilan-exo-note" style="color:'+noteColors[noteInt]+';font-weight:900;font-size:max(11px,var(--fs-min,15px))">'+noteLabels[noteInt]+'</span>';
       } else {
-        contentHTML += '<span class="bilan-exo-note" style="color:var(--muted);font-size:11px">—</span>';
+        contentHTML += '<span class="bilan-exo-note" style="color:var(--muted);font-size:max(11px,var(--fs-min,15px))">—</span>';
       }
       contentHTML += '</div>';
 
       // Reps + points de note
       contentHTML += '<div class="bilan-exo-bottom">';
       if (stat.reps > 0) {
-        contentHTML += '<span style="font-size:11px;color:var(--muted)">';
+        contentHTML += '<span style="font-size:max(11px,var(--fs-min,15px));color:var(--muted)">';
         if (STATE.mode === 'FOR TIME') {
           contentHTML += stat.paliers + ' palier' + (stat.paliers>1?'s':'') + ' · ' + stat.reps + ' reps';
         } else {
@@ -17704,9 +17705,9 @@ function showBilan() {
       '<div class="ressenti-title">Ressenti WOD</div>' +
       '<div style="display:flex;align-items:center;gap:10px;margin-top:4px">' +
         '<span style="font-size:28px">' + (_emojiMap[_r.niveau]||'') + '</span>' +
-        '<span style="font-size:13px;font-weight:700;color:var(--text2)">' + (_r.label||'') + '</span>' +
+        '<span style="font-size:max(13px,var(--fs-min,15px));font-weight:700;color:var(--text2)">' + (_r.label||'') + '</span>' +
       '</div>' +
-      (_r.commentaire ? '<div style="font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5">' + _r.commentaire + '</div>' : '') +
+      (_r.commentaire ? '<div style="font-size:max(12px,var(--fs-min,15px));color:var(--muted);margin-top:6px;line-height:1.5">' + _r.commentaire + '</div>' : '') +
     '</div>';
   }
 
@@ -17855,18 +17856,18 @@ function binomeShowSwitchModal() {
   modal.style.cssText = 'position:fixed;inset:0;z-index:9300;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;padding:16px';
   modal.innerHTML =
     '<div style="background:var(--surface);border-radius:20px 20px 16px 16px;padding:24px;width:100%;max-width:480px">' +
-      '<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;text-align:center">À qui le tour ?</div>' +
+      '<div style="font-size:max(11px,var(--fs-min,15px));font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;text-align:center">À qui le tour ?</div>' +
       '<div style="display:flex;flex-direction:column;gap:10px">' +
         '<button onclick="binomeDoSwitch(\'' + other + '\')" style="padding:16px;background:' + colorOther + '22;border:2px solid ' + colorOther + ';border-radius:14px;color:var(--text);font-family:inherit;cursor:pointer;touch-action:manipulation;text-align:left">' +
-          '<div style="font-size:11px;font-weight:700;color:' + colorOther + ';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">▶ Passer à ' + other + '</div>' +
+          '<div style="font-size:max(11px,var(--fs-min,15px));font-weight:700;color:' + colorOther + ';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">▶ Passer à ' + other + '</div>' +
           '<div style="font-size:16px;font-weight:900">' + pOther.prenom + ' ' + pOther.nom.toUpperCase() + '</div>' +
-          '<div style="font-size:11px;color:var(--muted);margin-top:2px">C\'est maintenant ton tour de coacher !</div>' +
+          '<div style="font-size:max(11px,var(--fs-min,15px));color:var(--muted);margin-top:2px">C\'est maintenant ton tour de coacher !</div>' +
         '</button>' +
         '<button onclick="binomeStayAndContinue()" style="padding:14px;background:' + colorCurrent + '15;border:1.5px solid ' + colorCurrent + '50;border-radius:14px;color:var(--text);font-family:inherit;cursor:pointer;touch-action:manipulation;text-align:left">' +
-          '<div style="font-size:11px;font-weight:700;color:' + colorCurrent + ';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">↩ Rester sur ' + BINOME.active + '</div>' +
+          '<div style="font-size:max(11px,var(--fs-min,15px));font-weight:700;color:' + colorCurrent + ';letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">↩ Rester sur ' + BINOME.active + '</div>' +
           '<div style="font-size:15px;font-weight:800">' + pCurrent.prenom + ' ' + pCurrent.nom.toUpperCase() + ' — WOD suivant</div>' +
         '</button>' +
-        '<button onclick="binomeFinishModal()" style="padding:12px;background:var(--surface3);border:1px solid var(--border2);border-radius:12px;color:var(--muted);font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation">' +
+        '<button onclick="binomeFinishModal()" style="padding:12px;background:var(--surface3);border:1px solid var(--border2);border-radius:12px;color:var(--muted);font-family:inherit;font-size:max(12px,var(--fs-min,15px));font-weight:700;cursor:pointer;touch-action:manipulation">' +
           '🏁 Terminer la séance des deux élèves' +
         '</button>' +
       '</div>' +
@@ -18089,9 +18090,9 @@ function showBilanSeanceFinal() {
   var starMap    = {1:'★☆☆☆☆',2:'★★☆☆☆',3:'★★★☆☆',4:'★★★★☆',5:'★★★★★'};
 
   var html = '<div class="bilan-header">';
-  html += '<div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Bilan de séance</div>';
+  html += '<div style="font-size:max(11px,var(--fs-min,15px));font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px">Bilan de séance</div>';
   html += '<div style="font-size:22px;font-weight:900;color:var(--text)">' + (p.prenom||'') + ' ' + (p.nom||'').toUpperCase() + '</div>';
-  html += '<div style="font-size:13px;color:var(--muted)">' + (p.classe||'') + (p.coach?' · '+p.coach:'') + '</div>';
+  html += '<div style="font-size:max(13px,var(--fs-min,15px));color:var(--muted)">' + (p.classe||'') + (p.coach?' · '+p.coach:'') + '</div>';
   html += '</div>';
 
   // Résumé WODs
@@ -18101,21 +18102,21 @@ function showBilanSeanceFinal() {
     html += '<div style="background:var(--surface3);border-radius:12px;padding:14px;border-left:4px solid '+col+'">';
     html += '<div style="display:flex;justify-content:space-between;align-items:flex-start">';
     html += '<div>';
-    html += '<div style="font-size:10px;font-weight:700;color:'+col+';letter-spacing:1.5px;text-transform:uppercase">WOD '+(i+1)+' · '+w.type+'</div>';
+    html += '<div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:'+col+';letter-spacing:1.5px;text-transform:uppercase">WOD '+(i+1)+' · '+w.type+'</div>';
     html += '<div style="font-size:18px;font-weight:900;color:var(--text);margin-top:2px">'+w.scoreLabel+'</div>';
     html += '</div>';
-    if (w.timestamp) html += '<div style="font-size:10px;color:var(--muted)">'+w.timestamp+'</div>';
+    if (w.timestamp) html += '<div style="font-size:max(10px,var(--fs-min,15px));color:var(--muted)">'+w.timestamp+'</div>';
     html += '</div>';
     // Exercices
     if (w.exos && w.exos.length) {
-      html += '<div style="font-size:11px;color:var(--muted);margin-top:6px">'+w.exos.join(' · ')+'</div>';
+      html += '<div style="font-size:max(11px,var(--fs-min,15px));color:var(--muted);margin-top:6px">'+w.exos.join(' · ')+'</div>';
     }
     // Ressenti WOD
     if (w.ressentiWod && w.ressentiWod.niveau) {
       html += '<div style="margin-top:8px;display:flex;align-items:center;gap:6px">';
       html += '<span style="font-size:16px">'+emojiMap[w.ressentiWod.niveau]+'</span>';
-      html += '<span style="font-size:11px;color:var(--muted)">'+w.ressentiWod.label+'</span>';
-      if (w.ressentiWod.commentaire) html += '<span style="font-size:10px;color:var(--muted);margin-left:4px">— '+w.ressentiWod.commentaire+'</span>';
+      html += '<span style="font-size:max(11px,var(--fs-min,15px));color:var(--muted)">'+w.ressentiWod.label+'</span>';
+      if (w.ressentiWod.commentaire) html += '<span style="font-size:max(10px,var(--fs-min,15px));color:var(--muted);margin-left:4px">— '+w.ressentiWod.commentaire+'</span>';
       html += '</div>';
     }
     html += '</div>';
@@ -18126,12 +18127,12 @@ function showBilanSeanceFinal() {
   if (rs.niveau) {
     var starMap = {1:'★☆☆☆☆',2:'★★☆☆☆',3:'★★★☆☆',4:'★★★★☆',5:'★★★★★'};
     html += '<div style="background:linear-gradient(135deg,#1a0533,#2d1060);border-radius:12px;padding:16px;margin-bottom:16px">';
-    html += '<div style="font-size:10px;font-weight:700;color:rgba(180,140,255,.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Ressenti de séance</div>';
+    html += '<div style="font-size:max(10px,var(--fs-min,15px));font-weight:700;color:rgba(180,140,255,.8);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Ressenti de séance</div>';
     html += '<div style="display:flex;align-items:center;justify-content:space-between">';
-    html += '<div><div style="font-size:22px;color:#f1c40f">'+starMap[rs.niveau]+'</div><div style="font-size:11px;color:rgba(255,255,255,.7);margin-top:2px">'+rs.label+'</div></div>';
-    if (rs.fatigueEmoji) html += '<div style="text-align:center"><div style="font-size:28px">'+rs.fatigueEmoji+'</div><div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:2px">'+rs.fatigueLabel+'</div></div>';
+    html += '<div><div style="font-size:22px;color:#f1c40f">'+starMap[rs.niveau]+'</div><div style="font-size:max(11px,var(--fs-min,15px));color:rgba(255,255,255,.7);margin-top:2px">'+rs.label+'</div></div>';
+    if (rs.fatigueEmoji) html += '<div style="text-align:center"><div style="font-size:28px">'+rs.fatigueEmoji+'</div><div style="font-size:max(10px,var(--fs-min,15px));color:rgba(255,255,255,.6);margin-top:2px">'+rs.fatigueLabel+'</div></div>';
     html += '</div>';
-    if (rs.commentaire) html += '<div style="font-size:11px;color:rgba(255,255,255,.6);margin-top:10px;border-top:1px solid rgba(255,255,255,.1);padding-top:8px">'+rs.commentaire+'</div>';
+    if (rs.commentaire) html += '<div style="font-size:max(11px,var(--fs-min,15px));color:rgba(255,255,255,.6);margin-top:10px;border-top:1px solid rgba(255,255,255,.1);padding-top:8px">'+rs.commentaire+'</div>';
     html += '</div>';
   }
 
@@ -18212,7 +18213,7 @@ function printBilanSeance() {
       '</tr></thead>' +
       '<tbody>' + rows + '</tbody>' +
     '</table>' +
-    '<div style="margin-top:12px;font-size:11px"><strong>Ressenti séance :</strong> ' + resSeance + '</div>';
+    '<div style="margin-top:12px;font-size:max(11px,var(--fs-min,15px))"><strong>Ressenti séance :</strong> ' + resSeance + '</div>';
 
   window.print();
 }
@@ -19152,7 +19153,7 @@ function profRenderTable() {
     searchEl.type = 'text';
     searchEl.placeholder = '🔍 Rechercher un élève…';
     searchEl.autocomplete = 'off';
-    searchEl.style.cssText = 'width:100%;box-sizing:border-box;padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface3);color:var(--text);font-family:inherit;font-size:13px;outline:none';
+    searchEl.style.cssText = 'width:100%;box-sizing:border-box;padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:var(--surface3);color:var(--text);font-family:inherit;font-size:max(13px,var(--fs-min,15px));outline:none';
     searchEl.oninput = function(){ profRenderTable(); };
     searchWrap.appendChild(searchEl);
     filtersEl.appendChild(searchWrap);
@@ -19230,13 +19231,13 @@ function profRenderTable() {
     var wodTotal = s.wodTotal || 1;
     var seanceComplete = s.ressentiNiveau && s.ressentiNiveau !== '';
     var statusBadge = seanceComplete
-      ? '<span style="font-size:9px;background:rgba(46,204,113,.15);border:1px solid #2ecc71;border-radius:8px;padding:1px 6px;color:#2ecc71;font-weight:700">✓ COMPLET</span>'
-      : '<span style="font-size:9px;background:rgba(241,196,15,.12);border:1px solid #f1c40f;border-radius:8px;padding:1px 6px;color:#f1c40f;font-weight:700">WOD ' + (s.wodIndex||1) + '/' + wodTotal + '</span>';
+      ? '<span style="font-size:max(9px,var(--fs-min,15px));background:rgba(46,204,113,.15);border:1px solid #2ecc71;border-radius:8px;padding:1px 6px;color:#2ecc71;font-weight:700">✓ COMPLET</span>'
+      : '<span style="font-size:max(9px,var(--fs-min,15px));background:rgba(241,196,15,.12);border:1px solid #f1c40f;border-radius:8px;padding:1px 6px;color:#f1c40f;font-weight:700">WOD ' + (s.wodIndex||1) + '/' + wodTotal + '</span>';
 
     // Exercices + notes
     var exoHtml = '';
     if (s.exos && s.exos.length) {
-      exoHtml = '<div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4">' +
+      exoHtml = '<div style="font-size:max(10px,var(--fs-min,15px));color:var(--muted);margin-top:3px;line-height:1.4">' +
         s.exos.map(function(exo, ei) {
           var notes = (s.noteExecLog||[]).filter(function(n){return n.exo===exo;});
           var noteAvg = notes.length ? Math.round(notes.reduce(function(a,b){return a+b.note;},0)/notes.length) : null;
@@ -19254,20 +19255,20 @@ function profRenderTable() {
       '<div style="flex:1;min-width:0">' +
         (isFirstWod ?
           '<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">' +
-            '<span style="font-size:14px;font-weight:900;color:var(--text)">' + s.prenom + ' ' + s.nom.toUpperCase() + '</span>' +
+            '<span style="font-size:max(14px,var(--fs-min,15px));font-weight:900;color:var(--text)">' + s.prenom + ' ' + s.nom.toUpperCase() + '</span>' +
             statusBadge +
           '</div>' +
-          '<div style="font-size:11px;color:var(--muted)">' + s.classe + (s.coach?' · '+s.coach:'') + ' · ' + s.ts + '</div>'
+          '<div style="font-size:max(11px,var(--fs-min,15px));color:var(--muted)">' + s.classe + (s.coach?' · '+s.coach:'') + ' · ' + s.ts + '</div>'
         : '') +
         '<div style="display:flex;align-items:center;gap:6px;margin-top:'+(isFirstWod?'6':'0')+'px">' +
-          '<span style="font-size:10px;font-weight:900;color:'+color+';letter-spacing:1px;text-transform:uppercase">' + s.mode + '</span>' +
-          (s.niveau ? '<span style="font-size:9px;background:var(--surface3);border-radius:6px;padding:1px 5px;color:var(--muted)">N'+s.niveau+'</span>' : '') +
-          '<span style="font-size:12px;font-weight:700;color:var(--text)">' + s.scoreLabel + '</span>' +
-          (s.duree ? '<span style="font-size:9px;color:var(--muted)">'+s.duree+'min</span>' : '') +
+          '<span style="font-size:max(10px,var(--fs-min,15px));font-weight:900;color:'+color+';letter-spacing:1px;text-transform:uppercase">' + s.mode + '</span>' +
+          (s.niveau ? '<span style="font-size:max(9px,var(--fs-min,15px));background:var(--surface3);border-radius:6px;padding:1px 5px;color:var(--muted)">N'+s.niveau+'</span>' : '') +
+          '<span style="font-size:max(12px,var(--fs-min,15px));font-weight:700;color:var(--text)">' + s.scoreLabel + '</span>' +
+          (s.duree ? '<span style="font-size:max(9px,var(--fs-min,15px));color:var(--muted)">'+s.duree+'min</span>' : '') +
         '</div>' +
         exoHtml +
-        (s.ressentiWodNiveau ? '<div style="font-size:10px;color:var(--muted);margin-top:2px">Ressenti WOD : '+s.ressentiWodLabel+'</div>' : '') +
-        (isFirstWod && s.ressentiNiveau ? '<div style="font-size:10px;color:var(--muted)">Séance : '+s.ressentiLabel+'</div>' : '') +
+        (s.ressentiWodNiveau ? '<div style="font-size:max(10px,var(--fs-min,15px));color:var(--muted);margin-top:2px">Ressenti WOD : '+s.ressentiWodLabel+'</div>' : '') +
+        (isFirstWod && s.ressentiNiveau ? '<div style="font-size:max(10px,var(--fs-min,15px));color:var(--muted)">Séance : '+s.ressentiLabel+'</div>' : '') +
       '</div>' +
       '<button onclick="profDeleteStudent('+realIdx+')" style="background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer;padding:4px;flex-shrink:0;touch-action:manipulation" title="Supprimer">✕</button>';
 
@@ -19276,7 +19277,7 @@ function profRenderTable() {
 
   // Stats en bas
   var statsDiv = document.createElement('div');
-  statsDiv.style.cssText = 'padding:12px;margin-top:8px;background:var(--surface2);border-radius:12px;font-size:11px;color:var(--muted)';
+  statsDiv.style.cssText = 'padding:12px;margin-top:8px;background:var(--surface2);border-radius:12px;font-size:max(11px,var(--fs-min,15px));color:var(--muted)';
   var modes = {};
   filtered.forEach(function(s){ modes[s.mode]=(modes[s.mode]||0)+1; });
   statsDiv.innerHTML = '<strong style="color:var(--text2)">Répartition :</strong> ' +
@@ -19305,10 +19306,10 @@ function profShowDuplicateModal(nom, prenom, wodCount, callback) {
     '<div style="background:var(--surface);border-radius:16px;padding:24px;max-width:320px;width:100%;text-align:center">' +
       '<div style="font-size:36px;margin-bottom:12px">⚠️</div>' +
       '<div style="font-size:16px;font-weight:900;color:var(--text);margin-bottom:8px">' + prenom + ' ' + nom.toUpperCase() + '</div>' +
-      '<div style="font-size:13px;color:var(--muted);margin-bottom:20px">Cet élève est déjà dans la liste.<br>Remplacer ses données ?</div>' +
+      '<div style="font-size:max(13px,var(--fs-min,15px));color:var(--muted);margin-bottom:20px">Cet élève est déjà dans la liste.<br>Remplacer ses données ?</div>' +
       '<div style="display:flex;flex-direction:column;gap:8px">' +
-        '<button onclick="profDupChoice(true)" style="padding:14px;background:#e74c3c;border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;touch-action:manipulation">🔄 Remplacer</button>' +
-        '<button onclick="profDupChoice(false)" style="padding:14px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;touch-action:manipulation">Annuler (garder l\'ancien)</button>' +
+        '<button onclick="profDupChoice(true)" style="padding:14px;background:#e74c3c;border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:max(14px,var(--fs-min,15px));font-weight:900;cursor:pointer;touch-action:manipulation">🔄 Remplacer</button>' +
+        '<button onclick="profDupChoice(false)" style="padding:14px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:max(14px,var(--fs-min,15px));font-weight:700;cursor:pointer;touch-action:manipulation">Annuler (garder l\'ancien)</button>' +
       '</div>' +
     '</div>';
   document.body.appendChild(modal);
@@ -19343,10 +19344,10 @@ function profShowExportModal(classes) {
   PROF.students.forEach(function(s){ counts[s.classe]=(counts[s.classe]||0)+1; });
   var nbTotal = [...new Set(PROF.students.map(function(s){return s.nom+'|'+s.prenom;}))].length;
 
-  var btns = '<button onclick="profExportCSV(\'all\')" style="width:100%;padding:13px;background:linear-gradient(135deg,#1a6b2a,#27ae60);border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:13px;font-weight:900;cursor:pointer;touch-action:manipulation;margin-bottom:6px">⬇ Toutes les classes (' + nbTotal + ' élèves)</button>';
+  var btns = '<button onclick="profExportCSV(\'all\')" style="width:100%;padding:13px;background:linear-gradient(135deg,#1a6b2a,#27ae60);border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:max(13px,var(--fs-min,15px));font-weight:900;cursor:pointer;touch-action:manipulation;margin-bottom:6px">⬇ Toutes les classes (' + nbTotal + ' élèves)</button>';
   classes.forEach(function(cl) {
     var n = [...new Set(PROF.students.filter(function(s){return s.classe===cl;}).map(function(s){return s.nom+'|'+s.prenom;}))].length;
-    btns += '<button onclick="profExportCSV(\'' + cl.replace(/'/g,"\\'") + '\')" style="width:100%;padding:12px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation;margin-bottom:6px">' + cl + ' (' + n + ' élève' + (n>1?'s':'') + ')</button>';
+    btns += '<button onclick="profExportCSV(\'' + cl.replace(/'/g,"\\'") + '\')" style="width:100%;padding:12px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:inherit;font-size:max(13px,var(--fs-min,15px));font-weight:700;cursor:pointer;touch-action:manipulation;margin-bottom:6px">' + cl + ' (' + n + ' élève' + (n>1?'s':'') + ')</button>';
   });
 
   var modal = document.createElement('div');
@@ -19354,10 +19355,10 @@ function profShowExportModal(classes) {
   modal.style.cssText = 'position:fixed;inset:0;z-index:9100;background:rgba(0,0,0,.7);display:flex;align-items:flex-end;justify-content:center;padding:20px';
   modal.innerHTML =
     '<div style="background:var(--surface);border-radius:16px 16px 0 0;padding:20px;width:100%;max-width:480px">' +
-      '<div style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:4px">Exporter le CSV</div>' +
-      '<div style="font-size:12px;color:var(--muted);margin-bottom:16px">Choisir quelle classe exporter :</div>' +
+      '<div style="font-size:max(14px,var(--fs-min,15px));font-weight:900;color:var(--text);margin-bottom:4px">Exporter le CSV</div>' +
+      '<div style="font-size:max(12px,var(--fs-min,15px));color:var(--muted);margin-bottom:16px">Choisir quelle classe exporter :</div>' +
       btns +
-      '<button onclick="document.getElementById(\'prof-export-modal\').remove()" style="width:100%;padding:11px;background:none;border:1px solid var(--border2);border-radius:10px;color:var(--muted);font-family:inherit;font-size:12px;cursor:pointer;touch-action:manipulation">Annuler</button>' +
+      '<button onclick="document.getElementById(\'prof-export-modal\').remove()" style="width:100%;padding:11px;background:none;border:1px solid var(--border2);border-radius:10px;color:var(--muted);font-family:inherit;font-size:max(12px,var(--fs-min,15px));cursor:pointer;touch-action:manipulation">Annuler</button>' +
     '</div>';
   document.body.appendChild(modal);
   modal.addEventListener('click', function(e){ if(e.target===modal) modal.remove(); });
@@ -19369,10 +19370,10 @@ function profClearAll() {
   modal.innerHTML = '<div style="background:var(--surface);border-radius:16px;padding:24px;max-width:300px;width:100%;text-align:center">' +
     '<div style="font-size:36px;margin-bottom:12px">🗑️</div>' +
     '<div style="font-size:15px;font-weight:900;color:var(--text);margin-bottom:8px">Vider la liste ?</div>' +
-    '<div style="font-size:12px;color:var(--muted);margin-bottom:20px">Tous les élèves scannés seront supprimés.</div>' +
+    '<div style="font-size:max(12px,var(--fs-min,15px));color:var(--muted);margin-bottom:20px">Tous les élèves scannés seront supprimés.</div>' +
     '<div style="display:flex;flex-direction:column;gap:8px">' +
-      '<button id="prof-clear-confirm" style="padding:13px;background:#e74c3c;border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;touch-action:manipulation">Vider</button>' +
-      '<button id="prof-clear-cancel" style="padding:11px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation">Annuler</button>' +
+      '<button id="prof-clear-confirm" style="padding:13px;background:#e74c3c;border:none;border-radius:10px;color:#fff;font-family:inherit;font-size:max(14px,var(--fs-min,15px));font-weight:900;cursor:pointer;touch-action:manipulation">Vider</button>' +
+      '<button id="prof-clear-cancel" style="padding:11px;background:var(--surface3);border:1px solid var(--border2);border-radius:10px;color:var(--text2);font-family:inherit;font-size:max(13px,var(--fs-min,15px));font-weight:700;cursor:pointer;touch-action:manipulation">Annuler</button>' +
     '</div></div>';
   document.body.appendChild(modal);
   modal.querySelector('#prof-clear-confirm').onclick = function() {
