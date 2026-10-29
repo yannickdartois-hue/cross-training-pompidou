@@ -19572,6 +19572,7 @@ function profExportJSON() {
 
     <div class="aide-header">
       <span class="aide-header-title">📋 Mode d'emploi</span>
+      <label class="aide-lis" style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;cursor:pointer;margin-left:auto;margin-right:10px"><input type="checkbox" id="aide-lis" style="width:20px;height:20px" onchange="EPSAide.lisible(this.checked)"> Lecture facilitée (dyslexie)</label>
       <button class="aide-close-btn" onclick="toggleAide()">✕</button>
     </div>
 
@@ -19759,5 +19760,8 @@ function profExportJSON() {
 </div>
 <div id="toast"></div>
 <script>if('serviceWorker' in navigator&&location.protocol==='https:'){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<script>window.EPS_AIDE={appli:'Cross training',bouton:false,publics:[]};</script>
+<script src="eps-aide.js"></script>
+<script>try{document.getElementById('aide-lis').checked=localStorage.getItem('eps-lisible')==='1'}catch(e){}</script>
 </body>
 </html>
