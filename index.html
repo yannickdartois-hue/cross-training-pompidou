@@ -14243,7 +14243,7 @@ function startChrono() {
     amrapRenderCurrentExo();
   }
   if (isEmomMode()) {
-    if (c.totalElapsed === 0) {
+    if (c.phaseElapsed === 0) {
       initEmomLivePanel();
     } else {
       // Reprise après pause : réactiver seulement le bouton, garder la position
@@ -14253,7 +14253,7 @@ function startChrono() {
       if (epBtn) { epBtn.disabled = false; epBtn.style.opacity = ''; }
     }
   }
-  if (STATE.mode === 'FOR TIME' && c.totalElapsed === 0) {
+  if (STATE.mode === 'FOR TIME' && c.phaseElapsed === 0) {
     initFortimeLivePanel();
     if (STATE.fortime) {
       STATE.fortime.startTime = Date.now() - (STATE.fortime.pausedElapsed || 0) * 1000;
@@ -14265,6 +14265,7 @@ function startChrono() {
 
 function pauseChrono() {
   const c = STATE.chrono;
+  if (STATE.mode === 'FOR TIME' && STATE.fortime && STATE.fortime.startTime && c.running) STATE.fortime.pausedElapsed = getFortimeElapsed();
   c.running = false;
   clearInterval(c.intervalId);
   c.phaseStartOffset = c.phaseElapsed;
@@ -14312,6 +14313,8 @@ function resetChrono() {
     STATE.fortime.currentPalier = 0;
     STATE.fortime.splits = [];
     STATE.fortime.finished = false;
+    STATE.fortime.pausedElapsed = 0;
+    STATE.fortime.startTime = null;
   }
   updateChronoDisplay();
   if (STATE.mode === 'TABATA') updateTabataCards(true);
@@ -19589,6 +19592,19 @@ function profExportJSON() {
       </div>
     </div>
 
+    <!-- REPRISE -->
+    <div class="aide-section">
+      <div class="aide-section-header" onclick="toggleAideSection(this)">
+        <span class="aide-section-icon">🔄</span>
+        <span class="aide-section-title">Veille, page rechargée</span>
+        <span class="aide-section-chevron">▼</span>
+      </div>
+      <div class="aide-section-body">
+        <p class="aide-p">Le WOD est gardé sur la tablette chaque seconde : profil, mode, exercices, tours, paliers, minutes et chrono. Si la tablette se met en veille ou si la page se recharge, un bandeau propose <strong>Reprendre</strong> : le chrono continue en comptant le temps écoulé.</p>
+        <p class="aide-p">En <strong>TABATA</strong>, les efforts passés pendant la coupure sont comptés sans répétitions. Une séance de plusieurs WOD est aussi gardée entre deux WOD.</p>
+      </div>
+    </div>
+
     <!-- AMRAP -->
     <div class="aide-section">
       <div class="aide-section-header" onclick="toggleAideSection(this)">
@@ -19760,6 +19776,146 @@ function profExportJSON() {
 </div>
 <div id="toast"></div>
 <script>if('serviceWorker' in navigator&&location.protocol==='https:'){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}</script>
+<script>
+/* =====================================================================
+   REPRISE APRÈS RECHARGEMENT OU MISE EN VEILLE
+   L'état du WOD (profil, mode, réglages, exercices, compteurs, chrono) et la séance en cours
+   sont gardés sur l'appareil chaque seconde. Au rechargement, un bandeau propose de reprendre.
+   Le chrono se base sur l'heure réelle : le temps passé page fermée est compté.
+   TABATA : les phases écoulées pendant la veille sont rattrapées (efforts sans reps comptées).
+   ===================================================================== */
+(function(){
+var K='eps_wod_en_cours',PROFIL=['inp-nom','inp-prenom','inp-nom-b','inp-prenom-b','inp-classe','inp-coach'];
+var pret=false; // on n'écrit rien tant que l'élève n'a pas choisi (reprendre ou non)
+function compte(seance,bi){ // en binôme, STATE.seance est la séance du joueur actif (même objet) : ne pas compter deux fois
+  if(bi&&bi.hasBinome)return ((bi.seanceA||{}).wods||[]).length+((bi.seanceB||{}).wods||[]).length;
+  return ((seance||{}).wods||[]).length}
+function nbWods(){return compte(STATE.seance,BINOME)}
+function demarre(){var c=STATE.chrono;return c.running||c.phaseElapsed>0}
+function fini(){var b=document.getElementById('btn-start');return !STATE.chrono.running&&STATE.chrono.phaseElapsed>0&&b&&b.textContent==='TERMINÉ'}
+function snap(){
+  if(!pret)return;
+  try{
+    if(!demarre()&&!nbWods()){localStorage.removeItem(K);return}
+    var c=STATE.chrono,pe=c.running&&c.phaseStartTime?(Date.now()-c.phaseStartTime)/1000:c.phaseElapsed;
+    var inp={};PROFIL.forEach(function(id){var e=document.getElementById(id);if(e)inp[id]=e.value});
+    localStorage.setItem(K,JSON.stringify({v:1,ts:Date.now(),inp:inp,demarre:demarre(),fini:fini(),mode:STATE.mode,config:STATE.config,
+      exos:Object.keys(STATE.selectedExos).map(function(k){return [k,STATE.selectedExos[k]]}),bilan:STATE.bilan,fortime:STATE.fortime,
+      ft:STATE.mode==='FOR TIME'?getFortimeElapsed():0,
+      chrono:{running:c.running,pe:pe,phase:c.phase,currentCycle:c.currentCycle,totalCycles:c.totalCycles,lastEmomMinute:c.lastEmomMinute},
+      emomIdx:STATE._emomSeqExoIdx,emomStart:STATE._emomSeqStartTime,note:STATE.noteExecLog,seance:STATE.seance,ressenti:STATE.ressenti,binome:BINOME}));
+  }catch(e){}
+}
+/* TABATA : avance des phases écoulées pendant l'absence. Renvoie true si le WOD est terminé. */
+function rattrapeTabata(rem){
+  var c=STATE.chrono,cf=STATE.config,fin=false;
+  while(rem>0){
+    var dur=c.phase==='effort'?cf.tabataEffort:cf.tabataRest,left=dur-c.phaseElapsed;
+    if(rem<left){c.phaseElapsed+=rem;rem=0;break}
+    rem-=left;c.phaseElapsed=0;
+    if(c.phase==='effort'){
+      var ex=getTabataCurrentExo(),reps=ex&&STATE.selectedExos[ex]?STATE.selectedExos[ex].repsLive||0:0;
+      STATE.bilan.tabataLog.push({cycle:c.currentCycle,exo:ex||'-',reps:reps});
+      if(ex&&STATE.selectedExos[ex])STATE.selectedExos[ex].repsLive=0;
+      c.currentCycle++;
+      if(c.currentCycle>cf.tabataCycles){c.currentCycle=cf.tabataCycles;c.phaseElapsed=cf.tabataEffort;fin=true;break}
+      c.phase='rest';
+    } else c.phase='effort';
+  }
+  return fin;
+}
+function phaseTabataUI(){
+  var r=STATE.chrono.phase==='rest',ph=document.getElementById('phase-label');
+  document.body.classList.toggle('mode-tabata-rest',r);document.body.classList.toggle('mode-tabata-effort',!r);
+  if(ph){ph.classList.toggle('tabata-rest',r);ph.classList.toggle('tabata-effort',!r)}
+  document.querySelectorAll('[id^="repsLive-"]').forEach(function(el){var k=Object.keys(STATE.selectedExos).find(function(n){return 'repsLive-'+safeId(n)===el.id});if(k)el.textContent=STATE.selectedExos[k].repsLive||0});
+  try{updateTabataCards()}catch(e){}
+}
+function terminerTabata(){
+  var c=STATE.chrono;clearInterval(c.intervalId);releaseWakeLock();c.running=false;
+  var b=document.getElementById('btn-start');if(b){b.textContent='TERMINÉ';b.classList.remove('paused')}
+  updateChronoDisplay();revealSaveSection();setTimeout(function(){showRessentiThenBilan()},400);
+}
+/* Retour de veille en TABATA : rattraper les phases manquées (le reste des modes suit déjà l'heure réelle). */
+document.addEventListener('visibilitychange',function(){
+  if(document.visibilityState==='hidden'){snap();return}
+  var c=STATE.chrono;if(STATE.mode!=='TABATA'||!c.running||!c.phaseStartTime)return;
+  var el=(Date.now()-c.phaseStartTime)/1000,dur=c.phase==='effort'?STATE.config.tabataEffort:STATE.config.tabataRest;
+  if(el<=dur)return;
+  c.phaseElapsed=0;var f=rattrapeTabata(el);
+  if(f){terminerTabata();return}
+  c.phaseStartTime=Date.now()-c.phaseElapsed*1000;phaseTabataUI();updateChronoDisplay();
+});
+addEventListener('pagehide',snap);
+
+async function restaurer(o){
+  var attendre=function(ms){return new Promise(function(r){setTimeout(r,ms)})};
+  PROFIL.forEach(function(id){var e=document.getElementById(id);if(e&&o.inp[id]!=null)e.value=o.inp[id]});
+  Object.assign(BINOME,o.binome||{});STATE.seance=o.seance||STATE.seance;
+  if(BINOME.hasBinome){var act=BINOME.active==='B'?BINOME.seanceB:BINOME.seanceA;if(act)STATE.seance=act} // même objet, comme avant le rechargement
+  try{updateSeanceUI()}catch(e){}try{binomeUpdateBar()}catch(e){}
+  if(!o.demarre||!o.mode){checkAndRevealChrono();return}
+  selectMode(o.mode);
+  await attendre(150); // selectMode lance des mises à jour différées (FOR TIME, AMRAP) : les laisser passer
+  Object.assign(STATE.config,o.config);
+  if(o.fortime){STATE.fortime.niveau=o.fortime.niveau;STATE.fortime.paliers=o.fortime.paliers}
+  try{renderConfigPanel()}catch(e){}
+  o.exos.forEach(function(x){
+    var b=document.querySelector('#exo-accordion [data-exo="'+x[0].replace(/"/g,'\\"')+'"]');
+    if(b&&!STATE.selectedExos[x[0]])toggleExo(x[0],b);
+    if(STATE.selectedExos[x[0]])Object.assign(STATE.selectedExos[x[0]],x[1]);
+  });
+  renderExoCards();if(isEmomMode())try{renderEmomExoRepsConfig()}catch(e){}
+  scrollToChrono();
+  await attendre(150);
+  var away=o.chrono.running?Math.max(0,(Date.now()-o.ts)/1000):0;
+  STATE.bilan=o.bilan;Object.assign(STATE.fortime,o.fortime||{});STATE.noteExecLog=o.note||[];STATE.ressenti=o.ressenti||null;
+  STATE._emomSeqExoIdx=o.emomIdx||0;STATE._emomSeqStartTime=o.emomStart||null;
+  var c=STATE.chrono;c.phase=o.chrono.phase;c.currentCycle=o.chrono.currentCycle;c.totalCycles=o.chrono.totalCycles;c.lastEmomMinute=o.chrono.lastEmomMinute;
+  c.phaseElapsed=o.chrono.pe;var finit=o.fini;
+  if(!finit&&away>0){
+    if(STATE.mode==='TABATA')finit=rattrapeTabata(away);
+    else c.phaseElapsed+=away;
+  }
+  if(STATE.mode==='FOR TIME')STATE.fortime.pausedElapsed=o.ft+away;
+  c.phaseElapsed=Math.max(c.phaseElapsed,0.01); // > 0 : startChrono reprend sans tout réinitialiser
+  c.phaseStartOffset=c.phaseElapsed;
+  var panneaux=function(){
+    if(isEmomMode()){var m=Math.max(1,Math.min(STATE.config.duration,Math.floor(c.phaseElapsed/60)+1));
+      emomRebuildMinutesList();(STATE.bilan.emomLog||[]).forEach(function(l){emomUpdateMinuteRow(l.minute,l)});
+      try{emomUpdateAvgTime()}catch(e){}var lb=document.getElementById('emom-current-label');if(lb)lb.textContent=m;emomRenderSeqCard(m)}
+    if(STATE.mode==='FOR TIME')ftRenderSeqCard();
+    if(STATE.mode==='AMRAP')amrapRenderCurrentExo();
+    if(STATE.mode==='TABATA')phaseTabataUI();
+  };
+  if(finit){
+    c.running=false;hideSectionsForWod();document.body.classList.add('chrono-live');panneaux();
+    var b=document.getElementById('btn-start');if(b){b.textContent='TERMINÉ';b.classList.remove('paused')}
+    updateChronoDisplay();checkAndRevealChrono();
+    try{revealSaveSection()}catch(e){}setTimeout(function(){showRessentiThenBilan()},300);return;
+  }
+  startChrono();panneaux();
+  if(!o.chrono.running)pauseChrono();
+  updateChronoDisplay();checkAndRevealChrono();
+  showToast(o.chrono.running?'WOD repris : le chrono continue':'WOD repris en pause : touche REPRENDRE');
+}
+function proposer(){
+  var o=null;try{o=JSON.parse(localStorage.getItem(K)||'null')}catch(e){}
+  if(!o||o.v!==1||Date.now()-o.ts>6*3600e3){try{localStorage.removeItem(K)}catch(e){}pret=true;return}
+  var qui=((o.inp['inp-prenom']||'')+' '+(o.inp['inp-nom']||'')).trim(),n=compte(o.seance,o.binome);
+  var txt=o.demarre?'WOD '+o.mode+' en cours'+(o.fini?' (terminé, bilan à faire)':o.chrono.running?'':' (en pause)'):'Séance en cours : '+n+' WOD enregistré'+(n>1?'s':'');
+  var d=document.createElement('div');d.id='wod-reprise';
+  d.style.cssText='position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top));transform:translateX(-50%);z-index:9500;background:#12222b;color:#fff;padding:12px 14px;border-radius:14px;box-shadow:0 12px 30px rgba(0,0,0,.35);display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;max-width:calc(100vw - 24px);font-weight:700';
+  d.innerHTML='<span>🔄 '+txt+(qui?' · '+qui.replace(/</g,'&lt;'):'')+'</span><button type="button" style="background:#f59e0b;color:#111;border:0;border-radius:10px;padding:9px 14px;font-weight:900;font-size:15px;cursor:pointer">Reprendre</button><button type="button" style="background:transparent;color:#fff;border:1.5px solid #fff;border-radius:10px;padding:8px 12px;font-weight:700;cursor:pointer">Non, effacer</button>';
+  var bs=d.querySelectorAll('button');
+  bs[0].onclick=function(){d.remove();try{getAudioCtx()}catch(e){}restaurer(o).catch(function(e){console.error(e);showToast('Reprise impossible : '+e.message)}).then(function(){pret=true;snap()})};
+  bs[1].onclick=function(){d.remove();try{localStorage.removeItem(K)}catch(e){}pret=true};
+  document.body.appendChild(d);
+}
+setInterval(snap,1000);
+if(document.readyState==='complete')setTimeout(proposer,300);else addEventListener('load',function(){setTimeout(proposer,300)});
+})();
+</script>
 <script>window.EPS_AIDE={appli:'Cross training',bouton:false,publics:[]};</script>
 <script src="eps-aide.js"></script>
 <script>try{document.getElementById('aide-lis').checked=localStorage.getItem('eps-lisible')==='1'}catch(e){}</script>
